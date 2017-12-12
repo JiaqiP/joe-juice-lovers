@@ -31,6 +31,11 @@ app.get('/kitchen', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/kitchen.html'));
 });
 
+// Serve machine-create your own as subpage --ivy
+app.get('/machine/create', function(reg,res){
+  res.sendFile(path.join(_dirname, 'views/machine-ivy.html'));
+});
+
 // Store data in an object to keep the global namespace clean
 function Data() {
   this.data = {};

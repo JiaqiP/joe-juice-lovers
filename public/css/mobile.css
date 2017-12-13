@@ -1,0 +1,50 @@
+#step{
+    display: table;
+    width:100%;
+    height: 36px;
+    margin: 0;
+    padding:2px;
+    border-bottom-width: medium;
+    border-bottom-color:black;
+    border-bottom: dashed;
+    background-color:white;
+    text-align: center;
+}
+#step button{
+    display: table-cell;
+    padding:0;
+    margin:0;
+    border:0;
+    background-color: white;
+    max-height: 34px;
+}
+#step button img{
+    max-height: 30px;
+
+}
+#step span{
+    color: black;
+    display:table-cell;
+    padding: 2px;
+    font-size: 30px;
+    font-family;
+}
+
+#type{
+    display:table;
+    width:100%;
+    margin 0;
+    text-align: center;
+    
+}
+
+.bigBtn{
+    display: block;
+    align-self: center;
+    height: 160px;
+    width:280px;
+    margin:auto;
+    margin-top: 50px;
+    font-size: 50px;  
+}
+

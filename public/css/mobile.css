@@ -4,10 +4,7 @@
     height: 36px;
     margin: 0;
     padding:2px;
-    border-bottom-width: medium;
-    border-bottom-color:black;
-    border-bottom: dashed;
-    background-color:white;
+    background-color:#3366CC;
     text-align: center;
 }
 #step button{
@@ -15,7 +12,6 @@
     padding:0;
     margin:0;
     border:0;
-    background-color: white;
     max-height: 34px;
 }
 #step button img{
@@ -23,10 +19,11 @@
 
 }
 #step span{
-    color: black;
+    vertical-align: middle;
+    color: white;
     display:table-cell;
     padding: 2px;
-    font-size: 30px;
+    font-size: 20px;
     font-family;
 }
 
@@ -40,11 +37,76 @@
 
 .bigBtn{
     display: block;
-    align-self: center;
+    text-align: center;
+    align-content: center;
     height: 160px;
-    width:280px;
+    width:80%;
     margin:auto;
     margin-top: 50px;
-    font-size: 50px;  
+    font-size: 40px;
 }
 
+.button-group{
+    display:inline-block;
+    text-align: center;
+    margin:5px;
+    width:100%;
+
+}
+
+.button-group button{
+    width:32%;
+    padding: 0;
+    text-align: center;
+    font-size: 15px; 
+    color: #333333;
+    border-color:#003366;
+}
+.button-group button:hover,.button-group button:selected{
+    background-color: #ccc;
+}
+
+#size{
+    height:auto;
+}
+
+#size button{
+    margin-right:2px;
+    margin-top: 0.5em;
+    border:dashed;
+    border-color:#336699;
+    height: auto;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    
+  
+}
+#small_cup{
+    height:4.5em;
+}
+#medium_cup{
+    height:5.5em;
+}
+#large_cup{
+    height:6.5em;
+}
+
+#notes{
+    vertical-align: bottom;
+    margin-top: 0.5em;
+    padding:0.5em;
+    border:solid;
+    border-color: #003366;
+    border-top-right-radius: 10px;
+    
+}
+
+
+h2{
+    font-size:20px;
+    line-height: 1.5em;
+}
+h3{
+    font-size:17px;
+    line-height: 1.5em;
+}

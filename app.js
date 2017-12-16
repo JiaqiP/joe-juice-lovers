@@ -42,6 +42,15 @@ app.get('/mobile/own', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/mobile_own.html'));
 });
 
+app.get('/mobile/own_size', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/mobile_own_size.html'));
+});
+
+
+
+app.get('/mobile/own_ingredients', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/mobile_own_ingredients.html'));
+});
 
 // Store data in an object to keep the global namespace clean
 function Data() {

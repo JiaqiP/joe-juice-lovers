@@ -4,11 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>mobile</title>
-    <link rel="stylesheet" type="text/css" href="../public/css/reset.css">
-    <link rel="stylesheet" href="../public/css/buttons.css">
-    <link rel="stylesheet" type="text/css" href="../public/css/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
     
     <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <script src="/vue/vue.js" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/js/juicifer-main.js" defer></script>
+    <script src="/js/own_size.js" defer></script>
 
 </head>
 
@@ -25,21 +29,21 @@
     </div>
  
   <div id = "size" class="button-group">
-    <button type="button" class="button button-rounded">
-        <img src = "../small_size.png" id = "small_cup">
-      <h3>SEK 35 <br/> 300 ml</h3>
+    <button v-on:click="choose_small" type="button" class="button button-rounded">
+        <img src = "small_size.png" id = "small_cup">
+      <h3>SEK 45 <br/> 300 ml</h3>
     </button>
-    <button type="button" class="button button-rounded">
-        <img src = "../medium_size.png" id = "medium_cup">
-      <h3>SEK 45 <br/> 400 ml</h3>
+    <button v-on:click="choose_medium" type="button" class="button button-rounded">
+        <img src = "medium_size.png" id = "medium_cup">
+      <h3>SEK 55 <br/> 470 ml</h3>
     </button>
-    <button type="button" class="button button-rounded ">
-        <img src = "../large_size.png" id = "large_cup">
-      <h3>SEK 55 <br/> 500 ml</h3>
+    <button v-on:click="choose_large" type="button" class="button button-rounded ">
+        <img src = "../../large_size.png" id = "large_cup">
+      <h3>SEK 65 <br/> 550 ml</h3>
     </button>
   </div>
     
-    <div id = "notes" >
+    <div id = "notes" v-align="bottom">
         <h2>Note: <br/>Maximum ingredients limit
         </h2><br/>
         <h3>

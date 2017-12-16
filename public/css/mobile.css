@@ -6,6 +6,7 @@
     padding:2px;
     background-color:#3366CC;
     text-align: center;
+    
 }
 #step button{
     display: table-cell;
@@ -97,7 +98,7 @@
     padding:0.5em;
     border:solid;
     border-color: #003366;
-    border-top-right-radius: 10px;
+    border-top-right-radius: 20px;
     
 }
 
@@ -109,4 +110,26 @@ h2{
 h3{
     font-size:17px;
     line-height: 1.5em;
+}
+
+.bottom{
+    position: fixed;
+    bottom:0;
+    display: block;
+}
+
+#ingredient_bottom{
+    text-align: center;
+    padding:10px;
+    padding-bottom: 0;
+    width:100%;
+}
+#ingredient_bottom button{
+    display:inline-block;
+    width:40%;
+    padding:0;    
+}
+#check_ingredients{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }

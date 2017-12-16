@@ -4,11 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>mobile</title>
-    <link rel="stylesheet" type="text/css" href="../public/css/reset.css">
-    <link rel="stylesheet" href="../public/css/buttons.css">
-    <link rel="stylesheet" type="text/css" href="../public/css/mobile.css">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
     
+    <script src="/vue/vue.js" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/js/juicifer-main.js" defer></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <script defer src="/js/own_ingredients.js"></script>
 
 </head>
 
@@ -24,19 +28,40 @@
         </button>
     </div>
     
-    <div class="button-group" id="ingredient_type" >
-        <button type="button" class="button button-border button-rounded button-small">Fruits</button>
-        <button type="button" class="button button-border button-rounded button-small">Vegetables</button>
-        <button type="button" class="button button-border button-rounded button-small">Spices</button>
+    <div class="button-group" id="ingredient_type" class = "scroll_fixed">
+        
+            <!-- use router-link component for navigation. -->
+            <!-- specify the link by passing the `to` prop. -->
+            <!-- <router-link> will be rendered as an `<a>` tag by default -->
+        <router-link to="/fruit">
+            <button type="button" class="button button-border button-small">Fruits</button>
+        </router-link>
+        <router-link to="/vegetables">
+            <button type="button" class="button button-border button-small">Vegetables</button>
+        </router-link>
+        <router-link to="/others">
+            <button type="button" class="button button-border button-small">Others</button>
+        </router-link>
     
     </div>
     
     <div id = "display_ingredient">
-    
-    
+
+          <!-- route outlet -->
+          <!-- component matched by the route will render here -->
+          <router-view></router-view>
+
     </div>
     
-    <div id = "ingredient_bottom">
+    <div id = "ingredient_bottom" class = "scroll_fixed bottom">
+        <button type="button" id = "check_ingredients" class = "button button-border button-rounded button-small">
+            <i class="fas fa-plus"></i>  
+            Details
+        </button>
+        
+        <button type="button" id = "create_next" class = "button button-border button-rounded button-small">  
+            Next
+        </button>
         
     </div>
 

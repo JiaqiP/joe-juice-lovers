@@ -37,6 +37,12 @@ app.get('/create', function (req, res) {
 });
 
 
+// Serve mobile-create your own as subpage --Jiaqi 
+app.get('/mobile/own', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/mobile_own.html'));
+});
+
+
 // Store data in an object to keep the global namespace clean
 function Data() {
   this.data = {};

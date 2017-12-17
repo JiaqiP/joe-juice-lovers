@@ -3,7 +3,7 @@
 'use strict';
 
 Vue.component('ingredient', {
-  props: ['item', 'type', 'lang'],
+  props: ['item', 'type', 'lang','size'],
   template: ' <div class="ingredient">\
                   <label>\
                     <button v-on:click="incrementCounter">{{ counter }}</button>\
@@ -42,6 +42,7 @@ var vm = new Vue({
   el: '#ordering',
   mixins: [sharedVueStuff], // include stuff that is used both in the ordering system and in the kitchen
   data: {
+    size:'medium',
     type: '',
     chosenIngredients: [],
     volume: 0,
@@ -49,6 +50,7 @@ var vm = new Vue({
   },
   methods: {
     addToOrder: function (item, type) {
+      this.size="small";
       this.chosenIngredients.push(item);
       this.type = type;
       if (type === "smoothie") {
@@ -62,6 +64,7 @@ var vm = new Vue({
       var i,
       //Wrap the order in an object
         order = {
+          size:this.size,
           ingredients: this.chosenIngredients,
           volume: this.volume,
           type: this.type,

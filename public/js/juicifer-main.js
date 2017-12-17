@@ -6,13 +6,14 @@
 var socket = io();
 
 Vue.component('order-item', {
-  props: ['uiLabels', 'order', 'orderId', 'lang'],
-  template: '<div>{{orderId}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} </div>'
+  props: ['size','uiLabels', 'order', 'orderId', 'lang'],
+  template: '<div>{{size}} {{orderId}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} </div>'
 });
 
 // Stuff that is used both in the ordering system and in the kitchen
 var sharedVueStuff = {
   data: {
+    size:{},
     orders: {},
     uiLabels: {},
     ingredients: {},
@@ -20,6 +21,7 @@ var sharedVueStuff = {
   },
   created: function () {
     socket.on('initialize', function (data) {
+      this.size = data.size;
       this.orders = data.orders;
       this.uiLabels = data.uiLabels;
       this.ingredients = data.ingredients;
@@ -33,6 +35,7 @@ var sharedVueStuff = {
       this.orders = data.orders;
       if (typeof data.ingredients !== 'undefined') {
         this.ingredients = data.ingredients;
+        this.type = data.type;
       }
     }.bind(this));
   },

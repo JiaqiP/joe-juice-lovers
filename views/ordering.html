@@ -39,7 +39,7 @@
     </ingredient>
 
     <h1>{{ uiLabels.order }}</h1>
-    {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }} {{ volume }} ml, {{ price }} kr
+    {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }} {{ volume }} ml, {{ price }} kr, {{size}}
     <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
 
     <h1>{{ uiLabels.ordersInQueue }}</h1>
@@ -52,7 +52,8 @@
         :order="order" 
         :ui-labels="uiLabels"
         :lang="lang"
-        :key="key">
+        :key="key"
+        :size="size">
       </order-item>
     </div>
     <h2>{{ uiLabels.juice }}</h2>
@@ -64,7 +65,8 @@
         :order="order"
         :ui-labels="uiLabels"
         :lang="lang"
-        :key="key">
+        :key="key"
+        :size="size">
       </order-item>
     </div>
   </div>

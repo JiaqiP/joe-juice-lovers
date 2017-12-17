@@ -12,8 +12,13 @@
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="/js/juicifer-main.js" defer></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
-    <script defer src="/js/own_ingredients.js"></script>
+  
+    <script defer src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js
+"></script>
+    <script defer src="/js/own_ingredients.js"></script>  
+    
 
+    
 </head>
 
 <body>
@@ -28,19 +33,19 @@
         </button>
     </div>
     
+<div id ="route_type">    
     <div class="button-group" id="ingredient_type" class = "scroll_fixed">
         
             <!-- use router-link component for navigation. -->
             <!-- specify the link by passing the `to` prop. -->
             <!-- <router-link> will be rendered as an `<a>` tag by default -->
-        <router-link to="/fruit">
-            <button type="button" class="button button-border button-small">Fruits</button>
+        <router-link to="/fruit" type="button" id="fru" class="button button-border button-rounded button-small">Fruits
         </router-link>
-        <router-link to="/vegetables">
-            <button type="button" class="button button-border button-small">Vegetables</button>
+        
+        <router-link to="/vegetables" type="button" id="veg" class="button button-border button-rounded button-small">Vegetables
         </router-link>
-        <router-link to="/others">
-            <button type="button" class="button button-border button-small">Others</button>
+        
+        <router-link to="/others" type="button" id="othr" class="button button-border button-rounded button-small">Others
         </router-link>
     
     </div>
@@ -52,12 +57,17 @@
           <router-view></router-view>
 
     </div>
+</div>
     
     <div id = "ingredient_bottom" class = "scroll_fixed bottom">
+
+           
+            
         <button type="button" id = "check_ingredients" class = "button button-border button-rounded button-small">
             <i class="fas fa-plus"></i>  
             Details
         </button>
+
         
         <button type="button" id = "create_next" class = "button button-border button-rounded button-small">  
             Next

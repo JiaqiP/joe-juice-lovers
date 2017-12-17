@@ -55,7 +55,7 @@
 
 }
 
-.button-group button{
+#fru,#veg,#othr{
     width:32%;
     padding: 0;
     text-align: center;
@@ -63,9 +63,12 @@
     color: #333333;
     border-color:#003366;
 }
-.button-group button:hover,.button-group button:selected{
-    background-color: #ccc;
+
+#fru,#veg,#othr:selected{
+    border-color:#0099ff;
+    border-width: thick;
 }
+
 
 #size{
     height:auto;

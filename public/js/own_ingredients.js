@@ -2,9 +2,10 @@
 Vue.use(VueRouter);
 // 1. Define route components.
 // These can be imported from other files
-const friut = { template: '<div>foo</div>' }
-const vegetables = { template: '<div>bar</div>' }
+const friut = { template: '<div>fruit</div>' }
+const vegetables = { template: '<div>vegetables</div>' }
 const others = { template: '<div>others</div>' }
+const ingredients = { template: '<div>ingredients</div>'}
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -14,7 +15,8 @@ const others = { template: '<div>others</div>' }
 const routes = [
   { path: '/fruit', component: friut },
   { path: '/vegetables', component: vegetables },
-  { path: '/others',component:others }
+  { path: '/others',component:others },
+  { path: '/check_ingredients', component:ingredients }
 ]
 
 // 3. Create the router instance and pass the `routes` option
@@ -29,6 +31,6 @@ const router = new VueRouter({
 // whole app router-aware.
 const app = new Vue({
   router
-}).$mount('#app')
+}).$mount('#route_type')
 
 // Now the app has started!

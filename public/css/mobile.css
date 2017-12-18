@@ -6,7 +6,8 @@
     padding:2px;
     background-color:#3366CC;
     text-align: center;
-    
+    top:0;
+    position: sticky;
 }
 #step button{
     display: table-cell;
@@ -48,11 +49,13 @@
 }
 
 .button-group{
-    display:inline-block;
+    display:block;
     text-align: center;
-    margin:5px;
+    padding:5px;
     width:100%;
-
+    top:40px;
+    position: fixed;
+    background-color: white;
 }
 
 #fru,#veg,#othr{
@@ -123,16 +126,49 @@ h3{
 
 #ingredient_bottom{
     text-align: center;
-    padding:10px;
+    padding-left:10px;
+    padding-right: 10px;
     padding-bottom: 0;
+    padding-top: 2px;
     width:100%;
 }
+#ingredient_bottom, #info button{
+    background-color:#eeeeee;
+}
+
 #ingredient_bottom button{
     display:inline-block;
     width:40%;
-    padding:0;    
+    padding:0;
 }
 #check_ingredients{
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+.display_ingr{
+    padding-top:40px;
+    padding-bottom:40px;
+}
+#info{
+    width:100%;
+    position:fixed;
+    bottom:0;
+
+}
+#info button{
+    display:block;
+    border-bottom: none;
+    border-bottom-left-radius:0; 
+    border-bottom-right-radius:0; 
+}
+
+#info div{
+    width:100%;
+    padding-left:1em;
+    padding-right:1em;
+    padding-top:1em;
+    background-color:#eeeeee;
+    border-width: thick;
+    border-bottom-width: 0;
+    border-color:white;
 }

@@ -46,7 +46,12 @@ var vm = new Vue({
     type: '',
     chosenIngredients: [],
     volume: 0,
-    price: 0
+    price: 0,
+    others_show: false,
+    vegetables_show: false,
+    fruit_show: false,
+    info_show:false
+    
   },
   methods: {
     addToOrder: function (item, type) {
@@ -80,6 +85,35 @@ var vm = new Vue({
       this.price = 0;
       this.type = '';
       this.chosenIngredients = [];
+    },
+      
+    show_vegetables: function () {
+        this.others_show = false;
+        this.vegetables_show = true;
+        this.fruit_show = false;
+        console.log("show_vegetables");
+    },
+    show_fruit: function () {
+        this.others_show = false;
+        this.vegetables_show = false;
+        this.fruit_show = true;
+        console.log("show_fruit");
+    },
+    show_others: function () {
+        this.others_show = true;
+        this.vegetables_show = false;
+        this.fruit_show = false;
+        console.log("show_others");
+    },
+    show_ingredient: function () {
+        this.info_show = true;
+        console.log("show_ingredient");
+    },
+    hide_ingredient: function () {
+        this.info_show = false;
+    },
+    goto_cart: function(){
+      
     }
   }
 });

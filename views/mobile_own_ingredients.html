@@ -16,14 +16,14 @@
     <script defer src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js
 "></script>
     <script src="/js/juicifer-main.js" defer></script>
-    <script defer src="/js/own_ingredients.js"></script>  
+    <script defer src="/js/ordering.js"></script>  
     
 
     
 </head>
 
 <body>
-    <div id="step">
+    <div id="step" class ="scroll_fixed">
         <button id = "back" align = "left" class="button button-large button-plain button-borderless">
               <i class="fas fa-angle-left"></i>
         </button>
@@ -34,46 +34,85 @@
         </button>
     </div>
     
-<div id ="route_type">    
-    <div class="button-group" id="ingredient_type" class = "scroll_fixed">
+<div id ="ordering">    
+    <div class="button-group" id="ingredient_type">
+        <button v-on:click="show_fruit" type="button" id="fru" class="button button-border button-rounded button-small">Fruits
+        </button>
         
-            <!-- use router-link component for navigation. -->
-            <!-- specify the link by passing the `to` prop. -->
-            <!-- <router-link> will be rendered as an `<a>` tag by default -->
-        <router-link to="/fruit" type="button" id="fru" class="button button-border button-rounded button-small">Fruits
-        </router-link>
+        <button v-on:click="show_vegetables" type="button" id="veg" class="button button-border button-rounded button-small">Vegetables
+        </button>
         
-        <router-link to="/vegetables" type="button" id="veg" class="button button-border button-rounded button-small">Vegetables
-        </router-link>
-        
-        <router-link to="/others" type="button" id="othr" class="button button-border button-rounded button-small">Others
-        </router-link>
-    
+        <button  v-on:click="show_others" type="button" id="othr" class="button button-border button-rounded button-small">Others
+        </button>    
     </div>
     
-    <div id = "display_ingredient">
-            
-          <!-- route outlet -->
-          <!-- component matched by the route will render here -->
-          <router-view></router-view>
-            
+    
+    <div id = "display_fruit" v-if="fruit_show" class="display_ingr">
+        <ingredient
+          ref="ingredient"
+          type="smoothie"
+          v-for="item in ingredients"
+          v-if="item.vol_smoothie > 0"
+          v-on:increment="addToOrder(item, 'smoothie')"  
+          :item="item" 
+          :lang="lang"
+          :key="item.ingredient_id">
+        </ingredient>
+
     </div>
 
+    <div id = "display_vegetables" v-if="vegetables_show" class="display_ingr">
+        <ingredient
+          ref="ingredient"
+          type="smoothie"
+          v-for="item in ingredients"
+          v-if="item.vol_smoothie > 0"
+          v-on:increment="addToOrder(item, 'juice')"  
+          :item="item" 
+          :lang="lang"
+          :key="item.ingredient_id">
+        </ingredient>
+            
+    </div>
+    
+    <div id = "display_others" v-if="others_show" class="display_ingr">
+        <ingredient
+          ref="ingredient"
+          type="smoothie"
+          v-for="item in ingredients"
+          v-if="item.vol_smoothie > 0"
+          v-on:increment="addToOrder(item, 'smoothie')"  
+          :item="item" 
+          :lang="lang"
+          :key="item.ingredient_id">
+        </ingredient>        
+    
+
+    </div>
+    
+    <div id = "info" v-if="info_show">
+        <button v-on:click="hide_ingredient" type="button" id = "hide_ingredients" class = "button button-border button-rounded button-small">
+            <i class="fas fa-minus"></i>  
+            Details
+        </button>
+        <div  class = "display_ingr">
+            <h1>{{ uiLabels.order }}</h1>
+            {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }} {{ volume }} ml, {{ price }} kr, {{size}}
+        </div>
+        
+        
+    </div>
     
     <div id = "ingredient_bottom" class = "scroll_fixed bottom">
 
-        <router-link to="/check_ingredients" type="button" id = "check_ingredients" class = "button button-border button-rounded button-small">
-            <i class="fas fa-plus"></i>  
-            Detailssssss
-        </router-link>   
-            
-        <button type="button" id = "check_ingredients" class = "button button-border button-rounded button-small">
+        <button v-on:click="show_ingredient" v-if="!info_show"  type="button" id = "show_ingredients" class = "button button-border button-rounded button-small">
             <i class="fas fa-plus"></i>  
             Details
         </button>
-
         
-        <button type="button" id = "create_next" class = "button button-border button-rounded button-small">  
+        <button v-if="info_show"></button>
+        
+        <button v-on:click="goto_cart" type="button" id = "create_next" class = "button button-border button-rounded button-small">  
             Next
         </button>
         

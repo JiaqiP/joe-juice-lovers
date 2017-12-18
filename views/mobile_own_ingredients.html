@@ -15,6 +15,7 @@
   
     <script defer src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js
 "></script>
+    <script src="/js/juicifer-main.js" defer></script>
     <script defer src="/js/own_ingredients.js"></script>  
     
 
@@ -51,17 +52,20 @@
     </div>
     
     <div id = "display_ingredient">
-
+            
           <!-- route outlet -->
           <!-- component matched by the route will render here -->
           <router-view></router-view>
-
+            
     </div>
-</div>
+
     
     <div id = "ingredient_bottom" class = "scroll_fixed bottom">
 
-           
+        <router-link to="/check_ingredients" type="button" id = "check_ingredients" class = "button button-border button-rounded button-small">
+            <i class="fas fa-plus"></i>  
+            Detailssssss
+        </router-link>   
             
         <button type="button" id = "check_ingredients" class = "button button-border button-rounded button-small">
             <i class="fas fa-plus"></i>  
@@ -74,6 +78,7 @@
         </button>
         
     </div>
+</div>
 
 </body>
 </html>

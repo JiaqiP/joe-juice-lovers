@@ -95,9 +95,19 @@
             <i class="fas fa-minus"></i>  
             Details
         </button>
+        
         <div  class = "display_ingr">
-            <h1>{{ uiLabels.order }}</h1>
-            {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }} {{ volume }} ml, {{ price }} kr, {{size}}
+            <div class = "table">
+                <span class="display_ingr_label">{{ uiLabels.ingredients }}</span>
+                <span class="display_ingr_label">{{uiLabels.mainflavor}} </span>
+            </div>
+            <check_ingredients
+              ref="check_ingredients"
+              v-for="item in chosenIngredients" 
+              :item="item" 
+              :lang="lang"
+              :key="item.ingredient_id">
+            </check_ingredients>   
         </div>
         
         

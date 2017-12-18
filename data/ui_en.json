@@ -10,5 +10,7 @@
   "with" : "with",
   "ready" : "Done",
   "order" : "My order",
-  "language" : "Svenska"
+  "language" : "Svenska",
+  "mainflavor" : "main flavor",
+  "delete" : "delete"
 }

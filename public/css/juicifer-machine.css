@@ -1,6 +1,6 @@
 body {
     font-family: Arial;
-    display: inline-block;
+
 }
 
 .left {
@@ -34,4 +34,68 @@ body {
 .col1 {
     width: 30%;
     padding: 10px;
+}
+
+
+.button-group{
+    display:inline-block;
+    text-align: center;
+    width:100%;
+
+}
+
+.button-group button{
+    padding: 0;
+    text-align: center;
+    font-size: 15px;
+    color: #333333;
+    border-color:#003366;
+}
+.button-group button:hover{
+    background-color: #ccc;
+}
+
+#ctype button{
+    font-size: 15px;
+    width:48%;
+    margin: 5px;
+    border:dashed;
+    border-color: #336699;
+}
+
+#size{
+    width:100%;
+}
+
+#size button{
+    width: 33%;
+    margin-right:2px;
+    margin-top: 0.5em;
+    border:dashed;
+    border-color:#336699;
+    height: auto;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+#size img{
+    height: 8em;
+}
+
+.description {
+    vertical-align: bottom;
+    margin-top: 0.5em;
+    border:solid;
+    border-color: #003366;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.description h2{
+    font-size:15px;
+}
+
+.description h3{
+    font-size:12px;
+
 }

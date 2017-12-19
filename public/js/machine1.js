@@ -82,4 +82,7 @@ var vm = new Vue({
             this.chosenIngredients = [];
         }
     }
-});
+}
+
+
+);

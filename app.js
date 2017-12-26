@@ -13,6 +13,9 @@ var csv = require("csvtojson");
 var ingredientsDataName = "ingredients";
 var transactionsDataName = "transactions";
 var defaultLanguage = "en";
+var readymadeDataName = "readymade";
+  
+
 
 // Pick arbitrary port for server
 var port = 3000;
@@ -42,6 +45,15 @@ app.get('/mobile/own', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/mobile_own.html'));
 });
 
+app.get('/mobile/own_size', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/mobile_own_size.html'));
+});
+
+
+
+app.get('/mobile/own_ingredients', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/mobile_own_ingredients.html'));
+});
 
 // Store data in an object to keep the global namespace clean
 function Data() {
@@ -91,7 +103,7 @@ Data.prototype.initializeData = function (table) {
 };
 
 /*
-  Adds an order to to the queue and makes an withdrawal from the
+  Adds an order to the queue and makes an withdrawal from the
   stock. If you have time, you should think a bit about whether
   this is the right moment to do this.
 */
@@ -108,7 +120,10 @@ Data.prototype.addOrder = function (order) {
     transId += 1;
     transactions.push({transaction_id: transId,
                        ingredient_id: i[k].ingredient_id,
-                       change: -1});
+                       change: -1,
+                       size:order.size,
+                       flavor:order.flavor,
+                      });
   }
 };
 
@@ -120,24 +135,35 @@ Data.prototype.markOrderDone = function (orderId) {
   this.orders[orderId].done = true;
 };
 
+Data.prototype.getReadymade = function () {
+    var d = this.data;
+    return d[readymadeDataName];  
+}
+
+
+
 var data = new Data();
 // Load initial ingredients. If you want to add columns, do it in the CSV file.
 data.initializeData(ingredientsDataName);
 // Load initial stock. Make alterations in the CSV file.
 data.initializeData(transactionsDataName);
 
+data.initializeData(readymadeDataName);
+
 io.on('connection', function (socket) {
   // Send list of orders and text labels when a client connects
-  socket.emit('initialize', { orders: data.getAllOrders(),
+  socket.emit('initialize', {orders: data.getAllOrders(),
                           uiLabels: data.getUILabels(),
-                          ingredients: data.getIngredients() });
+                          ingredients: data.getIngredients(),
+                          readymade: data.getReadymade()});
 
   // When someone orders something
   socket.on('order', function (order) {
     data.addOrder(order);
     // send updated info to all connected clients, note the use of io instead of socket
     io.emit('currentQueue', { orders: data.getAllOrders(),
-                          ingredients: data.getIngredients() });
+                          ingredients: data.getIngredients(),
+                            });
   });
   // send UI labels in the chosen language
   socket.on('switchLang', function (lang) {

@@ -3,13 +3,14 @@
 'use strict';
 
 Vue.component('order-item-to-prepare', {
-  props: ['uiLabels', 'order', 'orderId', 'lang'],
+  props: ['uiLabels', 'order', 'orderId', 'lang','size'],
   template: '<div>\
           <order-item\
             :ui-labels="uiLabels"\
             :lang="lang"\
             :order-id="orderId"\
-            :order="order">\
+            :order="order"\
+            :size="size">\
           </order-item>\
           <button v-on:click="orderDone">\
             {{uiLabels.ready}}\

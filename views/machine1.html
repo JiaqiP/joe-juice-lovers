@@ -114,36 +114,32 @@
             <label for="toggle1">Fruits</label>
 
             <section id="content1">
-                <p>
-                    Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
-                </p>
-                <p>
-                    Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
-                </p>
+                <div id="ordering1">
+                    <ingredient
+                            ref="ingredient"
+                            type="smoothie"
+                            v-for="item in ingredients"
+                            v-if="item.vol_smoothie > 0"
+                            v-on:increment="addToOrder(item, 'smoothie')"
+                            :item="item"
+                            :lang="lang"
+                            :key="item.ingredient_id">
+                    </ingredient>
+                </div>
             </section>
 
             <input id="toggle2" type="radio" name="toggle" />
             <label for="toggle2">Vegetables</label>
 
             <section id="content2">
-                <p>
-                    Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
-                </p>
-                <p>
-                    Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
-                </p>
+
             </section>
 
             <input id="toggle3" type="radio" name="toggle" />
             <label for="toggle3">Others</label>
 
             <section id="content3">
-                <p>
-                    Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
-                </p>
-                <p>
-                    Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
-                </p>
+
             </section>
 
 

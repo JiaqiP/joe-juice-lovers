@@ -106,8 +106,6 @@ body {
 /*for folding*/
 
 .togglebox {
-    width: 400px;
-    margin: 0 auto;
     background: #fff;
     transform: translateZ(0);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -162,12 +160,22 @@ section {
 #toggle2:checked ~ #content2,
 #toggle3:checked ~ #content3,
 #toggle4:checked ~ #content4 {
-    height: 200px;
+    height: 400px;
+    overflow: scroll;
 }
 
-p {
-    margin: 15px 0;
-    padding: 0 20px;
-    font-size: 12px;
-    line-height: 1.5;
+#content1 label{
+    width:150px;
+    height:150px;
+    margin:15px;
+    display:inline-block;
+    position:relative;
+    background-color: #b9e563;
+
+}
+
+.ingredient {
+    display:inline-block;
+    position: relative;
+
 }

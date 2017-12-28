@@ -42,7 +42,7 @@ function getOrderNumber() {
 }
 
 var vm = new Vue({
-    el: '#ordering',
+    el: '#ordering1',
     mixins: [sharedVueStuff], // include stuff that is used both in the ordering system and in the kitchen
     data: {
         type: '',

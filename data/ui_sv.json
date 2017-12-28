@@ -10,5 +10,7 @@
   "with" : "med",
   "ready" : "Klart",
   "order" : "Min beställning",
-  "language" : "English"
+  "language" : "English",
+  "mainflavor" : "Huvudsakliga smak",
+  "delete" : "Redera"
 }

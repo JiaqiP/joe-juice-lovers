@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mobile</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+    
+    <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <script src="/vue/vue.js" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/js/juicifer-main.js" defer></script>
+    <script src="/js/own.js" defer></script>
+
+</head>
+
+<body>
+    <div id="step">
+        <button id = "back" align = "left" class="button button-large button-plain button-borderless">
+              <i class="fas fa-angle-left"></i>
+        </button>
+        <span align = "center">Create your own </span>
+        
+        <button id = "cart" align = "right" class="button button-medium button-plain button-borderless">
+            <i class="fa fa-shopping-cart"></i>
+        </button>
+    </div>
+ 
+    <div id = "type">
+        <button v-on:click="choose_smoothie" id = "smoothie" class="bigBtn button button-glow button-border button-rounded button-primary"> 
+            smoothie
+        </button>
+        
+        <button v-on:click="choose_juice" id = "jucie" class = "bigBtn button button-glow button-border button-rounded button-primary" >
+            juice
+        </button>
+    </div>
+    
+
+</body>
+</html>

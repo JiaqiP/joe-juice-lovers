@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create your own - Machine </title>
+    <link rel="stylesheet" href="css/juicifer-machine.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <script src="/vue/vue.js" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="js/juicifer-main.js" defer></script>
+    <script src="js/machine1.js" defer></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="left">
+        <div class="topnav" id="myTopnav">
+            <a class="active" href="#home">Create your own</a>
+           <a href="#">Recommendation</a>
+        </div>
+        <!--choosing type-->
+        <div id="ctype" class="button-group">
+            <button type="button" class="button button-rounded">Smoothie</button>
+            <button type="button" class="button button-rounded">Juice</button>
+        </div>
+        <!--choosing size-->
+        <div id="size" class="button-group">
+            <button type="button" class="button button-rounded">
+                <img src="../pics/small_size.png">
+                <h3>SEK 35 <br/> 300 ml</h3>
+            </button>
+            <button type="button" class="button button-rounded">
+                <img src="../pics/medium_size.png">
+                <h3>SEK 45 <br/> 400 ml</h3>
+            </button>
+            <button type="button" class="button button-rounded ">
+                <img src="../pics/large_size.png">
+                <h3>SEK 55 <br/> 500 ml</h3>
+            </button>
+        </div>
+
+        <div class="description">
+            <h2>Note: <br/>Maximum ingredients limit</h2>
+            <h3>
+                3  ingredients in  S  size <br/>
+                4  ingredients in  M  size <br/>
+                5  ingredients in  L  size <br/>
+            </h3>
+
+        </div>
+
+        <!--choosing ingredient-->
+        <div id="ordering">
+
+            <h1>{{ uiLabels.smoothie }}</h1>
+            <ingredient
+                    ref="ingredient"
+                    type="smoothie"
+                    v-for="item in ingredients"
+                    v-if="item.vol_smoothie > 0"
+                    v-on:increment="addToOrder(item, 'smoothie')"
+                    :item="item"
+                    :lang="lang"
+                    :key="item.ingredient_id">
+            </ingredient>
+
+            <h1>{{ uiLabels.juice }}</h1>
+            <ingredient
+                    ref="ingredient"
+                    type="juice"
+                    v-for="item in ingredients"
+                    v-if="item.vol_juice > 0"
+                    v-on:increment="addToOrder(item, 'juice')"
+                    :item="item"
+                    :lang="lang"
+                    :key="item.ingredient_id">
+            </ingredient>
+
+            <h1>{{ uiLabels.order }}</h1>
+            {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }} {{ volume }} ml, {{ price }} kr
+            <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+
+            <h1>{{ uiLabels.ordersInQueue }}</h1>
+            <h2>{{ uiLabels.smoothie }}</h2>
+            <div>
+                <order-item
+                        v-for="(order, key) in orders"
+                        v-if="!order.done && order.type == 'smoothie'"
+                        :order-id="key"
+                        :order="order"
+                        :ui-labels="uiLabels"
+                        :lang="lang"
+                        :key="key">
+                </order-item>
+            </div>
+            <h2>{{ uiLabels.juice }}</h2>
+            <div>
+                <order-item
+                        v-for="(order, key) in orders"
+                        v-if="!order.done && order.type == 'juice'"
+                        :order-id="key"
+                        :order="order"
+                        :ui-labels="uiLabels"
+                        :lang="lang"
+                        :key="key">
+                </order-item>
+            </div>
+        </div>
+
+        <!--applying new css-->
+        <div class="togglebox">
+
+            <input id="toggle1" type="radio" name="toggle" />
+            <label for="toggle1">Fruits</label>
+
+            <section id="content1">
+                <p>
+                    Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+                </p>
+                <p>
+                    Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+                </p>
+            </section>
+
+            <input id="toggle2" type="radio" name="toggle" />
+            <label for="toggle2">Vegetables</label>
+
+            <section id="content2">
+                <p>
+                    Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+                </p>
+                <p>
+                    Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+                </p>
+            </section>
+
+            <input id="toggle3" type="radio" name="toggle" />
+            <label for="toggle3">Others</label>
+
+            <section id="content3">
+                <p>
+                    Bacon ipsum dolor sit amet beef venison beef ribs kielbasa. Sausage pig leberkas, t-bone sirloin shoulder bresaola. Frankfurter rump porchetta ham. Pork belly prosciutto brisket meatloaf short ribs.
+                </p>
+                <p>
+                    Brisket meatball turkey short loin boudin leberkas meatloaf chuck andouille pork loin pastrami spare ribs pancetta rump. Frankfurter corned beef beef tenderloin short loin meatloaf swine ground round venison.
+                </p>
+            </section>
+
+
+
+        </div>
+
+
+    </div>
+
+</body>
+</html>

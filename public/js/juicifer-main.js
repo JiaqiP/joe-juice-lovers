@@ -5,16 +5,23 @@
 
 var socket = io();
 
+/*
 Vue.component('order-item', {
-  props: ['size','flavor','uiLabels', 'order', 'orderId', 'lang'],
-  template: '<div>{{size}}{{flavor}} {{orderId}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} </div>'
-});
+  props: ['uiLabels', 'order', 'orderId', 'lang'],
+  template: '<div>{{orderId}} {{order.size}} {{order.flavor}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} </div>'
+});   //add {{order.size}} {{order.flavor}}
+*/
+Vue.component('order-item', {
+  props: ['uiLabels', 'order', 'orderId', 'lang'],
+  template: `<div>
+                <div>{{orderId}} {{order.size}} {{order.flavor}}</div>
+                <div>{{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients}} </div>
+              </div>`,
+});   //add{{order.size}} {{order.flavor}}，
 
 // Stuff that is used both in the ordering system and in the kitchen
 var sharedVueStuff = {
   data: {
-    size:{},
-    flavor:{},
     orders: {},
     uiLabels: {},
     ingredients: {},
@@ -41,7 +48,12 @@ var sharedVueStuff = {
       if (typeof data.ingredients !== 'undefined') {
         this.ingredients = data.ingredients;
         this.type = data.type;
+        console.log("ingredients not empty");
       }
+      else{
+        console.log("ingredients empty");
+      }
+
     }.bind(this));
   },
   methods: {

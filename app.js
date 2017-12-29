@@ -26,9 +26,11 @@ app.use(express.static(path.join(__dirname, 'public/')));
 // Serve vue from node_modules as vue/
 app.use('/vue', express.static(path.join(__dirname, '/node_modules/vue/dist/')));
 // Serve diner.html as root page
+/*
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/ordering.html'));
 });
+*/
 // Serve kitchen.html as subpage
 app.get('/kitchen', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/kitchen.html'));
@@ -41,10 +43,10 @@ app.get('/create', function (req, res) {
 
 
 // Serve mobile-create your own as subpage --Jiaqi 
-app.get('/mobile/own', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/mobile_own.html'));
+app.get('/mobile', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/mobile.html'));
 });
-
+/*
 app.get('/mobile/own_size', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/mobile_own_size.html'));
 });
@@ -54,7 +56,7 @@ app.get('/mobile/own_size', function (req, res) {
 app.get('/mobile/own_ingredients', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/mobile_own_ingredients.html'));
 });
-
+*/
 // Store data in an object to keep the global namespace clean
 function Data() {
   this.data = {};
@@ -141,6 +143,7 @@ Data.prototype.getReadymade = function () {
 }
 
 
+var orderNumb=10000000;    // 增加一个orderNum变量
 
 var data = new Data();
 // Load initial ingredients. If you want to add columns, do it in the CSV file.
@@ -159,6 +162,9 @@ io.on('connection', function (socket) {
 
   // When someone orders something
   socket.on('order', function (order) {
+    orderNumb=orderNumb+1;         //create new orderID
+    order.orderId="#"+orderNumb;
+
     data.addOrder(order);
     // send updated info to all connected clients, note the use of io instead of socket
     io.emit('currentQueue', { orders: data.getAllOrders(),

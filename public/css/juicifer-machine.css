@@ -106,6 +106,7 @@ body {
 /*for folding*/
 
 .togglebox {
+    margin-top: 0.5em;
     background: #fff;
     transform: translateZ(0);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -125,7 +126,7 @@ label {
     font-size: 14px;
     font-weight: 700;
     border-top: 1px solid #ddd;
-    background: #fff;
+    background: #febc44;
     cursor: pointer;
 }
 
@@ -173,7 +174,24 @@ section {
     background-color: #b9e563;
 
 }
+#content2 label{
+    width:150px;
+    height:150px;
+    margin:15px;
+    display:inline-block;
+    position:relative;
+    background-color: #b9e563;
 
+}
+#content3 label{
+    width:150px;
+    height:150px;
+    margin:15px;
+    display:inline-block;
+    position:relative;
+    background-color: #b9e563;
+
+}
 .ingredient {
     display:inline-block;
     position: relative;

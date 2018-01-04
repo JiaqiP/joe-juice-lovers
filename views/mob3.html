@@ -1,0 +1,91 @@
+<!DOTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>mob3</title>
+		<link rel="stylesheet" type="text/css" href="../public/css/reset.css">
+		<link rel="stylesheet" href="../public/css/buttons.css">
+		<link rel="stylesheet" type="text/css" href="../public/css/mob.css">
+		<link rel="stylesheet" type="text/css" href="../public/css/mobile.css">
+
+		<script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+		<script src="/vue/vue.js" defer></script>
+		<script src="/socket.io/socket.io.js" defer></script>
+		<script src="/js/juicifer-main.js" defer></script>
+		<script src="/js/own.js" defer></script>
+	</head>
+	
+	<script>
+		function showcart() {
+
+			if(showdiv_display = document.getElementById('small_list').style.display == 'none') {
+
+				document.getElementById('small_list').style.display = 'block';
+
+			} else {
+
+				document.getElementById('small_list').style.display = 'none';
+
+			}
+
+		}
+
+		function jumpHome() {
+			window.location.href = "mob1.html";
+		}
+
+		function showDetail() {
+			window.location.href = "mob3.html"
+		}
+	</script>
+
+	<body>
+		<div id="step">
+			<button id="back" align="left" class="button button-large button-plain button-borderless">
+                  <i class="fas fa-angle-left"></i>
+            </button>
+			<span align="center">Cart</span>
+
+			<button id="cart" onclick="showcart()" align="right" class="button button-medium button-plain button-borderless">
+                <i class="fa fa-shopping-cart"></i>
+            </button>
+		</div>
+
+		<div id="view">
+			<table id="view_list">
+				<tr>
+					<th>Product</th>
+					<th>Size</th>
+					<th>Amount</th>
+					<th>Price</th>
+					<th>Del</th>
+				</tr>
+			</table>
+			<button id="add_more" type="button" class="cart_button button button-border button-rounded button-small" onclick="jumpHome()">
+                Add More
+            </button>
+		</div>
+
+		<div id="total" class="pay_bottom">
+			<p>Total:</p>
+		</div>
+
+		<div id="pay_now">
+			<button id="pay" type="button" class="cart_button pay_bottom button button-border button-rounded button-small">
+                Pay Now
+            </button>
+		</div>
+		<div id="small_list" style="display: none;">
+			<table id="small_table">
+				<tr>
+					<th>Product</th>
+					<th>Size</th>
+					<th>Amount</th>
+				</tr>
+			</table>
+			<button id="show_detail" class="bigBtn button button-glow button-border button-rounded button-primary">Show Detail</button>
+		</div>
+
+	</body>

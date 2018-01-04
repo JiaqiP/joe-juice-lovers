@@ -1,0 +1,95 @@
+#home_title{
+    text-align:center;
+    font-size:6em;
+    color:#3366cc;
+    margin-top:0.5em;
+    
+}
+#small_list{
+    border:dashed 2px #5eb8fa;
+    padding:0.2em;
+    float:right;
+}
+#small_table th{
+    text-align:center;
+    padding:0.2em 0.3em; 
+    color:#5eb8fa;
+}
+#show_detail{
+    text-align:center;
+    font-size:1em;
+    margin:0.2em 0.7em;
+    padding:0.1em;
+    width:10em;
+    height:2em;
+}
+#small_rec_cup{
+    height:4.5em;
+}
+#medium_rec_cup{
+    height:5.5em;
+}
+#large_rec_cup{
+    height:6.5em;
+}
+
+#size{
+    display:table;
+}
+
+#size button{
+    display:table-cell;
+    width:32%;
+    margin-right:2px;
+    margin-top: 0.5em;
+    border:dashed;
+    border-color:#336699;
+    background-color:#eeeeee;
+    height: auto;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+
+
+}
+.button-group{
+    display:block;
+    text-align: center;
+    padding:5px;
+    width:100%;
+    top:40px;
+    position: fixed;
+    background-color: white;
+}
+.rec_img{
+    width:12em;
+    padding:0.1em;
+}
+#view{
+    text-align:center;
+}
+#view_list{
+    margin:auto;
+    width:20em;
+    border:dashed #5eb8fa 2px;
+    margin-bottom:1.5em;
+}
+#view_list th{
+    text-align:center;   
+}
+#pay{
+    position:absolute;
+    right:5em;
+    margin-top:0.5em;
+}
+.pay_bottom{
+    float:left;
+}
+.cart_button{
+    border:#5eb8fa solid 2px;
+    font-weight:bold;
+    font-size:1.2em;
+}
+#total{
+    position:absolute;
+    left:2em;
+}

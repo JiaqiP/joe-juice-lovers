@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>mob1</title>
+		<link rel="stylesheet" type="text/css" href="../public/css/reset.css">
+		<link rel="stylesheet" href="../public/css/buttons.css">
+		<link rel="stylesheet" type="text/css" href="../public/css/mob.css">
+		<link rel="stylesheet" type="text/css" href="../public/css/mobile.css">
+
+		<script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+		<script src="../vue/vue.js" defer></script>
+		<script src="../socket.io/socket.io.js" defer></script>
+		<script src="../js/juicifer-main.js" defer></script>
+		<script src="../js/own.js" defer></script>
+		<script src="../js/jquery-1.11.1.min.js"></script>
+	</head>
+	<script>
+		function showdiv() {
+
+			if(showdiv_display = document.getElementById('small_list').style.display == 'none') {
+
+				document.getElementById('small_list').style.display = 'block';
+
+			} else {
+
+				document.getElementById('small_list').style.display = 'none';
+
+			}
+
+		}
+
+		function jumpRecommendation() {
+			window.location.href = "mob2.html";
+		}
+
+		function jumpCreat() {
+			window.location.href = "mobile_own.html";
+		}
+
+		function showDetail() {
+			window.location.href = "mob3.html"
+		}
+	</script>
+
+	<body>
+		<div id="step">
+			<button id="back" align="left" class="button button-large button-plain button-borderless">
+                      <i class="fas fa-angle-left"></i>
+                </button>
+			<span align="center">Home </span>
+			<button id="cart" align="right" onclick="showdiv()" class="button button-medium button-plain button-borderless">
+            <i class="fa fa-shopping-cart"></i>
+        </button>
+		</div>
+
+		<div id="home_title">
+			<h1>Juice</h1>
+
+		</div>
+		<div id="type">
+			<button v-on:click="choose_create_your_own" id="create_your_own" class="bigBtn button button-glow button-border button-rounded button-primary" onclick="jumpCreat()"> 
+            Create Your Own
+        </button>
+
+			<button v-on:click="choose_recommendation" onclick="jumpRecommendation()" id="recommendation" class="bigBtn button button-glow button-border button-rounded button-primary">
+            Recommendation
+        </button>
+		</div>
+
+		<div id="small_list" style="display: none;">
+			<table id="small_table">
+				<tr>
+					<th>Product</th>
+					<th>Size</th>
+					<th>Amount</th>
+				</tr>
+
+			</table>
+			<button id="show_detail" class="bigBtn button button-glow button-border button-rounded button-primary" onclick="showDetail()">Show Detail</button>
+		</div>
+
+	</body>
+
+</html>

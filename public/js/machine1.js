@@ -29,6 +29,8 @@ Vue.component('ingredient', {
     }
 });
 
+
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -48,12 +50,23 @@ var vm = new Vue({
         type: '',
         chosenIngredients: [],
         volume: 0,
-        price: 0
+        price: 0,
+        show_size:true,
+        show_type:true,
+        show_ingredient:true
     },
     methods: {
-        addToOrder: function (item, type) {
-            this.chosenIngredients.push(item);
+        addTypeToOrder:function(type) {
             this.type = type;
+            console.log(this.type);
+        },
+        addSizeToOrder:function(size) {
+            this.size = size;
+            console.log(this.size);
+        },
+        addToOrder: function (item) {
+            this.chosenIngredients.push(item);
+            var type = this.type;
             if (type === "smoothie") {
                 this.volume += +item.vol_smoothie;
             } else if (type === "juice") {
@@ -61,12 +74,14 @@ var vm = new Vue({
             }
             this.price += +item.selling_price;
         },
+
         placeOrder: function () {
             var i,
                 //Wrap the order in an object
                 order = {
                     ingredients: this.chosenIngredients,
                     volume: this.volume,
+                    size: this.size,
                     type: this.type,
                     price: this.price
                 };
@@ -79,6 +94,7 @@ var vm = new Vue({
             this.volume = 0;
             this.price = 0;
             this.type = '';
+            this.size = 'default'
             this.chosenIngredients = [];
         }
     }

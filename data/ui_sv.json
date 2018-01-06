@@ -12,5 +12,7 @@
   "order" : "Min beställning",
   "language" : "English",
   "mainflavor" : "Huvudsakliga smak",
-  "delete" : "Redera"
+  "delete" : "Redera",
+  "create" : "skapa din egen",
+  "rec" : "rekommendation"
 }

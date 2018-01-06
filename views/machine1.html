@@ -13,47 +13,54 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
+<div id="fruit">
 <div class="left">
+    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
     <div class="topnav" id="myTopnav">
-        <a class="active" href="#home">Create your own</a>
-        <a href="#">Recommendation</a>
-    </div>
-    <!--choosing type-->
-    <div id="ctype" class="button-group">
-        <button type="button" class="button button-rounded">Smoothie</button>
-        <button type="button" class="button button-rounded">Juice</button>
-    </div>
-    <!--choosing size-->
-    <div id="size" class="button-group">
-        <button type="button" class="button button-rounded">
-            <img src="../pics/small_size.png">
-            <h3>SEK 35 <br/> 300 ml</h3>
-        </button>
-        <button type="button" class="button button-rounded">
-            <img src="../pics/medium_size.png">
-            <h3>SEK 45 <br/> 400 ml</h3>
-        </button>
-        <button type="button" class="button button-rounded ">
-            <img src="../pics/large_size.png">
-            <h3>SEK 55 <br/> 500 ml</h3>
-        </button>
-    </div>
-
-    <div class="description">
-        <h2>Note: <br/>Maximum ingredients limit</h2>
-        <h3>
-            3  ingredients in  S  size <br/>
-            4  ingredients in  M  size <br/>
-            5  ingredients in  L  size <br/>
-        </h3>
-
+        <a class="active" href="#home">{{ uiLabels.create }}</a>
+        <a href="#">{{ uiLabels.rec }}</a>
     </div>
 
 
-    <!--applying new css-->
-    <div id="fruit">
+    <!--main-->
+    <div >
+        <!--choosing type-->
+        <div id="ctype" class="button-group" v-if="show_type">
+            <a type="button" class="button button-rounded" v-on:click="addTypeToOrder('smoothie')"> {{ uiLabels.smoothie }}</a>
+            <a type="button" class="button button-rounded" v-on:click="addTypeToOrder('juice')">{{ uiLabels.juice }}</a>
+            <button id="comfirmbtn">confirm</button>
+        </div>
 
-        <div class="togglebox">
+        <!--choosing size-->
+        <div id="size" class="button-group" v-if="show_size">
+            <button type="button" class="button button-rounded" v-on:click="addSizeToOrder('small')">
+                <img src="../pics/small_size.png">
+                <h3>SEK 35 <br/> 300 ml</h3>
+            </button>
+
+            <button type="button" class="button button-rounded" v-on:click="addSizeToOrder('medium')">
+                <img src="../pics/medium_size.png">
+                <h3>SEK 40 <br/> 400 ml</h3>
+            </button>
+
+            <button type="button" class="button button-rounded" v-on:click="addSizeToOrder('large')">
+                <img src="../pics/large_size.png">
+                <h3>SEK 50 <br/> 500 ml</h3>
+            </button>
+
+        </div>
+
+        <div class="description" >
+            <h2>Note: <br/>Maximum ingredients limit</h2>
+            <h3>
+                3  ingredients in  S  size <br/>
+                4  ingredients in  M  size <br/>
+                5  ingredients in  L  size <br/>
+            </h3>
+            <button class="comfirmbtn">confirm</button>
+        </div>
+        <!--choosing ingredients-->
+        <div class="togglebox" v-if="show_ingredient">
             <input id="toggle1" type="radio" name="toggle" />
             <label for="toggle1">Fruits</label>
             <section id="content1">
@@ -62,7 +69,7 @@
                             type="smoothie"
                             v-for="item in ingredients"
                             v-if="item.vol_smoothie > 0 && item.ingredient_type=='fruit'"
-                            v-on:increment="addToOrder(item, 'smoothie')"
+                            v-on:increment="addToOrder(item)"
                             :item="item"
                             :lang="lang"
                             :key="item.ingredient_id">
@@ -138,5 +145,8 @@
 
 </div>
 
+<!--shopping list-->
+<div class="right"></div>
+</div>
 </body>
 </html>

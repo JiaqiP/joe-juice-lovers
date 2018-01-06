@@ -12,5 +12,7 @@
   "order" : "My order",
   "language" : "Svenska",
   "mainflavor" : "main flavor",
-  "delete" : "delete"
+  "delete" : "delete",
+  "create" : "create your own",
+  "rec" : "recommendation"
 }

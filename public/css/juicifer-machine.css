@@ -51,16 +51,41 @@ body {
     color: #333333;
     border-color:#003366;
 }
-.button-group button:hover{
-    background-color: #ccc;
+
+.button-group a{
+    padding: 0;
+    text-align: center;
+    font-size: 15px;
+    color: #333333;
+    border-color:#003366;
 }
 
-#ctype button{
+/*#ctype button{*/
+    /*font-size: 15px;*/
+    /*width:48%;*/
+    /*background-color: #febc44;*/
+    /*margin: 5px;*/
+    /*border:dashed;*/
+    /*border-color: #336699;*/
+/*}*/
+/*#ctype button:focus{*/
+    /*background-color: #b9e563;*/
+/*}*/
+
+#ctype a{
     font-size: 15px;
     width:48%;
+    background-color: #febc44;
     margin: 5px;
     border:dashed;
     border-color: #336699;
+}
+
+
+#ctype a:visited {
+    border:solid;
+    background-color: #b9e563;
+
 }
 
 #size{
@@ -195,5 +220,13 @@ section {
 .ingredient {
     display:inline-block;
     position: relative;
+
+}
+
+.inlist {
+    background-color: #b9e563;
+}
+
+#comfirmbtn {
 
 }

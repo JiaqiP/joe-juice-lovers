@@ -5,19 +5,22 @@
 
 var socket = io();
 
-/*
+
+//ivy
 Vue.component('order-item', {
   props: ['uiLabels', 'order', 'orderId', 'lang'],
-  template: '<div>{{orderId}} {{order.size}} {{order.flavor}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} </div>'
+  template: '<div>{{orderId}} {{order.size}} {{order.type}} <div class="inlist"> {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}</div></div>'
 });   //add {{order.size}} {{order.flavor}}
-*/
-Vue.component('order-item', {
-  props: ['uiLabels', 'order', 'orderId', 'lang'],
-  template: `<div>
-                <div>{{orderId}} {{order.size}} {{order.flavor}}</div>
-                <div>{{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients}} </div>
-              </div>`,
-});   //add{{order.size}} {{order.flavor}}，
+
+
+
+// Vue.component('order-item', {
+//   props: ['uiLabels', 'order', 'orderId', 'lang'],
+//   template: `<div>
+//                 <div>{{orderId}} {{order.size}} {{order.flavor}}</div>
+//                 <div>{{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients}} </div>
+//               </div>`,
+// });   //add{{order.size}} {{order.flavor}}，
 
 // Stuff that is used both in the ordering system and in the kitchen
 var sharedVueStuff = {
@@ -32,6 +35,7 @@ var sharedVueStuff = {
   created: function () {
     socket.on('initialize', function (data) {
       this.size = data.size;
+      this.type = data.type;
       this.flavor = data.flavor;
       this.orders = data.orders;
       this.uiLabels = data.uiLabels;

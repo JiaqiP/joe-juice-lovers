@@ -8,6 +8,10 @@
     text-align: center;
     top:0;
     position: sticky;
+    z-index: 1;
+}
+#step a {
+  color: #fff;
 }
 #step button{
     display: table-cell;
@@ -214,4 +218,41 @@ h3{
     width:50%;
     padding-bottom:0.5em;
     padding-top: 0.5em;
+}
+
+/********************* common  **********************/
+.mini-cart .cart {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70vw;
+  max-height: 50vh;
+  background-color: #fff;
+  border: 1px solid #000;
+}
+.mini-cart span {
+  color: #000 !important;
+}
+.mini-cart .header {
+  display: flex;
+  justify-content: space-around;
+}
+.mini-cart .order {
+  display: flex;
+  justify-content: space-around;
+}
+.mini-cart .action {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.mini-cart button {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.mini-cart a {
+  text-decoration: none;
+  color: #3366cc !important;
+  font-size: 20px;
 }

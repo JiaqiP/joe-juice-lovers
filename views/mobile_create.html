@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mobile</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+
+    <script src="../js/tool.js" defer></script>
+    <script src="../vue/vue.js" defer></script>
+    <script src="../socket.io/socket.io.js" defer></script>
+
+    <script src="../js/juicifer-main.js" defer></script>
+    <script src="../js/mobile_common.js" defer></script>
+    <script src="../js/mobile_create.js" defer></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <div id="page01" v-if="current_page===1">
+            <div id="step">
+                <button id = "back" align = "left" class="button button-large button-plain button-borderless">
+                  <a href="/mobile">
+                    <i class="fas fa-angle-left"></i>
+                  </a>
+                </button>
+                <span align = "center">Create your own </span>
+
+                <mini-cart :items="storegeData"></mini-cart>
+            </div>
+
+            <div id = "type">
+                <button v-on:click="choose_smoothie" id = "smoothie" class="bigBtn button button-glow button-border button-rounded button-primary">
+                    smoothie
+                </button>
+
+                <button v-on:click="choose_juice" id = "jucie" class = "bigBtn button button-glow button-border button-rounded button-primary" >
+                    juice
+                </button>
+            </div>
+        </div>
+
+        <div id="page02" v-if="current_page===2">
+            <div id="step">
+                <button id = "back" v-on:click="goto_pre_page" align = "left" class="button button-large button-plain button-borderless">
+                      <i class="fas fa-angle-left"></i>
+                </button>
+                <span align = "center">Size </span>
+
+                <mini-cart :items="storegeData"></mini-cart>
+            </div>
+
+            <div id = "size" class="button-group">
+              <button v-on:click="choose_small" type="button" class="button button-rounded">
+                  <img src = "\images\small_size.png" id = "small_cup">
+                <h3>SEK 45 <br/> 300 ml</h3>
+              </button>
+              <button v-on:click="choose_medium" type="button" class="button button-rounded">
+                  <img src = "\images\medium_size.png" id = "medium_cup">
+                <h3>SEK 55 <br/> 470 ml</h3>
+              </button>
+              <button v-on:click="choose_large" type="button" class="button button-rounded ">
+                  <img src = "\images\large_size.png" id = "large_cup">
+                <h3>SEK 65 <br/> 550 ml</h3>
+              </button>
+            </div>
+
+            <div id = "notes">
+                <h2>Note: <br/>Maximum ingredients limit
+                </h2><br/>
+                <h3>
+                    3  ingredients in  S  size <br/>
+                    4  ingredients in  M  size <br/>
+                    5  ingredients in  L  size <br/>
+                </h3>
+
+            </div>
+        </div>
+
+        <div id="page03" v-if="current_page===3">
+            <div id="step" class ="scroll_fixed">
+                <button id = "back" v-on:click="goto_pre_page" align = "left" class="button button-large button-plain button-borderless">
+                      <i class="fas fa-angle-left"></i>
+                </button>
+                <span align = "center">Ingredients </span>
+
+                <mini-cart :items="storegeData"></mini-cart>
+            </div>
+
+            <div id ="orderng">
+                <div class="button-group" id="ingredient_type">
+                    <button v-on:click="show_fruit" type="button" id="fru" class="button button-border button-rounded button-small">Fruits
+                    </button>
+
+                    <button v-on:click="show_vegetables" type="button" id="veg" class="button button-border button-rounded button-small">Vegetables
+                    </button>
+
+                    <button  v-on:click="show_others" type="button" id="othr" class="button button-border button-rounded button-small">Others
+                    </button>
+                </div>
+
+                <div id = "display_fruit" v-if="fruit_show" class="display_ingr">
+                    <ingredient
+                      ref="ingredient"
+                      type="smoothie"
+                      v-for="item in ingredients"
+
+                      v-if="item.ingredient_type=='fruit'"
+
+                      v-on:increment="addToOrder(size,item, 'smoothie')"
+                      :item="item"
+                      :lang="lang"
+                      :key="item.ingredient_id">
+                    </ingredient>
+                </div>
+
+                <div id = "display_vegetables" v-if="vegetables_show" class="display_ingr">
+                    <ingredient
+                      ref="ingredient"
+                      type="smoothie"
+                      v-for="item in ingredients"
+
+                      v-if="item.ingredient_type=='vegetable'"
+
+                      v-on:increment="addToOrder(size,item, 'juice')"
+                      :item="item"
+                      :lang="lang"
+                      :key="item.ingredient_id">
+                    </ingredient>
+                </div>
+
+                <div id = "display_others" v-if="others_show" class="display_ingr">
+                    <ingredient
+                      ref="ingredient"
+                      type="smoothie"
+                      v-for="item in ingredients"
+
+                      v-if="item.ingredient_type=='other'"
+
+                      v-on:increment="addToOrder(size,item, 'smoothie')"
+                      :item="item"
+                      :lang="lang"
+                      :key="item.ingredient_id">
+                    </ingredient>
+                </div>
+
+                <div id = "info" v-if="info_show">
+                    <button v-on:click="hide_ingredient" type="button" id = "hide_ingredients" class = "button button-border button-rounded button-small">
+                        <i class="fas fa-minus"></i>
+                        Details
+                    </button>
+
+                    <div  class = "display_ingr">
+                        <div class = "table">
+                            <span class="display_ingr_label">{{ uiLabels.ingredients }}</span>
+                            <span class="display_ingr_label">{{uiLabels.mainflavor}} </span>
+                        </div>
+                        <check_ingredients
+                          ref="check_ingredients"
+                          v-on:delet_ingre_event="delete_ingredient"
+                          @toggle_flavor_event="toggleFlavor"
+                          v-for="item in chosenIngredients"
+                          :item="item"
+                          :lang="lang"
+                          :key="item.ingredient_id">
+                        </check_ingredients>
+                    </div>
+                </div>
+
+                <div id = "ingredient_bottom" class = "scroll_fixed bottom">
+                    <button v-on:click="show_ingredient" v-if="!info_show"  type="button" id = "show_ingredients" class = "button button-border button-rounded button-small">
+                        <i class="fas fa-plus"></i>
+                        Details
+                    </button>
+
+                    <button v-if="info_show"></button>
+
+                    <a href="/mobile/cart">
+                      <button type="button" id = "create_next" class = "button button-border button-rounded button-small">
+                          Next
+                      </button>
+                    </a>
+                </div>
+             </div>
+          </div>
+    </div>
+
+</body>
+</html>

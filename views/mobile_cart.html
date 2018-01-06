@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mobile</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+
+    <script src="../js/tool.js" defer></script>
+    <script src="../vue/vue.js" defer></script>
+    <script src="../socket.io/socket.io.js" defer></script>
+
+    <script src="../js/juicifer-main.js" defer></script>
+    <script src="../js/mobile_common.js" defer></script>
+    <script src="../js/mobile_cart.js" defer></script>
+    <style>
+      .container .title {
+        font-size: 25px;
+        margin-right: 40px;
+        display: flex;
+        justify-content: space-around;
+      }
+      .cart-item {
+        position: relative;
+      }
+      .item-title {
+        display: flex;
+        justify-content: space-around;
+        margin-right: 40px;
+      }
+      .item-title span {
+        font-size: 18px;
+        line-height: 30px;
+        display: inline-block;
+      }
+      .item-extra {
+        margin: 5px 15px;
+        padding: 5px;
+        color: #aaa;
+        font-size: 20px;
+        border: 1px solid #888;
+      }
+      .item-delete {
+        display: inline-block;
+        position: absolute;
+        top:-5px;
+        right:5px;
+      }
+      .more button {
+        margin: 10px auto;
+        height: 10vh;
+      }
+      .more a {
+        text-decoration: none;
+        color: #1b9af7;
+      }
+      .pay {
+        display: flex;
+        justify-content: space-around;
+      }
+      .pay div {
+        font-size:32px;
+        display: flex;
+        align-items: center;
+      }
+      .pay button {
+        width: 50vw;
+        height: 10vh;
+        margin: 0;
+      }
+    </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <div id="step">
+        <button id = "back" align = "left" class="button button-large button-plain button-borderless">
+          <a href="/mobile">
+            <i class="fas fa-angle-left"></i>
+          </a>
+        </button>
+        <span align = "center">Overview</span>
+        <mini-cart :items="storegeData"></mini-cart>
+      </div>
+    <div class="container">
+      <div class="title">
+        <span>Product</span>
+        <span>Size</span>
+        <span>Amount</span>
+        <span>Price</span>
+      </div>
+      <div class="items">
+        <cart-item
+          @subtract="subtract"
+          @add="add"
+          @remove="remove"
+          :key="item.id"
+          v-for="item in itemsAdpter"
+          :item="item">
+        </cart-item>
+      </div>
+      <div class="more">
+        <a href="/mobile">
+          <button class="bigBtn button button-glow button-border button-rounded button-primary">
+            Add More
+          </button>
+        </a>
+      </div>
+      <div class="pay">
+        <div>Total: {{this.totalMoney}} $</div>
+        <button class="bigBtn button button-glow button-border button-rounded button-primary">
+          PAY  NOW
+        </button>
+      </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>

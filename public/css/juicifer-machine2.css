@@ -1,0 +1,317 @@
+
+body {
+    font-family: Arial;
+}
+
+.left {
+    float:left;
+    width: 69.5%;
+}
+
+.right {
+    
+    float:right;
+    min-height: 90%;
+    width: 29.5%;
+    margin-top:1px;
+    
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: orange;
+    overflow: hidden;
+
+
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: white;
+    text-align: center;
+
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: orangered;
+    color: white;
+}
+
+.col1 {
+    width: 30%;
+    padding: 10px;
+}
+
+
+.button-group{
+    display:inline-block;
+    text-align: center;
+    width:100%;
+
+}
+
+.button-group button{
+    padding: 0;
+    text-align: center;
+    font-size: 15px;
+    color: #333333;
+    border-color:#003366;
+
+}
+.button-group button:hover{
+    background-color: #ccc;
+}
+
+#ctype button{
+    font-size: 15px;
+    width:48%;
+    margin: 5px;
+    border:dashed;
+    border-color: #336699;
+
+}
+
+#size{
+    width:100%;
+}
+
+#size button{
+    width: 33%;
+    margin-right:.3%;
+    margin-top: 0.5em;
+    border:dashed;
+    border-color:#336699;
+    height: 20%;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    border-radius: 5%;
+
+}
+#size img{
+    height: 5em;
+
+}
+
+
+.description {
+    vertical-align: bottom;
+    margin-top: 0.5em;
+    border:solid;
+    border-color: #003366;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.description h2{
+    font-size:15px;
+}
+.description h2:before {
+    content: '\f05a';
+    font-family: fontawesome;
+}
+.description h3{
+    font-size:12px;
+
+}
+
+/*for folding*/
+
+.togglebox {
+    margin-top: 0.5em;
+    background: #fff;
+    transform: translateZ(0);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+label {
+    position: relative;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 700;
+    border-top: 1px solid #ddd;
+    background: #febc44;
+    cursor: pointer;
+}
+
+label[for*='1'] {
+    border: 0;
+}
+
+label:after {
+    content: '\f078';
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    font-family: fontawesome;
+    transform: rotate(90deg);
+    transition: .3s transform;
+}
+
+section {
+    height: 0;
+    transition: .3s all;
+    overflow: hidden;
+}
+
+#toggle1:checked ~ label[for*='1']:after,
+#toggle2:checked ~ label[for*='2']:after,
+#toggle3:checked ~ label[for*='3']:after,
+#toggle4:checked ~ label[for*='4']:after {
+    transform: rotate(0deg);
+}
+
+#toggle1:checked ~ #content1,
+#toggle2:checked ~ #content2,
+#toggle3:checked ~ #content3,
+#toggle4:checked ~ #content4 {
+    height: 400px;
+    overflow: scroll;
+}
+
+#content1 label{
+    width:150px;
+    height:150px;
+    margin:15px;
+    display:inline-block;
+    position:relative;
+    background-color: #b9e563;
+
+}
+#content2 label{
+    width:150px;
+    height:150px;
+    margin:15px;
+    display:inline-block;
+    position:relative;
+    background-color: #b9e563;
+
+}
+#content3 label{
+    width:150px;
+    height:150px;
+    margin:15px;
+    display:inline-block;
+    position:relative;
+    background-color: #b9e563;
+
+}
+.ingredient {
+    display:inline-block;
+    position: relative;
+
+}
+
+/*update by Shania*/
+
+/* initial display screen without recommendation info */
+#recommendation {
+    display: none;
+}
+
+/* Order List */
+
+/*  !!!pretty broken!!! */
+
+#OrderList{ 
+    margin-top:15%;
+    border: solid;
+    border-color: grey;
+   
+
+}
+#home{
+    width:15%;
+    float: right;
+    margin-right: 1%;
+
+}
+
+#list-title{
+    font-family: Trattatello, fantasy;
+    text-decoration:underline;
+    text-align: center;
+    color: #CD5C5C;
+    font-size: 300%;
+    margin: 1% 1% 1% 1%;
+}
+
+/* The list from */
+#list{
+    word-break: break-all;
+    margin: 1% 1% 1% 1%;
+    text-align: center;
+    border-bottom: 1.5px solid;
+    border-color:   #696969;
+}
+.Odel_check{
+    width: 1%;
+}
+.Oitem{
+    width: 12%;
+}
+.Osize{
+    width: 4%;
+}
+.Oquantity{
+    width: 6%;
+}
+.Oprice{
+    width: 5%;
+}
+
+.listbutton{
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Marker Felt, fantasy;
+    height: 20%;
+    width: 40%;
+    text-transform: uppercase;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 1%;
+    margin-right: 1%
+}
+
+#buttonDel{
+    background-color: #C0C0C0;
+    border: 1.5px solid #4682B4;
+    float: left;
+}
+
+#buttonPay{
+    background-color: #9ACD32;
+    border: 1.5px solid #2E8B57;
+    float: right;
+}
+
+/*  purpose: boder without navigation bar
+    !!! broken when switching screen !!!
+*/    
+/*
+.chooseingscreen{
+    border:  solid;
+    border-color: orangered;
+
+}
+*/
+    

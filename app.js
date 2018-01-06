@@ -41,11 +41,18 @@ app.get('/create', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/machine1.html'));
 });
 
+// Serve machine-Recommandation as subpage --Shania
+app.get('/Rec', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/machine2.html'));
+});
+
 
 // Serve mobile-create your own as subpage --Jiaqi 
 app.get('/mobile', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/mobile.html'));
 });
+
+
 /*
 app.get('/mobile/own_size', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/mobile_own_size.html'));

@@ -9,13 +9,11 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
 var csv = require("csvtojson");
- 
+
 var ingredientsDataName = "ingredients";
 var transactionsDataName = "transactions";
 var defaultLanguage = "en";
 var readymadeDataName = "readymade";
-  
-
 
 // Pick arbitrary port for server
 var port = 3000;
@@ -32,27 +30,28 @@ app.get('/', function (req, res) {
 });
 */
 // Serve kitchen.html as subpage
-app.get('/kitchen', function (req, res) {
-  res.sendFile(path.join(__dirname, 'views/kitchen.html'));
+app.get('/kitchen', function(req, res) {
+	res.sendFile(path.join(__dirname, 'views/kitchen.html'));
 });
 
 // Serve machine-create your own as subpage --ivy
-app.get('/create', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/machine1.html'));
+app.get('/create', function(req, res) {
+	res.sendFile(path.join(__dirname, 'views/machine1.html'));
 });
 
-// Serve machine-Recommandation as subpage --Shania
-app.get('/Rec', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/machine2.html'));
+// Serve mobile-create your own as subpage --Jiaqi
+app.get('/mobile/', function(req, res) {
+	res.sendFile(path.join(__dirname, 'views/mobile.html'));
 });
-
-
-// Serve mobile-create your own as subpage --Jiaqi 
-app.get('/mobile', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/mobile.html'));
+app.get('/mobile/create', function(req, res) {
+	res.sendFile(path.join(__dirname, 'views/mobile_create.html'));
 });
-
-
+app.get('/mobile/recommendation', function(req, res) {
+	res.sendFile(path.join(__dirname, 'views/mobile_recommendation.html'));
+});
+app.get('/mobile/cart', function(req, res) {
+	res.sendFile(path.join(__dirname, 'views/mobile_cart.html'));
+});
 /*
 app.get('/mobile/own_size', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/mobile_own_size.html'));
@@ -66,49 +65,51 @@ app.get('/mobile/own_ingredients', function (req, res) {
 */
 // Store data in an object to keep the global namespace clean
 function Data() {
-  this.data = {};
-  this.orders = {};
+	this.data = {};
+	this.orders = {};
 }
 
-Data.prototype.getUILabels = function (lang) {
-  var ui = require("./data/ui_" + (lang || defaultLanguage) + ".json");
-  return ui;
+Data.prototype.getUILabels = function(lang) {
+	var ui = require("./data/ui_" + (lang || defaultLanguage) + ".json");
+	return ui;
 };
 
-/* 
-  Returns a JSON object array of ingredients with the fields from 
+/*
+  Returns a JSON object array of ingredients with the fields from
   the CSV file, plus a calculated amount in stock, based on
   transactions.
 */
-Data.prototype.getIngredients = function () {
-  var d = this.data;
-  return d[ingredientsDataName].map(function (obj) {
-    obj.stock = d[transactionsDataName].reduce(function (sum, trans) {
-      if (trans.ingredient_id === obj.ingredient_id) {
-        return sum + trans.change;
-      } else {
-        return sum;
-      }
-    }, 0);
-    return obj;
-  });
+Data.prototype.getIngredients = function() {
+	var d = this.data;
+	return d[ingredientsDataName].map(function(obj) {
+		obj.stock = d[transactionsDataName].reduce(function(sum, trans) {
+			if(trans.ingredient_id === obj.ingredient_id) {
+				return sum + trans.change;
+			} else {
+				return sum;
+			}
+		}, 0);
+		return obj;
+	});
 };
 
-/* 
+/*
   Function to load initial data from CSV files into the object
 */
-Data.prototype.initializeData = function (table) {
-  this.data[table] = [];
-  var d = this.data[table];
-  
-  csv({checkType: true})
-    .fromFile("data/" + table + ".csv")
-    .on("json", function (jsonObj) {
-      d.push(jsonObj);
-    })
-    .on("end", function () {
-      console.log("Data for", table, "done");
-    });
+Data.prototype.initializeData = function(table) {
+	this.data[table] = [];
+	var d = this.data[table];
+
+	csv({
+			checkType: true
+		})
+		.fromFile("data/" + table + ".csv")
+		.on("json", function(jsonObj) {
+			d.push(jsonObj);
+		})
+		.on("end", function() {
+			console.log("Data for", table, "done");
+		});
 };
 
 /*
@@ -116,41 +117,41 @@ Data.prototype.initializeData = function (table) {
   stock. If you have time, you should think a bit about whether
   this is the right moment to do this.
 */
-Data.prototype.addOrder = function (order) {
-  this.orders[order.orderId] = order.order;
-  this.orders[order.orderId].done = false;
-  var transactions = this.data[transactionsDataName],
-    //find out the currently highest transaction id
-    transId =  transactions[transactions.length - 1].transaction_id,
-    i = order.order.ingredients,
-    k;
-    
-  for (k = 0; k < i.length; k += 1) {
-    transId += 1;
-    transactions.push({transaction_id: transId,
-                       ingredient_id: i[k].ingredient_id,
-                       change: -1,
-                       size:order.size,
-                       flavor:order.flavor,
-                      });
-  }
+Data.prototype.addOrder = function(order) {
+	this.orders[order.orderId] = order.order;
+	this.orders[order.orderId].done = false;
+	var transactions = this.data[transactionsDataName],
+		//find out the currently highest transaction id
+		transId = transactions[transactions.length - 1].transaction_id,
+		i = order.order.ingredients,
+		k;
+
+	for(k = 0; k < i.length; k += 1) {
+		transId += 1;
+		transactions.push({
+			transaction_id: transId,
+			ingredient_id: i[k].ingredient_id,
+			change: -1,
+			size: order.size,
+			flavor: order.flavor,
+		});
+	}
 };
 
-Data.prototype.getAllOrders = function () {
-  return this.orders;
+Data.prototype.getAllOrders = function() {
+	return this.orders;
 };
 
-Data.prototype.markOrderDone = function (orderId) {
-  this.orders[orderId].done = true;
+Data.prototype.markOrderDone = function(orderId) {
+	this.orders[orderId].done = true;
 };
 
-Data.prototype.getReadymade = function () {
-    var d = this.data;
-    return d[readymadeDataName];  
+Data.prototype.getReadymade = function() {
+	var d = this.data;
+	return d[readymadeDataName];
 }
 
-
-var orderNumb=10000000;    // 增加一个orderNum变量
+var orderNumb = 10000000; // 增加一个orderNum变量
 
 var data = new Data();
 // Load initial ingredients. If you want to add columns, do it in the CSV file.
@@ -160,35 +161,40 @@ data.initializeData(transactionsDataName);
 
 data.initializeData(readymadeDataName);
 
-io.on('connection', function (socket) {
-  // Send list of orders and text labels when a client connects
-  socket.emit('initialize', {orders: data.getAllOrders(),
-                          uiLabels: data.getUILabels(),
-                          ingredients: data.getIngredients(),
-                          readymade: data.getReadymade()});
+io.on('connection', function(socket) {
+	// Send list of orders and text labels when a client connects
+	socket.emit('initialize', {
+		orders: data.getAllOrders(),
+		uiLabels: data.getUILabels(),
+		ingredients: data.getIngredients(),
+		readymade: data.getReadymade()
+	});
 
-  // When someone orders something
-  socket.on('order', function (order) {
-    orderNumb=orderNumb+1;         //create new orderID
-    order.orderId="#"+orderNumb;
+	// When someone orders something
+	socket.on('order', function(order) {
+		orderNumb = orderNumb + 1; //create new orderID
+		order.orderId = "#" + orderNumb;
 
-    data.addOrder(order);
-    // send updated info to all connected clients, note the use of io instead of socket
-    io.emit('currentQueue', { orders: data.getAllOrders(),
-                          ingredients: data.getIngredients(),
-                            });
-  });
-  // send UI labels in the chosen language
-  socket.on('switchLang', function (lang) {
-    socket.emit('switchLang', data.getUILabels(lang));
-  });
-  // when order is marked as done, send updated queue to all connected clients
-  socket.on('orderDone', function (orderId) {
-    data.markOrderDone(orderId);
-    io.emit('currentQueue', {orders: data.getAllOrders() });
-  });
+		data.addOrder(order);
+		// send updated info to all connected clients, note the use of io instead of socket
+		io.emit('currentQueue', {
+			orders: data.getAllOrders(),
+			ingredients: data.getIngredients(),
+		});
+	});
+	// send UI labels in the chosen language
+	socket.on('switchLang', function(lang) {
+		socket.emit('switchLang', data.getUILabels(lang));
+	});
+	// when order is marked as done, send updated queue to all connected clients
+	socket.on('orderDone', function(orderId) {
+		data.markOrderDone(orderId);
+		io.emit('currentQueue', {
+			orders: data.getAllOrders()
+		});
+	});
 });
 
-var server = http.listen(app.get('port'), function () {
-  console.log('Server listening on port ' + app.get('port'));
+var server = http.listen(app.get('port'), function() {
+	console.log('Server listening on port ' + app.get('port'));
 });

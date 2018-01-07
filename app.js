@@ -33,6 +33,9 @@ app.get('/', function (req, res) {
 app.get('/kitchen', function(req, res) {
 	res.sendFile(path.join(__dirname, 'views/kitchen.html'));
 });
+app.get('/Rec', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/machine2.html'));
+});
 
 // Serve machine-create your own as subpage --ivy
 app.get('/create', function(req, res) {

@@ -82,15 +82,15 @@
             <i class="fas fa-angle-left"></i>
           </a>
         </button>
-        <span align = "center">Overview</span>
+        <span align = "center">{{uiLabels.overview}}</span>
         <mini-cart :items="storegeData"></mini-cart>
       </div>
     <div class="container">
       <div class="title">
-        <span>Product</span>
-        <span>Size</span>
-        <span>Amount</span>
-        <span>Price</span>
+        <span>{{uiLabels.item}}</span>
+        <span>{{uiLabels.size}}</span>
+        <span>{{uiLabels.amount}}</span>
+        <span>{{uiLabels.price}}</span>
       </div>
       <div class="items">
         <cart-item
@@ -105,14 +105,14 @@
       <div class="more">
         <a href="/mobile">
           <button class="bigBtn button button-glow button-border button-rounded button-primary">
-            Add More
+            {{uiLabels.addMore}}
           </button>
         </a>
       </div>
       <div class="pay">
-        <div>Total: {{this.totalMoney}} $</div>
-        <button @click="pay" class="bigBtn button button-glow button-border button-rounded button-primary">
-          PAY  NOW
+        <div>{{uiLabels.total}} {{this.totalMoney}} $</div>
+        <button class="bigBtn button button-glow button-border button-rounded button-primary">
+            {{uiLabels.payNow}}
         </button>
       </div>
     </div>

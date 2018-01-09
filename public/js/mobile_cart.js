@@ -12,6 +12,10 @@ Vue.component('cart-item', {
         </span>
         <span>{{item.order.price}}</span>
       </div>
+      <div class="item-extra">
+        <p>Main flavor: {{item.order.flavor}}</p>
+        <p>Other ingredients: {{item.order.ingredients}}</p>
+      </div>
       <div class="item-delete">
         <button class="button button-plain" @click="remove">
           <i class="far fa-trash-alt"></i>
@@ -39,6 +43,8 @@ Vue.component('cart-item', {
 
 new Vue({
     el:"#app",
+    mixins: [sharedVueStuff],
+    
     data () {
       return {
         storegeData: [],
@@ -87,19 +93,14 @@ new Vue({
         this.storeData()
       },
       remove (id) {
-        if (window.confirm('are you sure?')) {
-          const index = this.storegeData.findIndex(ele => {
-            return ele.id === id
-          })
-          this.storegeData.splice(index,1)
-          this.storeData()
-        }
+        const index = this.storegeData.findIndex(ele => {
+          return ele.id === id
+        })
+        this.storegeData.splice(index,1)
+        this.storeData()
       },
       storeData () {
         localStorage.setItem('order', JSON.stringify(this.storegeData))
-      },
-      pay () {
-        socket.emit('order', {'order': this.storegeData});
       }
     }
 })

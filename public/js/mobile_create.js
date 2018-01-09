@@ -5,11 +5,12 @@
 Vue.component('ingredient', {
   props: ['item', 'type', 'lang','size'],
   template: ` <div class="ingredient">
-                  <label>
-                    <button v-on:click="incrementCounter">{{ counter }}</button>
+                  <label @click="toggle">
                     <img v-bind:src="item.image" width="20px" height="20px">
-                    {{item["ingredient_"+ lang]}} ({{ (type=="smoothie") ? item.vol_smoothie:item.vol_juice }} ml), {{item.selling_price}}:-, {{item.stock}} pcs
+                    {{item["ingredient_"+ lang]}}, {{item.stock}} pcs
                   </label>
+                    <span style = "float: right>
+                    {{item.select ? '{{uiLabels.select}}':''}}</span>
               </div>`,
   data: function () {
     return {
@@ -17,10 +18,14 @@ Vue.component('ingredient', {
     };
   },
   methods: {
-    incrementCounter: function () {
-      this.counter += 1;
-      this.$emit('increment');
+//  incrementCounter: function () {
+//      this.counter += 1;
+//      this.$emit('increment');
+//    },
+    toggle:function(){
+        this.$emit('select');
     },
+      
     resetCounter: function () {
       this.counter = 0;
     }
@@ -32,7 +37,10 @@ Vue.component('check_ingredients',{
     template: `<div id="modify_ingredients">
             <img v-bind:src="item.image" width="20px" height="20px">
             <span align="center">{{ item["ingredient_"+ lang]}}</span>
-            <button @click="emit_toggle_flavor_event" class="button button-plain"><i class="far fa-heart"></i></button>
+            <button @click="emit_toggle_flavor_event" class="button button-plain">
+            <i v-if="item.flavor" class="far fa-heart"></i>
+            <i v-else class="far fa-heart-o"></i>
+            </button>
 
             <button v-on:click="emit_delet_ingre_event" class="button button-plain"><i class="far fa-trash-alt"></i></button>
             </div>`,
@@ -75,7 +83,7 @@ var type = new Vue({
         cart_from_page:1,
 
         size:'small',
-        flavor:[],
+        flavor:null,
 
         type: '',
         chosenIngredients: [],
@@ -106,32 +114,75 @@ var type = new Vue({
         },
         choose_small:function(){
             this.size="small";
+            this.price=45;
             this.current_page=3;
             this.pre_page=2;
         },
         choose_medium:function(){
             this.size="medium";
+            this.price=55;
             this.current_page=3;
             this.pre_page=2;
         },
         choose_large:function(){
             this.size="large";
+            this.price=65;
             this.current_page=3;
             this.pre_page=2;
         },
+        
+        
+        checkIngredients (item) {
+          if (item.select) return true
+          const len = this.chosenIngredients.length
+          if (this.size === 'small') {
+            if (len === 3) {
+              alert('can\'t select more')
+              return false
+            }
+          } else if (this.size === 'medium') {
+            if (len === 4) {
+              alert('can\'t select more')
+              return false
+            }
+          } else if (this.size === 'large') {
+            if (len === 5) {
+              alert('can\'t select more')
+              return false
+            }
+          }
+          return true
+        },
+        select: function (item, type) {
+          if (!this.checkIngredients(item)) return
+          const ele = this.ingredients.find(ele => ele.ingredient_en === item.ingredient_en)
+          ele.select = !ele.select
+        
+        
 
         addToOrder: function (size,item, type) {
           this.size=size;
 
-          this.chosenIngredients.push(item);
-          this.type = type;
-          if (type === "smoothie") {
-            this.volume += +item.vol_smoothie;
-          } else if (type === "juice") {
-            this.volume += +item.vol_juice;
-          }
-          this.price += +item.selling_price;
-          this.storeData()
+       //   this.chosenIngredients.push(item);
+         
+          const index = this.chosenIngredients.findIndex(ele => ele.ingredient_en === item.ingredient_en)
+    
+            
+            
+        if (index === -1) {
+            this.chosenIngredients.push(item);
+            if (type === "smoothie") {
+              this.volume += +item.vol_smoothie;
+            } else if (type === "juice") {
+              this.volume += +item.vol_juice;
+            }
+          } else {
+            this.chosenIngredients.splice(index, 1);
+            if (type === "smoothie") {
+              this.volume -= +item.vol_smoothie;
+            } else if (type === "juice") {
+              this.volume -= +item.vol_juice;
+            }
         },
 
         getOrder () {
@@ -243,19 +294,39 @@ var type = new Vue({
         },
 
         delete_ingredient:function(item){
-          //console.log("gggggggg");
-          console.log(item);
-          var index=this.chosenIngredients.indexOf(item);
-          this.chosenIngredients.splice(index,1);
+        if (confirm("Are you sure to delete this?")) {
+            item.select = !item.select
+            var index=this.chosenIngredients.indexOf(item);
+            this.chosenIngredients.splice(index, 1);
+          }
         },
+            
+
         toggleFlavor (item) {
-          console.log(this.flavor);
-          const index = (this.flavor || []).indexOf(item)
-          if (index === -1) {
-            this.flavor ? this.flavor.push(item) : this.flavor = [item]
++          if (!this.flavor) {
+            this.flavor = item
+            var index = this.ingredients.indexOf(item);
+            this.ingredients[index].flavor = true
           } else {
             this.flavor.splice(index,1)
+            if (this.flavor == item) {
+              var index = this.ingredients.indexOf(this.flavor);
+              this.ingredients[index].flavor = false
+              this.flavor = null
+            } else {
+              var index = this.ingredients.indexOf(this.flavor);
+              console.log(index);
+              this.ingredients[index].flavor = false
+              this.flavor = item
+              var index = this.ingredients.indexOf(this.flavor);
+              this.ingredients[index].flavor = true
+            }
           }
+        },
+            
+        toCart () {
+          this.storeData()
+          window.location.href = '/mobile/cart'
         }
     }
 })

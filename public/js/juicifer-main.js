@@ -35,6 +35,8 @@ var sharedVueStuff = {
       this.flavor = data.flavor;
       this.orders = data.orders;
       this.uiLabels = data.uiLabels;
+      if(localStorage.getItem('lang') != null)
+        this.lang = localStorage.getItem('lang');
       this.ingredients = data.ingredients.map(item => {
         item.flavor = false
         item.select = false
@@ -64,8 +66,10 @@ var sharedVueStuff = {
     switchLang: function () {
       if (this.lang === "en") {
         this.lang = "sv";
+        localStorage.setItem('lang','sv');
       } else {
         this.lang = "en";
+        localStorage.setItem('lang','en');
       }
       socket.emit('switchLang', this.lang);
     }

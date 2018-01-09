@@ -19,14 +19,14 @@
 <div class="left">
 
     <div class="topnav" id="myTopnav">
-        <a class="active" href="#home">{{ uiLabels.create }}</a>
-        <a href="#">{{ uiLabels.rec }}</a>
+        <a class="active" href="#home">{{ uiLabels.create_your_own }}</a>
+        <a href="#">{{ uiLabels.recommendation }}</a>
     </div>
 
     <!--main-->
     <div >
         <!--choosing type-->
-        <p class="description" id="notation1">Fisrt, choose drink type ...</p>
+        <p class="description" id="notation1">{{ uiLabels.first_note }}</p>
         <div id="ctype" class="button-group" v-if="show_type">
             <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('smoothie')"> {{ uiLabels.smoothie }}</p>
             <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('juice')">{{ uiLabels.juice }}</p>

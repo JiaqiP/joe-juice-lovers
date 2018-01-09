@@ -160,7 +160,7 @@ Data.prototype.getReadymade = function() {
 	return d[readymadeDataName];
 }
 
-var orderNumb = 10000000; // 增加一个orderNum变量
+var orderNumb = 10000000; // base number for order id
 
 var data = new Data();
 // Load initial ingredients. If you want to add columns, do it in the CSV file.

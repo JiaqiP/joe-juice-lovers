@@ -25,18 +25,19 @@ var sharedVueStuff = {
     orders: {},
     uiLabels: {},
     ingredients: {},
-    lang: "en",
+    lang: 'en',
     readymade: {},
 
   },
   created: function () {
+    this.lang = localStorage.getItem('lang');
+    socket.emit('switchLang', this.lang);
+    //  console.log(this.lang);
     socket.on('initialize', function (data) {
       this.size = data.size;
       this.flavor = data.flavor;
       this.orders = data.orders;
       this.uiLabels = data.uiLabels;
-      if(localStorage.getItem('lang') != null)
-        this.lang = localStorage.getItem('lang');
       this.ingredients = data.ingredients.map(item => {
         item.flavor = false
         item.select = false
@@ -66,12 +67,15 @@ var sharedVueStuff = {
     switchLang: function () {
       if (this.lang === "en") {
         this.lang = "sv";
+      //    console.log(this.lang);
         localStorage.setItem('lang','sv');
       } else {
         this.lang = "en";
+     //     console.log(this.lang);
         localStorage.setItem('lang','en');
       }
       socket.emit('switchLang', this.lang);
+      
     }
   }
 };

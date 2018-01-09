@@ -13,8 +13,8 @@ Vue.component('cart-item', {
         <span>{{item.order.price}}</span>
       </div>
       <div class="item-extra">
-        <p>{{uiLabels.mainFlavor}}: {{item.order.flavor}}</p>
-        <p>{{uiLabels.otherIngre}}: {{item.order.ingredients}}</p>
+        <p>Main flavor: {{item.order.flavor}}</p>
+        <p>Other ingredients: {{item.order.ingredients}}</p>
       </div>
       <div class="item-delete">
         <button class="button button-plain" @click="remove">
@@ -93,7 +93,7 @@ new Vue({
         this.storeData()
       },
       remove (id) {
-        if (window.confirm('Are you sure do delete it?')) {
+        if (window.confirm('are you sure?')) {
           const index = this.storegeData.findIndex(ele => {
             return ele.id === id
           })

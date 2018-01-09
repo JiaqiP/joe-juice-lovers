@@ -66,7 +66,7 @@
             <i class="fas fa-angle-left"></i>
           </a>
         </button>
-        <span align = "center">{{uiLabels.Recommendation}}</span>
+        <span align = "center">Recommendation</span>
         <mini-cart :items="storegeData"></mini-cart>
       </div>
     <div class="container">
@@ -80,17 +80,17 @@
         <div class="item" @click="processData('small', 300, choose.price)">
           <h3>{{choose.price}}$</h3>
           <img src = "\images\small_size.png" id="small_cup">
-          <h3>{{uiLabels.s300}}</h3>
+          <h3>300 ml</h3>
         </div>
         <div class="item" @click="processData('medium', 470, choose.price * 1.5)">
           <h3>{{choose.price * 1.5}}$</h3>
           <img src = "\images\medium_size.png" id="medium_cup">
-          <h3>{{uiLabels.m470}}</h3>
+          <h3>470 ml</h3>
         </div>
         <div class="item" @click="processData('large', 550, choose.price * 2)">
           <h3>{{choose.price * 2}}$</h3>
           <img src = "\images\large_size.png" id="large_cup">
-          <h3>{{uiLabels.l550}}</h3>
+          <h3>550 ml</h3>
         </div>
       </div>
       <div class="extra">
@@ -98,7 +98,7 @@
           {{this.choose.name}}
         </p>
         <p>
-          {{uiLabels.mainIngre}}: {{this.choose.ingredients}}
+          Main ingredients: {{this.choose.ingredients}}
         </p>
       </div>
     </div>

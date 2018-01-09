@@ -27,18 +27,18 @@
                     <i class="fas fa-angle-left"></i>
                   </a>
                 </button>
-                <span align = "center">{{uiLabels.create_your_own}} </span>
+                <span align = "center">Create your own </span>
 
                 <mini-cart :items="storegeData"></mini-cart>
             </div>
 
             <div id = "type">
                 <button v-on:click="choose_smoothie" id = "smoothie" class="bigBtn button button-glow button-border button-rounded button-primary">
-                    {{uiLabels.smoothie}}
+                    smoothie
                 </button>
 
                 <button v-on:click="choose_juice" id = "jucie" class = "bigBtn button button-glow button-border button-rounded button-primary" >
-                    {{uiLabels.juice}} 
+                    juice
                 </button>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 <button id = "back" v-on:click="goto_pre_page" align = "left" class="button button-large button-plain button-borderless">
                       <i class="fas fa-angle-left"></i>
                 </button>
-                <span align = "center">{{uiLabels.size}} </span>
+                <span align = "center">Size </span>
 
                 <mini-cart :items="storegeData"></mini-cart>
             </div>
@@ -69,12 +69,12 @@
             </div>
 
             <div id = "notes">
-                <h2>{{uiLabels.note}} <br/>{{uiLabels.maximum_ingredient_limit}}
+                <h2>Note: <br/>Maximum ingredients limit
                 </h2><br/>
                 <h3>
-                    {{uiLabels.limit1}} <br/>
-                    {{uiLabels.limit2}} <br/>
-                    {{uiLabels.limit3}}<br/>
+                    3  ingredients in  S  size <br/>
+                    4  ingredients in  M  size <br/>
+                    5  ingredients in  L  size <br/>
                 </h3>
 
             </div>
@@ -85,20 +85,20 @@
                 <button id = "back" v-on:click="goto_pre_page" align = "left" class="button button-large button-plain button-borderless">
                       <i class="fas fa-angle-left"></i>
                 </button>
-                <span align = "center">{{uiLabels.ingredients}} </span>
+                <span align = "center">Ingredients </span>
 
                 <mini-cart :items="storegeData"></mini-cart>
             </div>
 
-            <div id ="ordering">
+            <div id ="orderng">
                 <div class="button-group" id="ingredient_type">
-                    <button v-on:click="show_fruit" type="button" id="fru" class="button button-border button-rounded button-small">{{uiLabels.fruit}}
+                    <button v-on:click="show_fruit" type="button" id="fru" class="button button-border button-rounded button-small">Fruits
                     </button>
 
-                    <button v-on:click="show_vegetables" type="button" id="veg" class="button button-border button-rounded button-small">{{uiLabels.vegetable}}
+                    <button v-on:click="show_vegetables" type="button" id="veg" class="button button-border button-rounded button-small">Vegetables
                     </button>
 
-                    <button  v-on:click="show_others" type="button" id="othr" class="button button-border button-rounded button-small">{{uiLabels.others}}
+                    <button  v-on:click="show_others" type="button" id="othr" class="button button-border button-rounded button-small">Others
                     </button>
                 </div>
 
@@ -110,7 +110,7 @@
 
                       v-if="item.ingredient_type=='fruit'"
 
-                      v-on:increment="addToOrder(size,item, 'smoothie')"
+                      v-on:select="select(item, 'smoothie')"
                       :item="item"
                       :lang="lang"
                       :key="item.ingredient_id">
@@ -125,7 +125,7 @@
 
                       v-if="item.ingredient_type=='vegetable'"
 
-                      v-on:increment="addToOrder(size,item, 'juice')"
+                      v-on:select="select(item, 'juice')"
                       :item="item"
                       :lang="lang"
                       :key="item.ingredient_id">
@@ -140,7 +140,7 @@
 
                       v-if="item.ingredient_type=='other'"
 
-                      v-on:increment="addToOrder(size,item, 'smoothie')"
+                      v-on:select="select(item, 'smoothie')"
                       :item="item"
                       :lang="lang"
                       :key="item.ingredient_id">
@@ -150,7 +150,7 @@
                 <div id = "info" v-if="info_show">
                     <button v-on:click="hide_ingredient" type="button" id = "hide_ingredients" class = "button button-border button-rounded button-small">
                         <i class="fas fa-minus"></i>
-                        {{uiLabels.detail}}
+                        Details
                     </button>
 
                     <div  class = "display_ingr">
@@ -160,7 +160,7 @@
                         </div>
                         <check_ingredients
                           ref="check_ingredients"
-                          v-on:delet_ingre_event="delete_ingredient"
+                          @delet_ingre_event="delete_ingredient"
                           @toggle_flavor_event="toggleFlavor"
                           v-for="item in chosenIngredients"
                           :item="item"
@@ -173,16 +173,14 @@
                 <div id = "ingredient_bottom" class = "scroll_fixed bottom">
                     <button v-on:click="show_ingredient" v-if="!info_show"  type="button" id = "show_ingredients" class = "button button-border button-rounded button-small">
                         <i class="fas fa-plus"></i>
-                        {{uiLabels.detail}}
+                        Details
                     </button>
 
                     <button v-if="info_show"></button>
 
-                    <a href="/mobile/cart">
-                      <button type="button" id = "create_next" class = "button button-border button-rounded button-small">
-                          {{uiLabels.confirm}}
-                      </button>
-                    </a>
+                    <button @click="toCart" type="button" id = "create_next" class = "button button-border button-rounded button-small">
+                        Next
+                    </button>
                 </div>
              </div>
           </div>

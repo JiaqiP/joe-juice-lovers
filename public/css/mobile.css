@@ -244,12 +244,13 @@ h3{
 .mini-cart .action {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 .mini-cart button {
   display: flex !important;
   justify-content: center;
   align-items: center;
+  margin: 0 !important;
 }
 .mini-cart a {
   text-decoration: none;

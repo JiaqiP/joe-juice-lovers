@@ -12,24 +12,26 @@ Vue.component('ingredient', {
                     <h3>{{ item["ingredient_en"]}}</h3> \
                     <img src="../images/temp/carrot.png">\
                     <h4>{{item.selling_price}}SEK</h4>\
-                    <h4>{{lang}}</h4>\
+                    \
                    <button v-on:click="incrementCounter">{{ counter }}</button>\
+                   <p>{{string}}</p>\
                   </label>\
               </div>',
     data: function () {
         return {
-            counter: 0
+            counter: 0,
+            string:""
         };
     },
     methods: {
         incrementCounter: function () {
             var i_flag = this.counter;
             this.counter = i_flag === 1?0:1;
-            // if(i_flag) {
-            //
-            // } else {
-            //
-            // }
+            if(i_flag) {
+                this.string="Select";
+            } else {
+                this.string="Delete";
+            }
             this.$emit('increment');
         },
         decreaseCounter: function () {
@@ -69,7 +71,8 @@ var vm = new Vue({
         show_type:true,
         show_ingredient:true,
         show_border:false,
-        flag: false
+        flag: false,
+        last_id:[]
     },
     methods: {
         addTypeToOrder:function(type) {
@@ -100,16 +103,38 @@ var vm = new Vue({
         // },
 
         addToOrder: function (item) {
-            this.flag = this.flag === true?false:true;
-            if(this.flag) {
-                // console.log(this.$el.innerHTML);
-                // console.log("add border");
+            //this.flag = this.flag === true?false:true;
+            var temp_id = item.ingredient_id;
+            if(!isRepeated(temp_id,this.last_id)) {
+                this.flag = true;
+                this.last_id.push[temp_id];
+                console.log(this.last_id[0]);
+            } else {
+                this.flag=false;
+            }
+            //to store ingredient ids
 
+            //console.log(this.flag);
+            //console.log("log item id");
+            //console.log(item.ingredient_id);
+            if(this.flag) {
+                this.chosenIngredients.push(item);
             }
             else {
-                //this.style.border="";
+                console.log("delete number");
+                console.log(this.chosenIngredients.ingredient_id);
+                //remove it from last_id[]
+                this.last_id.splice(isRepeated(temp_id,this.last_id),1);
+                for(var i=this.chosenIngredients.length; i>0; i--) {
+                    console.log(this.chosenIngredients[i-1].ingredient_id);
+                    if(this.chosenIngredients[i-1].ingredient_id == temp_id) {
+                        this.chosenIngredients.splice(i-1,1);
+                        break;
+                    }
+                }
             }
-            this.chosenIngredients.push(item);
+            //this.chosenIngredients.push(item);
+            //console.log(this.chosenIngredients[0].ingredient_id);
             var type = this.type;
             if (type === "smoothie") {
                 this.volume += +item.vol_smoothie;
@@ -147,6 +172,18 @@ var vm = new Vue({
 
 );
 
+function isRepeated(temp, arr) {
+    console.log(temp);
+    console.log(arr);
+    for(var i=0; i<arr.length; i++) {
+        if(arr[i]==temp){
+            console.log("is repeated");
+            return i;
+            break;
+        }
+    }
+    return false;
+}
 
 var btnlist = document.getElementById('ctype').getElementsByTagName('p');
 console.log("show button");

@@ -34,5 +34,6 @@
   "item" : "Item",
   "overview" : "Overview",
   "recommendation" : "Recommendation",
-  "joe" : "Joe's Juice"
+  "joe" : "Joe's Juice",
+  "first_note":"Välj först dryckstyp ..."
 }

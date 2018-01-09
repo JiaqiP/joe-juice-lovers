@@ -46,7 +46,7 @@ var sharedVueStuff = {
         return item
       });
       this.readymade = data.readymade;
-      this.lang = localStorage.getItem('lang');
+      //this.lang = localStorage.getItem('lang');
     }.bind(this));
 
     socket.on('switchLang', function (data) {

@@ -3,7 +3,12 @@ body {
     font-family: Arial;
 }
 
+#language {
+
+}
+
 .left {
+    margin-top: 2%;
     width: 70%;
 }
 
@@ -38,7 +43,7 @@ body {
 
 
 .button-group{
-    display:inline-block;
+    display:inline-block !important;
     text-align: center;
     width:100%;
 
@@ -51,18 +56,75 @@ body {
     color: #333333;
     border-color:#003366;
 }
-.button-group button:hover{
-    background-color: #ccc;
-}
 
-#ctype button{
+.button-group p{
+    padding: 0;
+    text-align: center;
     font-size: 15px;
-    width:48%;
-    margin: 5px;
-    border:dashed;
-    border-color: #336699;
+    color: #333333;
+    border-color:#003366;
 }
 
+/*#ctype button{*/
+    /*font-size: 15px;*/
+    /*width:48%;*/
+    /*background-color: #febc44;*/
+    /*margin: 5px;*/
+    /*border:dashed;*/
+    /*border-color: #336699;*/
+/*}*/
+/*#ctype button:focus{*/
+    /*background-color: #b9e563;*/
+/*}*/
+
+
+
+/*#ctype a.onclick{*/
+    /*width:49%;*/
+    /*background-color: #b9e563;*/
+/*}*/
+
+/*#ctype a.offclick{*/
+    /*width:49%;*/
+    /*background-color: #5e5e5e;*/
+    /*color: #ededed;*/
+
+/*}*/
+/*#ctype a{*/
+    /*font-size: 15px;*/
+    /*font-family: Arial;*/
+    /*font-style: inherit;*/
+    /*width: 49% !important;*/
+    /*background-color: #febc44;*/
+    /*margin-top:0.5em;*/
+    /*margin-right: 1%;*/
+
+/*}*/
+
+
+
+#ctype p.onclick{
+    background-color: #febc44;
+}
+
+#ctype p.offclick{
+    background-color: #bbbbbb;
+}
+#ctype p{
+    display: inline-block; !important;
+    font-size: 15px;
+    float: left;
+    font-family: Arial;
+    font-style: inherit;
+    text-align: center;
+    line-height: 35px;
+    width: 49%; !important;
+    height: 30px; !important;
+    background-color: #febc44;
+    margin-top:0.5em;
+    margin-right: 1%;
+
+}
 #size{
     width:100%;
 }
@@ -76,6 +138,10 @@ body {
     height: auto;
     padding-top: 1em;
     padding-bottom: 0.5em;
+}
+
+#size button:active, visited{
+    background-color: #febc44;
 }
 
 #size img{
@@ -134,7 +200,7 @@ label[for*='1'] {
     border: 0;
 }
 
-label:after {
+label.special:after {
     content: '\f078';
     position: absolute;
     top: 0px;
@@ -172,7 +238,6 @@ section {
     display:inline-block;
     position:relative;
     background-color: #b9e563;
-
 }
 #content2 label{
     width:150px;
@@ -190,10 +255,112 @@ section {
     display:inline-block;
     position:relative;
     background-color: #b9e563;
-
 }
+
 .ingredient {
     display:inline-block;
     position: relative;
+    float: left;
 
+}
+
+
+.ingredient img {
+    width:50%;
+    height:50%;
+}
+
+
+.ingredient :not(img) {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+}
+
+.ingredient h3{
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
+.ingredient h4{
+    margin-top: -35px;
+    margin-bottom: -30px;
+}
+
+.ingredient div{
+    width:58px;
+}
+.ingredient p{
+    margin-top: -30px;
+    font-style: italic;
+}
+
+
+.inlist {
+    background-color: #b9e563;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.btn-numbox {
+
+}
+
+.btn-numbox li {
+    float: left;
+}
+
+.btn-numbox li .kucun {
+    display: inline-block;
+    font-size: 12px;
+    color: #808080;
+    vertical-align: sub;
+}
+
+.btn-numbox .count {
+    overflow: hidden;
+    margin: 0 16px 0 -20px;
+}
+
+.btn-numbox .count .num-dec,
+.input-num,
+.num-inc {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+    cursor: pointer;
+    border: 1px solid #e6e6e6;
+}
+
+.btn-numbox .count .num-inc {
+    margin-left: 1px;
+}
+
+.btn-numbox .count .input-num {
+    width: 58px;
+    height: 26px;
+    color: #333;
+    border-left: 0;
+    border-right: 0;
 }

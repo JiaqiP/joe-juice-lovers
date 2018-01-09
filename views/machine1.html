@@ -196,7 +196,7 @@
             <h1>{{ uiLabels.ordersInQueue }}</h1>
             <h2>{{ uiLabels.smoothie }}</h2>
             <div>
-                <order-item
+                <order-item1
                         v-for="(order, key) in orders"
                         v-if="!order.done && order.type == 'smoothie'"
                         :order-id="key"
@@ -204,11 +204,11 @@
                         :ui-labels="uiLabels"
                         :lang="lang"
                         :key="key">
-                </order-item>
+                </order-item1>
             </div>
             <h2>{{ uiLabels.juice }}</h2>
             <div>
-                <order-item
+                <order-item1
                         v-for="(order, key) in orders"
                         v-if="!order.done && order.type == 'juice'"
                         :order-id="key"
@@ -216,7 +216,7 @@
                         :ui-labels="uiLabels"
                         :lang="lang"
                         :key="key">
-                </order-item>
+                </order-item1>
             </div>
 
             <!--<button class="listbutton" id="buttonDel"> DELETE </button>-->

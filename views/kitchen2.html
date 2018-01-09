@@ -3,62 +3,74 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Joe kitchen</title>
-  <link rel="stylesheet" href="css/kitchen.css">
+  <title>Juicifers kitchen</title>
+  <link rel="stylesheet" href="css/juicifer.css">
   <script src="/vue/vue.js" defer></script>
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="js/juicifer-main.js" defer></script>
   <script src="js/kitchen.js" defer></script>
 </head>
 <body>
+  <div id="orders">
+    <h1>{{ uiLabels.ordersInQueue }}</h1>
+    <h2>{{ uiLabels.smoothie }}</h2>
+    <div>
+      <order-item-to-prepare
+        v-for="(order, key) in orders"
+        v-if="!order.done && order.type == 'smoothie'"
+        v-on:done="markDone(key)"
+        :order-id="key"
+        :order="order" 
+        :ui-labels="uiLabels"
+        :lang="lang"
+        :key="key"
+        :size="size">
+      </order-item-to-prepare>
+    </div>
+    <h2>{{ uiLabels.juice }}</h2>
+    <div>
+      <order-item-to-prepare
+        v-for="(order, key) in orders"
+        v-if="!order.done && order.type == 'juice'"
+        v-on:done="markDone(key)"
+        :order-id="key"
+        :order="order"
+        :ui-labels="uiLabels"
+        :lang="lang"
+        :key="key"
+        :size="size">
+      </order-item-to-prepare>
+    </div>
 
-    <section id="header">
-
-        <div id="total">
-            <h1>Total orders:</h1>
-        </div>
-
-        <div id="hour">
-            <script type="text/javascript">
-                function GetClock(){
-                var d=new Date();
-                var nhour=d.getHours(),nmin=d.getMinutes();
-                if(nmin<=9) nmin="0"+nmin
-                
-                document.getElementById('hour').innerHTML=""+nhour+":"+nmin+"";
-                }
-                
-                window.onload=function(){
-                GetClock();
-                setInterval(GetClock,1000);
-                }
-                </script>
-        </div>
-
-        <div id="stock">
-                <h1>Stocks:</h1>
-        </div>
-
-    </section>
-
-    <section id="orders">
-
-        <div> 
-            <order-item-to-prepare id="order"
-            v-for="(order, key) in orders"
-            v-if="!order.done"
-            v-on:done="markDone(key)"
-            :order-id="key"
-            :order="order" 
-            :ui-labels="uiLabels"
-            :lang="lang"
-            :key="key"
-            :size="size">
-          </order-item-to-prepare>
-        </div>
-
-
-    </section>
-
+    <h1>{{ uiLabels.ordersFinished }}</h1>
+    <h2>{{ uiLabels.smoothie }}</h2>
+    <div>
+      <order-item
+        v-for="(order, key) in orders"
+        v-if="order.done && order.type == 'smoothie'"
+        :order-id="key"
+        :order="order"
+        :lang="lang"
+        :ui-labels="uiLabels"
+        :key="key"
+        :size="size">
+      </order-item>
+    </div>
+    <h2>{{ uiLabels.juice }}</h2>
+    <div>
+      <order-item
+        v-for="(order, key) in orders"
+        v-if="order.done && order.type == 'juice'"
+        :order-id="key"
+        :order="order"
+        :lang="lang"
+        :ui-labels="uiLabels"
+        :key="key"
+        :size="size">
+      </order-item>
+    </div>
+      
+  </div>
+  
 </body>
 </html>

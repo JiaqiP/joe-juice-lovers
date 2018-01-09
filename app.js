@@ -33,8 +33,15 @@ app.get('/', function (req, res) {
 app.get('/kitchen', function(req, res) {
 	res.sendFile(path.join(__dirname, 'views/kitchen.html'));
 });
+
+//Sever machine-Recommandation as subpage -- Shania
 app.get('/Rec', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/machine2.html'));
+});
+
+//Sever machine-test as subpage -- Shania
+app.get('/test', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/machinetest.html'));
 });
 
 // Serve machine-create your own as subpage --ivy

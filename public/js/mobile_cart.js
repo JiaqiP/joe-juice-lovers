@@ -43,6 +43,8 @@ Vue.component('cart-item', {
 
 new Vue({
     el:"#app",
+    mixins: [sharedVueStuff],
+    
     data () {
       return {
         storegeData: [],
@@ -91,14 +93,20 @@ new Vue({
         this.storeData()
       },
       remove (id) {
-        const index = this.storegeData.findIndex(ele => {
-          return ele.id === id
-        })
-        this.storegeData.splice(index,1)
-        this.storeData()
+        if (window.confirm('are you sure?')) {
+          const index = this.storegeData.findIndex(ele => {
+            return ele.id === id
+          })
+          this.storegeData.splice(index,1)
+          this.storeData()
+        }
       },
       storeData () {
         localStorage.setItem('order', JSON.stringify(this.storegeData))
+      },
+    
+       pay () {
+        socket.emit('order', {'order': this.storegeData});
       }
     }
 })

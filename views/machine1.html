@@ -13,24 +13,29 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
+
 <div id="fruit">
+    <button id="language" v-on:click="switchLang()">{{ uiLabels.language }}</button>
 <div class="left">
-    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+
     <div class="topnav" id="myTopnav">
         <a class="active" href="#home">{{ uiLabels.create }}</a>
         <a href="#">{{ uiLabels.rec }}</a>
     </div>
 
-
     <!--main-->
     <div >
         <!--choosing type-->
+        <p class="description" id="notation1">Fisrt, choose drink type ...</p>
         <div id="ctype" class="button-group" v-if="show_type">
-            <a type="button" class="button button-rounded" v-on:click="addTypeToOrder('smoothie')"> {{ uiLabels.smoothie }}</a>
-            <a type="button" class="button button-rounded" v-on:click="addTypeToOrder('juice')">{{ uiLabels.juice }}</a>
-            <button id="comfirmbtn">confirm</button>
-        </div>
+            <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('smoothie')"> {{ uiLabels.smoothie }}</p>
+            <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('juice')">{{ uiLabels.juice }}</p>
+            <!--<button type="button" class="button button-rounded" v-on:click="addTypeToOrder('smoothie')">{{ uiLabels.smoothie}}</button>-->
+            <!--<button type="button" class="button button-rounded" v-on:click="addTypeToOrder('juice')">{{ uiLabels.juice}}</button>-->
 
+            <!--<button id="comfirmbtn">confirm</button>-->
+        </div>
+        <p class="description" id="notation2"></p>
         <!--choosing size-->
         <div id="size" class="button-group" v-if="show_size">
             <button type="button" class="button button-rounded" v-on:click="addSizeToOrder('small')">
@@ -57,16 +62,16 @@
                 4  ingredients in  M  size <br/>
                 5  ingredients in  L  size <br/>
             </h3>
-            <button class="comfirmbtn">confirm</button>
+            <!--<button class="comfirmbtn">confirm</button>-->
         </div>
         <!--choosing ingredients-->
+        <p class="description" id="notation3"></p>
         <div class="togglebox" v-if="show_ingredient">
             <input id="toggle1" type="radio" name="toggle" />
-            <label for="toggle1">Fruits</label>
+            <label class="special" for="toggle1">Fruits</label>
             <section id="content1">
                     <ingredient
                             ref="ingredient"
-                            type="smoothie"
                             v-for="item in ingredients"
                             v-if="item.vol_smoothie > 0 && item.ingredient_type=='fruit'"
                             v-on:increment="addToOrder(item)"
@@ -77,15 +82,13 @@
             </section>
 
             <input id="toggle2" type="radio" name="toggle" />
-            <label for="toggle2">Vegetables</label>
+            <label class="special" for="toggle2">Vegetables</label>
             <section id="content2">
-
                     <ingredient
                             ref="ingredient"
-                            type="smoothie"
                             v-for="item in ingredients"
                             v-if="item.vol_smoothie > 0 && item.ingredient_type=='vegetable'"
-                            v-on:increment="addToOrder(item, 'smoothie')"
+                            v-on:increment="addToOrder(item)"
                             :item="item"
                             :lang="lang"
                             :key="item.ingredient_id">
@@ -94,14 +97,14 @@
             </section>
 
             <input id="toggle3" type="radio" name="toggle" />
-            <label for="toggle3">Others</label>
+            <label class="special" for="toggle3">Others</label>
             <section id="content3">
                 <ingredient
                         ref="ingredient"
-                        type="smoothie"
+                        type=""
                         v-for="item in ingredients"
                         v-if="item.vol_smoothie > 0 && item.ingredient_type=='other'"
-                        v-on:increment="addToOrder(item, 'smoothie')"
+                        v-on:increment="addToOrder(item)"
                         :item="item"
                         :lang="lang"
                         :key="item.ingredient_id">
@@ -146,7 +149,18 @@
 </div>
 
 <!--shopping list-->
-<div class="right"></div>
+<div class="right">
+    <ul class="btn-numbox">
+        <li>
+            <ul class="count">
+                <li><span id="num-dec" class="num-dec">-</span></li>
+                <li><input type="text" class="input-num" id="input-num" value="0"></li>
+                <li><span id="num-inc" class="num-inc" >+</span></li>
+            </ul>
+        </li>
+        <li><span class="kucun">（Stock:）</span></li>
+    </ul>
+</div>
 </div>
 </body>
 </html>

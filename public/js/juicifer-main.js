@@ -5,22 +5,19 @@
 
 var socket = io();
 
-
-//ivy
+/*
 Vue.component('order-item', {
   props: ['uiLabels', 'order', 'orderId', 'lang'],
-  template: '<div>{{orderId}} {{order.size}} {{order.type}} <div class="inlist"> {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}</div></div>'
+  template: '<div>{{orderId}} {{order.size}} {{order.flavor}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} </div>'
 });   //add {{order.size}} {{order.flavor}}
-
-
-
-// Vue.component('order-item', {
-//   props: ['uiLabels', 'order', 'orderId', 'lang'],
-//   template: `<div>
-//                 <div>{{orderId}} {{order.size}} {{order.flavor}}</div>
-//                 <div>{{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients}} </div>
-//               </div>`,
-// });   //add{{order.size}} {{order.flavor}}，
+*/
+Vue.component('order-item', {
+  props: ['uiLabels', 'order', 'orderId', 'lang'],
+  template: `<div>
+                <div>{{orderId}} {{order.size}} {{order.flavor}}</div>
+                <div>{{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients}} </div>
+              </div>`,
+});   //add{{order.size}} {{order.flavor}}，
 
 // Stuff that is used both in the ordering system and in the kitchen
 var sharedVueStuff = {
@@ -35,18 +32,17 @@ var sharedVueStuff = {
   created: function () {
     socket.on('initialize', function (data) {
       this.size = data.size;
-      this.type = data.type;
       this.flavor = data.flavor;
       this.orders = data.orders;
       this.uiLabels = data.uiLabels;
-      //this.ingredients = data.ingredients;
+      if(localStorage.getItem('lang') != null)
+        this.lang = localStorage.getItem('lang');
       this.ingredients = data.ingredients.map(item => {
         item.flavor = false
         item.select = false
         return item
       });
       this.readymade = data.readymade;
-      //this.lang = localStorage.getItem('lang');
     }.bind(this));
 
     socket.on('switchLang', function (data) {
@@ -70,10 +66,10 @@ var sharedVueStuff = {
     switchLang: function () {
       if (this.lang === "en") {
         this.lang = "sv";
-        localStorage.setItem('lang', 'sv');
+        localStorage.setItem('lang','sv');
       } else {
         this.lang = "en";
-        localStorage.setItem('lang', 'en');
+        localStorage.setItem('lang','en');
       }
       socket.emit('switchLang', this.lang);
     }

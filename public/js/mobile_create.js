@@ -4,31 +4,21 @@
 
 Vue.component('ingredient', {
   props: ['item', 'type', 'lang','size'],
-  template: ` <div class="ingredient">
+  template: ` <div class="ingredient" style="margin: 5px;">
                   <label @click="toggle">
                     <img v-bind:src="item.image" width="20px" height="20px">
-                    {{item["ingredient_"+ lang]}}, {{item.stock}} pcs
+                    {{item["ingredient_"+ lang]}} ({{ (type=="smoothie") ? item.vol_smoothie:item.vol_juice }} ml), {{item.selling_price}}:-, {{item.stock}} pcs
                   </label>
-                    <span style = "float: right>
-                    {{item.select ? '{{uiLabels.select}}':''}}</span>
+                  <span style="float: right">{{ item.select ? 'selected': ''  }}</span>
               </div>`,
   data: function () {
     return {
-      counter: 0
     };
   },
   methods: {
-//  incrementCounter: function () {
-//      this.counter += 1;
-//      this.$emit('increment');
-//    },
-    toggle:function(){
-        this.$emit('select');
+    toggle: function () {
+      this.$emit('select');
     },
-      
-    resetCounter: function () {
-      this.counter = 0;
-    }
   }
 });
 
@@ -38,8 +28,8 @@ Vue.component('check_ingredients',{
             <img v-bind:src="item.image" width="20px" height="20px">
             <span align="center">{{ item["ingredient_"+ lang]}}</span>
             <button @click="emit_toggle_flavor_event" class="button button-plain">
-            <i v-if="item.flavor" class="far fa-heart"></i>
-            <i v-else class="far fa-heart-o"></i>
+              <i v-if="item.flavor" class="far fa-heart"></i>
+              <i v-else class="far fa-heart-o"></i>
             </button>
 
             <button v-on:click="emit_delet_ingre_event" class="button button-plain"><i class="far fa-trash-alt"></i></button>
@@ -83,7 +73,7 @@ var type = new Vue({
         cart_from_page:1,
 
         size:'small',
-        flavor:null,
+        flavor: null,
 
         type: '',
         chosenIngredients: [],
@@ -114,24 +104,22 @@ var type = new Vue({
         },
         choose_small:function(){
             this.size="small";
-            this.price=45;
+            this.price = '3'
             this.current_page=3;
             this.pre_page=2;
         },
         choose_medium:function(){
             this.size="medium";
-            this.price=55;
+            this.price = '5'
             this.current_page=3;
             this.pre_page=2;
         },
         choose_large:function(){
             this.size="large";
-            this.price=65;
+            this.price = '7'
             this.current_page=3;
             this.pre_page=2;
         },
-        
-        
         checkIngredients (item) {
           if (item.select) return true
           const len = this.chosenIngredients.length
@@ -141,12 +129,12 @@ var type = new Vue({
               return false
             }
           } else if (this.size === 'medium') {
-            if (len === 4) {
+            if (len === 5) {
               alert('can\'t select more')
               return false
             }
           } else if (this.size === 'large') {
-            if (len === 5) {
+            if (len === 7) {
               alert('can\'t select more')
               return false
             }
@@ -157,19 +145,10 @@ var type = new Vue({
           if (!this.checkIngredients(item)) return
           const ele = this.ingredients.find(ele => ele.ingredient_en === item.ingredient_en)
           ele.select = !ele.select
-        
-        
 
-        addToOrder: function (size,item, type) {
-          this.size=size;
-
-       //   this.chosenIngredients.push(item);
-         
           const index = this.chosenIngredients.findIndex(ele => ele.ingredient_en === item.ingredient_en)
-    
-            
-            
-        if (index === -1) {
+          this.type = type;
+          if (index === -1) {
             this.chosenIngredients.push(item);
             if (type === "smoothie") {
               this.volume += +item.vol_smoothie;
@@ -183,6 +162,7 @@ var type = new Vue({
             } else if (type === "juice") {
               this.volume -= +item.vol_juice;
             }
+          }
         },
 
         getOrder () {
@@ -214,24 +194,6 @@ var type = new Vue({
             storegeData = [item]
           }
           localStorage.setItem('order', JSON.stringify(storegeData))
-        },
-        placeOrder: function () {
-          var i,order;
-          //Wrap the order in an object
-          order = this.getOrder()
-          // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-          socket.emit('order', {orderId: this.id, order: order});
-
-          //set all counters to 0. Notice the use of $refs
-          for (i = 0; i < this.$refs.ingredient.length; i += 1) {
-            this.$refs.ingredient[i].resetCounter();
-          }
-          this.volume = 0;
-          this.price = 0;
-          this.type = '';
-          this.flavor=[];
-          this.chosenIngredients = [];
-          this.id = getOrderNumber()
         },
 
         show_vegetables: function () {
@@ -294,21 +256,18 @@ var type = new Vue({
         },
 
         delete_ingredient:function(item){
-        if (confirm("Are you sure to delete this?")) {
+          if (confirm("Are you sure?")) {
             item.select = !item.select
             var index=this.chosenIngredients.indexOf(item);
             this.chosenIngredients.splice(index, 1);
           }
         },
-            
-
         toggleFlavor (item) {
-+          if (!this.flavor) {
+          if (!this.flavor) {
             this.flavor = item
             var index = this.ingredients.indexOf(item);
             this.ingredients[index].flavor = true
           } else {
-            this.flavor.splice(index,1)
             if (this.flavor == item) {
               var index = this.ingredients.indexOf(this.flavor);
               this.ingredients[index].flavor = false
@@ -323,11 +282,9 @@ var type = new Vue({
             }
           }
         },
-            
         toCart () {
           this.storeData()
           window.location.href = '/mobile/cart'
         }
     }
 })
-// Still problems with flavor

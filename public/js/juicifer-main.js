@@ -35,8 +35,14 @@ var sharedVueStuff = {
       this.flavor = data.flavor;
       this.orders = data.orders;
       this.uiLabels = data.uiLabels;
-      this.ingredients = data.ingredients;
+      //this.ingredients = data.ingredients;
+      this.ingredients = data.ingredients.map(item => {
+        item.flavor = false
+        item.select = false
+        return item
+      });
       this.readymade = data.readymade;
+      this.lang = localStorage.getItem('lang');
     }.bind(this));
 
     socket.on('switchLang', function (data) {
@@ -60,8 +66,10 @@ var sharedVueStuff = {
     switchLang: function () {
       if (this.lang === "en") {
         this.lang = "sv";
+        localStorage.setItem('lang', 'sv');
       } else {
         this.lang = "en";
+        localStorage.setItem('lang', 'en');
       }
       socket.emit('switchLang', this.lang);
     }

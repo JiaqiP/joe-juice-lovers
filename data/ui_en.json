@@ -31,5 +31,7 @@
     "price" : "Price",
     "amount" : "Amount",
     "item" : "Item",
-    "overview" : "Overview"
+    "overview" : "Overview",
+    "recommendation" : "Recommendation",
+    "joe" : "Joe's Juice"
 }

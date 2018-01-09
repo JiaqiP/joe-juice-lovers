@@ -20,9 +20,9 @@ Vue.component('mini-cart', {
           <span>{{item.order.amount}}</span>
         </div>
         <div class="action">
-          <a href="/mobile/cart">
-            Show Details
-          </a>
+          <button class="bigBtn button button-glow button-border button-rounded button-primary">
+            <a href="/mobile/cart">Show Details</a>
+          </button>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 new Vue({
     el:"#app",
-     mixins: [sharedVueStuff],
+    mixins: [sharedVueStuff],
     data () {
       return {
         storegeData: [],

@@ -5,12 +5,12 @@
 
 var socket = io();
 
-/*
-Vue.component('order-item', {
+//For ivy
+Vue.component('order-item1', {
   props: ['uiLabels', 'order', 'orderId', 'lang'],
-  template: '<div>{{orderId}} {{order.size}} {{order.flavor}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} </div>'
+  template: '<div>{{orderId}} {{order.size}} {{order.flavor}} {{order.type}} <p>{{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}</p> </div>'
 });   //add {{order.size}} {{order.flavor}}
-*/
+
 Vue.component('order-item', {
   props: ['uiLabels', 'order', 'orderId', 'lang'],
   template: `<div>

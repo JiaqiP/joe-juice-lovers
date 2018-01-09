@@ -13,10 +13,10 @@
   "language" : "English",
   "mainflavor" : "Huvudsakliga smak",
   "delete" : "Redera",
-<<<<<<< HEAD
+
   "create" : "skapa din egen",
   "rec" : "rekommendation"
-=======
+
   "detail" :"Detaljer",
   "confirm" : "Bekräfta",
     "size"  : "Storlek",
@@ -39,5 +39,5 @@
     "overview" : "Overview",
     "recommendation" : "Recommendation",
     "joe" : "Joe's Juice"
->>>>>>> ccea0eb944d654a2be58b74726ffd54227b46de1
+
 }

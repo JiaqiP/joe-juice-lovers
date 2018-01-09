@@ -24,23 +24,24 @@ app.use(express.static(path.join(__dirname, 'public/')));
 // Serve vue from node_modules as vue/
 app.use('/vue', express.static(path.join(__dirname, '/node_modules/vue/dist/')));
 // Serve diner.html as root page
-
+/*
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/ordering.html'));
 });
-
+*/
 // Serve kitchen.html as subpage
 app.get('/kitchen', function(req, res) {
 	res.sendFile(path.join(__dirname, 'views/kitchen.html'));
 });
-app.get('/kitchen2', function(req, res) {
-	res.sendFile(path.join(__dirname, 'views/kitchen2.html'));
-});
-app.get('/stock', function(req, res) {
-	res.sendFile(path.join(__dirname, 'views/stock.html'));
-});
+
+//Sever machine-Recommandation as subpage -- Shania
 app.get('/Rec', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/machine2.html'));
+});
+
+//Sever machine-test as subpage -- Shania
+app.get('/test', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/machinetest.html'));
 });
 
 // Serve machine-create your own as subpage --ivy

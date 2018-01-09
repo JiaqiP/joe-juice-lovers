@@ -27,6 +27,7 @@ Vue.component('cart-item', {
 
 new Vue({
     el:"#app",
+    mixins: [sharedVueStuff],
     data () {
       return {
         id: '',

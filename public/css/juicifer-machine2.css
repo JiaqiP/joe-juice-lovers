@@ -170,20 +170,14 @@ section {
 #toggle1:checked ~ label[for*='1']:after,
 #toggle2:checked ~ label[for*='2']:after,
 #toggle3:checked ~ label[for*='3']:after,
-#toggle4:checked ~ label[for*='4']:after,
-#toggle5:checked ~ label[for*='4']:after,
-#toggle6:checked ~ label[for*='4']:after,
-#toggle7:checked ~ label[for*='4']:after{
+#toggle4:checked ~ label[for*='4']:after {
     transform: rotate(0deg);
 }
 
 #toggle1:checked ~ #content1,
 #toggle2:checked ~ #content2,
 #toggle3:checked ~ #content3,
-#toggle4:checked ~ #content4,
-#toggle5:checked ~ #content5,
-#toggle6:checked ~ #content6,
-#toggle7:checked ~ #content7{
+#toggle4:checked ~ #content4 {
     height: 400px;
     overflow: scroll;
 }
@@ -215,34 +209,6 @@ section {
     background-color: #b9e563;
 
 }
-
-#content4 label{
-    width:150px;
-    height:150px;
-    margin:15px;
-    display:inline-block;
-    position:relative;
-    background-color: #b9e563;
-
-}
-#content5 label{
-    width:150px;
-    height:150px;
-    margin:15px;
-    display:inline-block;
-    position:relative;
-    background-color: #b9e563;
-
-}
-#content6 label{
-    width:150px;
-    height:150px;
-    margin:15px;
-    display:inline-block;
-    position:relative;
-    background-color: #b9e563;
-
-}
 .ingredient {
     display:inline-block;
     position: relative;
@@ -252,7 +218,7 @@ section {
 /*update by Shania*/
 
 /* initial display screen without recommendation info */
-#creation {
+#recommendation {
     display: none;
 }
 

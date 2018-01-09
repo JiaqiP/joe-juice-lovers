@@ -10,9 +10,9 @@ Vue.component('mini-cart', {
             <i class="fa fa-shopping-cart"></i>
         </button>
         <div class="header">
-          <span>Product</span>
-          <span>Size</span>
-          <span>Amount</span>
+          <span>{{uiLabels.Product}}</span>
+          <span>{{uiLabels.Size}}</span>
+          <span>{{uiLabels.Amount}}</span>
         </div>
         <div v-for="item in itemsAdpter" class="order">
           <span>{{item.order.name}}</span>

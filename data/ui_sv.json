@@ -34,5 +34,21 @@
     "item" : "Item",
     "overview" : "Overview",
     "recommendation" : "Recommendation",
-    "joe" : "Joe's Juice"
+    "joe" : "Joe's Juice",
+
+    
+    
+    "s300":"300ml",
+    "m470":"470ml",
+    "l550":"500ml",
+    "Recommendation":"Rekommendation",
+    "mainIngre":"huvudingredienser",
+    "mainFlavor":"Huvudsaklig smak",
+    "otherIngre":"Andra ingredienser",
+    "Product":"Produkt",
+    "Size":"Storlek",
+    "Amount":"Belopp",
+    
+    
+    
 }

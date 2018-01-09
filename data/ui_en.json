@@ -33,5 +33,45 @@
     "item" : "Item",
     "overview" : "Overview",
     "recommendation" : "Recommendation",
-    "joe" : "Joe's Juice"
+    "joe" : "Joe's Juice",
+    
+    
+    
+    "s300":"300ml",
+    "m470":"470ml",
+    "l550":"500ml",
+    "Recommendation":"Recomendation",
+    "mainIngre":"main ingredients",
+    "mainFlavor":"Main flavor",
+    "otherIngre":"Other ingredients",
+    "Product":"Product",
+    "Size":"Size",
+    "Amount":"Amount",
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

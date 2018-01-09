@@ -9,9 +9,10 @@ Vue.component('ingredient', {
     props: ['item', 'type', 'lang'],
     template: ' <div class="ingredient">\
                   <label>\
-                    <h3>{{item["ingredient_"+ lang]}}</h3> \
+                    <h3>{{ item["ingredient_en"]}}</h3> \
                     <img src="../images/temp/carrot.png">\
                     <h4>{{item.selling_price}}SEK</h4>\
+                    <h4>{{lang}}</h4>\
                    <button v-on:click="incrementCounter">{{ counter }}</button>\
                   </label>\
               </div>',
@@ -101,8 +102,8 @@ var vm = new Vue({
         addToOrder: function (item) {
             this.flag = this.flag === true?false:true;
             if(this.flag) {
-                console.log(this.$el.innerHTML);
-                console.log("add border");
+                // console.log(this.$el.innerHTML);
+                // console.log("add border");
 
             }
             else {

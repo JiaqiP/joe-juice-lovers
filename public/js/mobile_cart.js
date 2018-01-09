@@ -93,7 +93,7 @@ new Vue({
         this.storeData()
       },
       remove (id) {
-        if (window.confirm('are you sure?')) {
+        if (window.confirm('Are you sure to delet it?')) {
           const index = this.storegeData.findIndex(ele => {
             return ele.id === id
           })

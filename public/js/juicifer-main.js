@@ -27,6 +27,9 @@ var sharedVueStuff = {
     ingredients: {},
     lang: 'en',
     readymade: {},
+    flavor:{},
+    size:{},
+    prize:{},
 
   },
   created: function () {
@@ -36,6 +39,7 @@ var sharedVueStuff = {
     socket.on('initialize', function (data) {
       this.size = data.size;
       this.flavor = data.flavor;
+      this.rize = data.prize;
       this.orders = data.orders;
       this.uiLabels = data.uiLabels;
       this.ingredients = data.ingredients.map(item => {
@@ -55,6 +59,7 @@ var sharedVueStuff = {
       if (typeof data.ingredients !== 'undefined') {
         this.ingredients = data.ingredients;
         this.type = data.type;
+        this.size = data.size;
         console.log("ingredients not empty");
       }
       else{

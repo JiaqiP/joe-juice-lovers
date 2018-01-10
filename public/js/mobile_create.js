@@ -28,8 +28,9 @@ Vue.component('check_ingredients',{
             <img v-bind:src="item.image" width="20px" height="20px">
             <span align="center">{{ item["ingredient_"+ lang]}}</span>
             <button @click="emit_toggle_flavor_event" class="button button-plain">
-              <i v-if="item.flavor" class="far fa-heart"></i>
-              <i v-else class="far fa-heart-o"></i>
+            <i v-if="item.flavor" class="fas fa-heart"></i>
+            <i v-else class="far fa-heart"></i>
+            
             </button>
 
             <button v-on:click="emit_delet_ingre_event" class="button button-plain"><i class="far fa-trash-alt"></i></button>
@@ -72,7 +73,7 @@ var type = new Vue({
         pre_page:1,
         cart_from_page:1,
 
-        size:'small',
+        size:'',
         flavor: null,
 
         type: '',
@@ -170,6 +171,8 @@ var type = new Vue({
           //process chosenIngredients
           order_ingredients=this.chosenIngredients;
           order_ingredients=order_ingredients.map(item=>item["ingredient_"+ this.lang]).join(", ");
+            
+        //    mainFlavor = this.flavor.map(flavor=>flavor["ingredient_"+ lang]);
           return {
             size: this.size,
             flavor: this.flavor,
@@ -256,35 +259,95 @@ var type = new Vue({
         },
 
         delete_ingredient:function(item){
-          if (confirm("Are you sure?")) {
+          if (confirm("Are you sure to delete this?")) {
             item.select = !item.select
             var index=this.chosenIngredients.indexOf(item);
             this.chosenIngredients.splice(index, 1);
           }
         },
         toggleFlavor (item) {
+           // console.log(item);
           if (!this.flavor) {
-            this.flavor = item
+            this.flavor = item;
             var index = this.ingredients.indexOf(item);
             this.ingredients[index].flavor = true
           } else {
             if (this.flavor == item) {
               var index = this.ingredients.indexOf(this.flavor);
-              this.ingredients[index].flavor = false
-              this.flavor = null
+              this.ingredients[index].flavor = false;
+              this.flavor = null;
             } else {
               var index = this.ingredients.indexOf(this.flavor);
               console.log(index);
-              this.ingredients[index].flavor = false
-              this.flavor = item
+              console.log(this.flavor);
+              this.ingredients[index].flavor = false;
+              this.flavor = item;
               var index = this.ingredients.indexOf(this.flavor);
-              this.ingredients[index].flavor = true
+              this.ingredients[index].flavor = true;
             }
           }
         },
+        
         toCart () {
           this.storeData()
-          window.location.href = '/mobile/cart'
-        }
+                        
+                                        
+        var order_ingredients=this.chosenIngredients;   order_ingredients=order_ingredients.map(item=>item["ingredient_"+ this.lang]).join(", ");    
+                    
+                    
+        var order = {
+              size:this.size,
+              flavor:this.flavor, //添加size,flavor数据
+
+              //ingredients: this.chosenIngredients,
+              ingredients: order_ingredients,
+              volume: this.volume,
+              type: this.type,
+              price: this.price
+            };
+                    
+          // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
+        console.log("HIII");
+        socket.emit('order', {orderId: getOrderNumber(), order: order});        
+            
+            
+            window.location.href = '/mobile/cart' ;
+        },
+
+/*
+        placeOrder: function () {
+          var i,order_ingredients,order;
+            //process chosenIngredients
+            order_ingredients=this.chosenIngredients;           
+         order_ingredients=order_ingredients.map(item=>item["ingredient_"+ this.lang]).join(", ");
+            
+          //Wrap the order in an object
+            order = {
+              size:this.size,
+              flavor:this.flavor, //添加size,flavor数据
+
+              //ingredients: this.chosenIngredients,
+              ingredients: order_ingredients,
+              volume: this.volume,
+              type: this.type,
+              price: this.price
+            };
+          // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
+          socket.emit('order', {orderId: getOrderNumber(), order: order});
+
+          //set all counters to 0. Notice the use of $refs
+          for (i = 0; i < this.$refs.ingredient.length; i += 1) {
+            this.$refs.ingredient[i].resetCounter();
+          }
+          this.volume = 0;
+          this.price = 0;
+          this.type = '';
+          this.size='';
+          this.flavor='';
+          this.chosenIngredients = [];
+        },
+            
+*/
+       
     }
 })

@@ -1,5 +1,5 @@
 Vue.component('cart-item', {
-  props: ['item'],
+  props: ['item','lang'],
   template: `
     <div class="cart-item">
       <div class="item-title">
@@ -13,8 +13,8 @@ Vue.component('cart-item', {
         <span>{{item.order.price}}</span>
       </div>
       <div class="item-extra">
-        <p>{{uiLabels.mainflavor}}: {{item.order.flavor}}</p>
-        <p>{{uiLabels.otheringredients}}: {{item.order.ingredients}}</p>
+        <p>Main Flavor: {{item.order.flavor}}</p>
+        <p>Other ingredients: {{item.order.ingredients}}</p>
       </div>
       <div class="item-delete">
         <button class="button button-plain" @click="remove">
@@ -65,7 +65,7 @@ new Vue({
       },
       totalMoney () {
         return this.itemsAdpter.reduce((sum, item) => {
-          return sum + item.order.price
+          return Number(sum) + Number(item.order.price)
         }, 0)
       }
     },
@@ -106,7 +106,11 @@ new Vue({
       },
     
        pay () {
-        socket.emit('order', {'order': this.storegeData});
+           console.log(this.storegeata);
+           
+           
+        for(i = 0; i < this.storegeData.length;i++)
+            socket.emit('cart', {'order': this.storegeData[i]});
       }
     }
 })

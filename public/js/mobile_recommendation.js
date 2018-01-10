@@ -98,7 +98,7 @@ new Vue({
         this.isShowModal = false
       },
       processData (size, volume, price) {
-        const order = {
+      var order = {
           size: size,
           flavor: null,
           amount: 1,
@@ -109,7 +109,10 @@ new Vue({
           name: this.choose.name,
           recommendation: true
         }
+      console.log("rec send to kitchen");
+      console.log(order);
         socket.emit('order', {orderId: this.id, order: order});
+          
         const item = {
           id: this.id,
           order

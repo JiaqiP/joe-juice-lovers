@@ -77,17 +77,17 @@
     <div class="modal" v-if="isShowModal">
       <p class="close" @click="closeModal">X</p>
       <div class="capacity">
-        <div class="item" @click="processData('small', 300, choose.price)">
+        <div class="item" @click="processData('small', 300, 30)">
           <h3>{{choose.price}}$</h3>
           <img src = "\images\small_size.png" id="small_cup">
           <h3>300 ml</h3>
         </div>
-        <div class="item" @click="processData('medium', 470, choose.price * 1.5)">
+        <div class="item" @click="processData('medium', 470, 40)">
           <h3>{{choose.price * 1.5}}$</h3>
           <img src = "\images\medium_size.png" id="medium_cup">
           <h3>470 ml</h3>
         </div>
-        <div class="item" @click="processData('large', 550, choose.price * 2)">
+        <div class="item" @click="processData('large', 550, 50)">
           <h3>{{choose.price * 2}}$</h3>
           <img src = "\images\large_size.png" id="large_cup">
           <h3>550 ml</h3>

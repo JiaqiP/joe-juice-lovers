@@ -10,9 +10,9 @@ Vue.component('mini-cart', {
             <i class="fa fa-shopping-cart"></i>
         </button>
         <div class="header">
-          <span>{{uiLabels.product}}</span>
-          <span>{{uiLabels.size}}</span>
-          <span>{{uiLabels.amount}}</span>
+          <span>product</span>
+          <span>uiLabels.size</span>
+          <span>uiLabels.amount</span>
         </div>
         <div v-for="item in itemsAdpter" class="order">
           <span>{{item.order.name}}</span>
@@ -21,7 +21,7 @@ Vue.component('mini-cart', {
         </div>
         <div class="action">
           <a href="/mobile/cart">
-            {{uiLabels.show}}
+            show
           </a>
         </div>
       </div>

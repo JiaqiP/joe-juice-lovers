@@ -8,38 +8,6 @@ function getOrderNumber() {
   // A better idea would be to let the server decide.
   return "#" + getRandomInt(1, 1000000);
 }
-Vue.component('readymade', {
-  props: ['item', 'type'],
-  template: ' <div class="readymade">\
-                <label>\
-                  <h3>{{ item["rm_name"]}}</h3> \
-                  <img src="../images/temp/carrot.png">\
-                  <h4>Ingredients: {{item["rm_ingredients"]}} </h4>\
-                 <button v-on:click="incrementCounter">{{ counter }}</button>\
-                </label>\
-            </div>',
-  data: function () {
-      return {
-          counter: 0
-      };
-  },
-  methods: {
-      incrementCounter: function () {
-          var i_flag = this.counter;
-          this.counter = i_flag === 1?0:1;
-          this.$emit('increment');
-      },
-      decreaseCounter: function () {
-          console.log(this.type);
-          this.counter -= 1;
-          this.$emit('decrease');
-      },
-      resetCounter: function () {
-          this.counter = 0;
-      }
-  }
-});
-
 Vue.component('cart-item', {
   props: ['item'],
   template: `
@@ -74,32 +42,32 @@ new Vue({
           url:'/images/1.png',
           price: 3,
           name: 'carambola',
-          ingredients: 'none'
+          ingredients: 'carambola juice, water,sugar '
         }, {
           url:'/images/2.png',
           price: 3,
           name: 'tangerine',
-          ingredients: 'none'
+          ingredients: 'tangerine juice, water,sugar '
         }, {
           url:'/images/3.png',
           price: 3,
           name: 'pomegranate',
-          ingredients: 'none'
+          ingredients: 'pomegranate juice, water,sugar '
         }, {
           url:'/images/4.png',
           price: 3,
           name: 'watermelon',
-          ingredients: 'none'
+          ingredients: 'watermelon juice, water,sugar '
         }, {
           url:'/images/5.png',
           price: 3,
           name: 'kiwifruit',
-          ingredients: 'none'
+          ingredients: 'kiwifruit juice, water,sugar '
         }, {
           url:'/images/6.png',
           price: 3,
           name: 'pineapple',
-          ingredients: 'none'
+          ingredients: 'pineapple juice, water,sugar '
         }]
       }
     },

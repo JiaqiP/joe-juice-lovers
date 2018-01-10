@@ -35,8 +35,7 @@
   "overview" : "Översikt ",
   "recommendation" : "Rekommendation",
   "joe" : "Joe's Juice",
-  "first_note":"Välj först dryckstyp ...",
-    
+  "first_note":"Välj först dryckstyp ...", 
     "createYourOwn":"Skapa din egen",
     "Juice":"Juice",
     "s":"300 ml",
@@ -58,5 +57,6 @@
     "size":"Storlek",
     "amount":"Belopp",
     "show":"Visa detaljer",
-    "sure":"Vill du radera det?"
+    "sure":"Vill du radera det?",
+    
 }

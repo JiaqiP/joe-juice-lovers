@@ -13,8 +13,8 @@ Vue.component('cart-item', {
         <span>{{item.order.price}}</span>
       </div>
       <div class="item-extra">
-        <p>Main Flavor: {{item.order.flavor}}</p>
-        <p>Other ingredients: {{item.order.ingredients}}</p>
+        <p v-if="item.order.flavor!=undefined">Main Flavor:{{item.order.flavor["ingredient_"+this.lang]}}</p>
+        <p>Ingredients: {{item.order.ingredients}}</p>
       </div>
       <div class="item-delete">
         <button class="button button-plain" @click="remove">

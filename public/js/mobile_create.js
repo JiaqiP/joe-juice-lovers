@@ -279,7 +279,8 @@ var type = new Vue({
             } else {
               var index = this.ingredients.indexOf(this.flavor);
               console.log(index);
-              console.log(this.flavor["ingredient_en"]);
+                console.log(this.lang);
+              console.log(this.flavor["ingredient_"+this.lang]);
               this.ingredients[index].flavor = false;
               this.flavor = item;
               var index = this.ingredients.indexOf(this.flavor);
@@ -297,7 +298,7 @@ var type = new Vue({
                     
         var order = {
               size:this.size,
-              flavor:this.flavor, //添加size,flavor数据
+              flavor:this.flavor,
 
               //ingredients: this.chosenIngredients,
               ingredients: order_ingredients,
@@ -308,7 +309,9 @@ var type = new Vue({
                     
           // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
         console.log("HIII");
-        socket.emit('order', {orderId: getOrderNumber(), order: order});        
+        socket.emit('order', {orderId: getOrderNumber(), order: order});   
+            if (order.flavor!=undefined)
+                order.flavor = order.flavor["ingredient_"+this.lang];
             
             
             window.location.href = '/mobile/cart' ;

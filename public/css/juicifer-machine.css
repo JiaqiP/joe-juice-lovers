@@ -18,7 +18,6 @@ body {
 
 }
 
-
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: orange;
@@ -229,29 +228,36 @@ section {
 #toggle1:checked ~ label[for*='1']:after,
 #toggle2:checked ~ label[for*='2']:after,
 #toggle3:checked ~ label[for*='3']:after,
-#toggle4:checked ~ label[for*='4']:after {
+#toggle4:checked ~ label[for*='4']:after,
+#toggle5:checked ~ label[for*='4']:after,
+#toggle6:checked ~ label[for*='4']:after,
+#toggle7:checked ~ label[for*='4']:after {
     transform: rotate(0deg);
 }
 
 #toggle1:checked ~ #content1,
 #toggle2:checked ~ #content2,
 #toggle3:checked ~ #content3,
-#toggle4:checked ~ #content4 {
-    height: 400px;
+#toggle4:checked ~ #content4,
+#toggle5:checked ~ #content5,
+#toggle6:checked ~ #content6,
+#toggle7:checked ~ #content7{
+    height: 40%;
     overflow: scroll;
 }
 
 #content1 label{
-    width:150px;
-    height:150px;
+    width:20vh;
+    height:20vh;
     margin:15px;
     display:inline-block;
     position:relative;
     background-color: #b9e563;
+
 }
 #content2 label{
-    width:150px;
-    height:150px;
+    width:20vh;
+    height:20vh;
     margin:15px;
     display:inline-block;
     position:relative;
@@ -259,12 +265,41 @@ section {
 
 }
 #content3 label{
-    width:150px;
-    height:150px;
+    width:20vh;
+    height:20vh;
     margin:15px;
     display:inline-block;
     position:relative;
     background-color: #b9e563;
+
+}
+
+#content4 label{
+    width: 30vh;
+    height : 30vh;
+    margin:1vh;
+    display:inline-block;
+    position:relative;
+    background-color: #b9e563;
+
+}
+#content5 label{
+    width: 30vh;
+    height : 30vh;
+    margin:15px;
+    display:inline-block;
+    position:relative;
+    background-color: #b9e563;
+
+}
+#content6 label{
+    width: 30vh;
+    height : 30vh;
+    margin:15px;
+    display:inline-block;
+    position:relative;
+    background-color: #b9e563;
+
 }
 
 .ingredient {
@@ -306,6 +341,45 @@ section {
     font-style: italic;
 }
 
+
+.readymade {
+    display:inline-block;
+    position: relative;
+    float: left;
+
+}
+
+
+.readymade img {
+    width:50%;
+    height:50%;
+}
+
+
+.readymade :not(img) {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+}
+
+.readymade h3{
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
+.readymade h4{
+    margin-top: -35px;
+    margin-bottom: -30px;
+}
+
+.readymade div{
+    width: 28%;
+}
+.readymade p{
+    margin-top: -30px;
+    font-style: italic;
+}
 
 .inlist {
     background-color: #b9e563;
@@ -375,11 +449,10 @@ a:link {
     border-right: 0;
 }
 
-
-
+/*update by Shania*/
 
 /* initial display screen without recommendation info */
-#creation {
+#recommendation {
     display: none;
 }
 
@@ -387,12 +460,10 @@ a:link {
 
 /*  !!!pretty broken!!! */
 
-#OrderList{
+#OrderList{ 
     margin-top:15%;
     border: solid;
     border-color: grey;
-
-
 }
 #home{
     width:15%;

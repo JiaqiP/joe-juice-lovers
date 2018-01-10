@@ -3,6 +3,10 @@ body {
     font-family: Arial;
 }
 
+#language {
+
+}
+
 .left {
     float:left;
     width: 69.5%;
@@ -21,8 +25,6 @@ body {
 .topnav {
     background-color: orange;
     overflow: hidden;
-
-
 }
 
 /* Style the links inside the navigation bar */
@@ -30,7 +32,6 @@ body {
     float: left;
     color: white;
     text-align: center;
-
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
@@ -50,7 +51,7 @@ body {
 
 
 .button-group{
-    display:inline-block;
+    display:inline-block !important;
     text-align: center;
     width:100%;
 
@@ -62,42 +63,98 @@ body {
     font-size: 15px;
     color: #333333;
     border-color:#003366;
-
-}
-.button-group button:hover{
-    background-color: #ccc;
 }
 
-#ctype button{
+.button-group p{
+    padding: 0;
+    text-align: center;
     font-size: 15px;
-    width:48%;
-    margin: 5px;
-    border:dashed;
-    border-color: #336699;
-
+    color: #333333;
+    border-color:#003366;
 }
 
+/*#ctype button{*/
+    /*font-size: 15px;*/
+    /*width:48%;*/
+    /*background-color: #febc44;*/
+    /*margin: 5px;*/
+    /*border:dashed;*/
+    /*border-color: #336699;*/
+/*}*/
+/*#ctype button:focus{*/
+    /*background-color: #b9e563;*/
+/*}*/
+
+
+
+/*#ctype a.onclick{*/
+    /*width:49%;*/
+    /*background-color: #b9e563;*/
+/*}*/
+
+/*#ctype a.offclick{*/
+    /*width:49%;*/
+    /*background-color: #5e5e5e;*/
+    /*color: #ededed;*/
+
+/*}*/
+/*#ctype a{*/
+    /*font-size: 15px;*/
+    /*font-family: Arial;*/
+    /*font-style: inherit;*/
+    /*width: 49% !important;*/
+    /*background-color: #febc44;*/
+    /*margin-top:0.5em;*/
+    /*margin-right: 1%;*/
+
+/*}*/
+
+
+
+#ctype p.onclick{
+    background-color: #febc44;
+}
+
+#ctype p.offclick{
+    background-color: #bbbbbb;
+}
+#ctype p{
+    display: inline-block; !important;
+    font-size: 15px;
+    float: left;
+    font-family: Arial;
+    font-style: inherit;
+    text-align: center;
+    line-height: 35px;
+    width: 49%; !important;
+    height: 30px; !important;
+    background-color: #febc44;
+    margin-top:0.5em;
+    margin-right: 1%;
+
+}
 #size{
     width:100%;
 }
 
 #size button{
     width: 33%;
-    margin-right:.3%;
+    margin-right:2px;
     margin-top: 0.5em;
     border:dashed;
     border-color:#336699;
-    height: 20%;
+    height: auto;
     padding-top: 1em;
     padding-bottom: 0.5em;
-    border-radius: 5%;
-
 }
+
+#size button:active, visited{
+    background-color: #febc44;
+}
+
 #size img{
-    height: 5em;
-
+    height: 8em;
 }
-
 
 .description {
     vertical-align: bottom;
@@ -151,7 +208,7 @@ label[for*='1'] {
     border: 0;
 }
 
-label:after {
+label.special:after {
     content: '\f078';
     position: absolute;
     top: 0px;
@@ -173,7 +230,7 @@ section {
 #toggle4:checked ~ label[for*='4']:after,
 #toggle5:checked ~ label[for*='4']:after,
 #toggle6:checked ~ label[for*='4']:after,
-#toggle7:checked ~ label[for*='4']:after{
+#toggle7:checked ~ label[for*='4']:after {
     transform: rotate(0deg);
 }
 
@@ -184,13 +241,13 @@ section {
 #toggle5:checked ~ #content5,
 #toggle6:checked ~ #content6,
 #toggle7:checked ~ #content7{
-    height: 400px;
+    height: 40%;
     overflow: scroll;
 }
 
 #content1 label{
-    width:150px;
-    height:150px;
+    width:20vh;
+    height:20vh;
     margin:15px;
     display:inline-block;
     position:relative;
@@ -198,8 +255,8 @@ section {
 
 }
 #content2 label{
-    width:150px;
-    height:150px;
+    width:20vh;
+    height:20vh;
     margin:15px;
     display:inline-block;
     position:relative;
@@ -207,8 +264,8 @@ section {
 
 }
 #content3 label{
-    width:150px;
-    height:150px;
+    width:20vh;
+    height:20vh;
     margin:15px;
     display:inline-block;
     position:relative;
@@ -217,17 +274,17 @@ section {
 }
 
 #content4 label{
-    width:150px;
-    height:150px;
-    margin:15px;
+    width: 30vh;
+    height : 30vh;
+    margin:1vh;
     display:inline-block;
     position:relative;
     background-color: #b9e563;
 
 }
 #content5 label{
-    width:150px;
-    height:150px;
+    width: 30vh;
+    height : 30vh;
     margin:15px;
     display:inline-block;
     position:relative;
@@ -235,24 +292,166 @@ section {
 
 }
 #content6 label{
-    width:150px;
-    height:150px;
+    width: 30vh;
+    height : 30vh;
     margin:15px;
     display:inline-block;
     position:relative;
     background-color: #b9e563;
 
 }
+
 .ingredient {
     display:inline-block;
     position: relative;
+    float: left;
 
+}
+
+
+.ingredient img {
+    width:50%;
+    height:50%;
+}
+
+
+.ingredient :not(img) {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+}
+
+.ingredient h3{
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
+.ingredient h4{
+    margin-top: -35px;
+    margin-bottom: -30px;
+}
+
+.ingredient div{
+    width:58px;
+}
+.ingredient p{
+    margin-top: -30px;
+    font-style: italic;
+}
+
+
+.readymade {
+    display:inline-block;
+    position: relative;
+    float: left;
+
+}
+
+
+.readymade img {
+    width:50%;
+    height:50%;
+}
+
+
+.readymade :not(img) {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+}
+
+.readymade h3{
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
+.readymade h4{
+    margin-top: -35px;
+    margin-bottom: -30px;
+}
+
+.readymade div{
+    width: 28%;
+}
+.readymade p{
+    margin-top: -30px;
+    font-style: italic;
+}
+
+.inlist {
+    background-color: #b9e563;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.btn-numbox {
+
+}
+
+.btn-numbox li {
+    float: left;
+}
+
+.btn-numbox li .kucun {
+    display: inline-block;
+    font-size: 12px;
+    color: #808080;
+    vertical-align: sub;
+}
+
+.btn-numbox .count {
+    overflow: hidden;
+    margin: 0 16px 0 -20px;
+}
+
+.btn-numbox .count .num-dec,
+.input-num,
+.num-inc {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+    cursor: pointer;
+    border: 1px solid #e6e6e6;
+}
+
+.btn-numbox .count .num-inc {
+    margin-left: 1px;
+}
+
+.btn-numbox .count .input-num {
+    width: 58px;
+    height: 26px;
+    color: #333;
+    border-left: 0;
+    border-right: 0;
 }
 
 /*update by Shania*/
 
 /* initial display screen without recommendation info */
-#creation {
+#recommendation {
     display: none;
 }
 
@@ -337,15 +536,3 @@ section {
     border: 1.5px solid #2E8B57;
     float: right;
 }
-
-/*  purpose: boder without navigation bar
-    !!! broken when switching screen !!!
-*/    
-/*
-.chooseingscreen{
-    border:  solid;
-    border-color: orangered;
-
-}
-*/
-    

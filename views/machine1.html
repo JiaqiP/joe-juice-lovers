@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100vh">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +21,7 @@
 
     <div class="topnav" id="myTopnav">
         <a class="active" href="/create">{{ uiLabels.create_your_own }}</a>
-        <a href="/Rec">{{ uiLabels.recommendation }}</a>
+        <a href="/readymade">{{ uiLabels.recommendation }}</a>
     </div>
 
     <!--main-->
@@ -111,7 +112,7 @@
                 </ingredient>
             </section>
 
-        </div>
+</div>
 
         <!--<h1>{{ uiLabels.order }}</h1>-->
         <!--{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }} {{ volume }} ml, {{ price }} kr-->
@@ -227,4 +228,5 @@
 
 </div>
 </body>
+
 </html>

@@ -27,18 +27,18 @@
                     <i class="fas fa-angle-left"></i>
                   </a>
                 </button>
-                <span align = "center">Create your own </span>
+                <span align = "center">{{uiLabels.crateYourOwn}}</span>
 
                 <mini-cart :items="storegeData"></mini-cart>
             </div>
 
             <div id = "type">
                 <button v-on:click="choose_smoothie" id = "smoothie" class="bigBtn button button-glow button-border button-rounded button-primary">
-                    smoothie
+                    {{uiLabels.smoothie}}
                 </button>
 
                 <button v-on:click="choose_juice" id = "jucie" class = "bigBtn button button-glow button-border button-rounded button-primary" >
-                    juice
+                    {{uiLabels.Juice}}
                 </button>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 <button id = "back" v-on:click="goto_pre_page" align = "left" class="button button-large button-plain button-borderless">
                       <i class="fas fa-angle-left"></i>
                 </button>
-                <span align = "center">Size </span>
+                <span align = "center">{{uiLabels.size}}</span>
 
                 <mini-cart :items="storegeData"></mini-cart>
             </div>
@@ -56,25 +56,25 @@
             <div id = "size" class="button-group">
               <button v-on:click="choose_small" type="button" class="button button-rounded">
                   <img src = "\images\small_size.png" id = "small_cup">
-                <h3>SEK 45 <br/> 300 ml</h3>
+                <h3>SEK 45 <br/> {{uiLabels.s}} </h3>
               </button>
               <button v-on:click="choose_medium" type="button" class="button button-rounded">
                   <img src = "\images\medium_size.png" id = "medium_cup">
-                <h3>SEK 55 <br/> 470 ml</h3>
+                <h3>SEK 55 <br/> {{uiLabels.m}}</h3>
               </button>
               <button v-on:click="choose_large" type="button" class="button button-rounded ">
                   <img src = "\images\large_size.png" id = "large_cup">
-                <h3>SEK 65 <br/> 550 ml</h3>
+                <h3>SEK 65 <br/> {{uiLabels.l}}</h3>
               </button>
             </div>
 
             <div id = "notes">
-                <h2>Note: <br/>Maximum ingredients limit
+                <h2>{{uiLabels.note}}: <br/>{{uiLabels.maxi}}
                 </h2><br/>
                 <h3>
-                    3  ingredients in  S  size <br/>
-                    4  ingredients in  M  size <br/>
-                    5  ingredients in  L  size <br/>
+                    {{uiLabels.s3}}<br/>
+                    {{uiLabels.m4}}<br/>
+                    {{uiLabels.l5}}<br/>
                 </h3>
 
             </div>
@@ -85,20 +85,20 @@
                 <button id = "back" v-on:click="goto_pre_page" align = "left" class="button button-large button-plain button-borderless">
                       <i class="fas fa-angle-left"></i>
                 </button>
-                <span align = "center">Ingredients </span>
+                <span align = "center">{{uiLabels.igredients}}</span>
 
                 <mini-cart :items="storegeData"></mini-cart>
             </div>
 
             <div id ="orderng">
                 <div class="button-group" id="ingredient_type">
-                    <button v-on:click="show_fruit" type="button" id="fru" class="button button-border button-rounded button-small">Fruits
+                    <button v-on:click="show_fruit" type="button" id="fru" class="button button-border button-rounded button-small">{{uiLabels.fruits}}
                     </button>
 
-                    <button v-on:click="show_vegetables" type="button" id="veg" class="button button-border button-rounded button-small">Vegetables
+                    <button v-on:click="show_vegetables" type="button" id="veg" class="button button-border button-rounded button-small">{{uiLabels.vegetables}}
                     </button>
 
-                    <button  v-on:click="show_others" type="button" id="othr" class="button button-border button-rounded button-small">Others
+                    <button  v-on:click="show_others" type="button" id="othr" class="button button-border button-rounded button-small">{{uiLabels.others}}
                     </button>
                 </div>
 
@@ -150,7 +150,7 @@
                 <div id = "info" v-if="info_show">
                     <button v-on:click="hide_ingredient" type="button" id = "hide_ingredients" class = "button button-border button-rounded button-small">
                         <i class="fas fa-minus"></i>
-                        Details
+                        {{uiLabels.detail}}
                     </button>
 
                     <div  class = "display_ingr">
@@ -173,13 +173,13 @@
                 <div id = "ingredient_bottom" class = "scroll_fixed bottom">
                     <button v-on:click="show_ingredient" v-if="!info_show"  type="button" id = "show_ingredients" class = "button button-border button-rounded button-small">
                         <i class="fas fa-plus"></i>
-                        Details
+                        {{uiLabels.detail}}
                     </button>
 
                     <button v-if="info_show"></button>
 
                     <button @click="toCart" type="button" id = "create_next" class = "button button-border button-rounded button-small">
-                        Next
+                        {{uiLabels.next}}
                     </button>
                 </div>
              </div>

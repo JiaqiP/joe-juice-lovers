@@ -279,7 +279,7 @@ var type = new Vue({
             } else {
               var index = this.ingredients.indexOf(this.flavor);
               console.log(index);
-              console.log(this.flavor);
+              console.log(this.flavor["ingredient_en"]);
               this.ingredients[index].flavor = false;
               this.flavor = item;
               var index = this.ingredients.indexOf(this.flavor);

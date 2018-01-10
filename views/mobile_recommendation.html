@@ -54,7 +54,15 @@
       .modal .extra {
         margin: 10px;
       }
+        .cup{
+            border:#003366 6px dashed;
+            padding:2vw;  
+            background-color:gray;
+        }
+        .cup:hover{
+            background-color:white;
 
+        }
     </style>
 </head>
 
@@ -80,17 +88,17 @@
       <div class="capacity">
         <div class="item" @click="processData('small', 300, choose.price)">
           <h3>{{choose.price}}$</h3>
-          <img src = "\images\small_size.png" id="small_cup">
+          <img src = "\images\small_size.png" id="small_cup" class="cup">
           <h3>300 ml</h3>
         </div>
         <div class="item" @click="processData('medium', 470, choose.price * 1.5)">
           <h3>{{choose.price * 1.5}}$</h3>
-          <img src = "\images\medium_size.png" id="medium_cup">
+          <img src = "\images\medium_size.png" id="medium_cup" class="cup">
           <h3>470 ml</h3>
         </div>
         <div class="item" @click="processData('large', 550, choose.price * 2)">
           <h3>{{choose.price * 2}}$</h3>
-          <img src = "\images\large_size.png" id="large_cup">
+          <img src = "\images\large_size.png" id="large_cup" class="cup">
           <h3>550 ml</h3>
         </div>
       </div>

@@ -34,5 +34,42 @@
   "overview" : "Overview",
   "recommendation" : "Recommendation",
   "joe" : "Joe's Juice",
-  "first_note":"First, choose drink type ..."
+  "first_note":"First, choose drink type ...",
+    "createYourOwn":"Create your own",
+    "Juice":"Juice",
+    "s":"300 ml",
+    "m":"470 ml",
+    "l":"550ml",
+    "note":"Note",
+    "maxi":"Maximum ingredients limit",
+    "s3":"3  ingredients in  S  size",
+    "m4":"4  ingredients in  M  size",
+    "l5":"5  ingredients in  L  size",
+    "fruits":"fruits",
+    "vegetables":"vegetables",
+    "others":"others",
+    "next":"Next",
+    "rec":"Recommendation",
+    "mainIngredients":"Main ingredients",
+    "ohteringredients":"Other ingredients",
+    "product":"Procuct",
+    "size":"Size",
+    "amount":"Amount",
+    "show":"Show Details"
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

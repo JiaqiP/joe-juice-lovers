@@ -16,7 +16,7 @@
   "detail" :"Details",
   "confirm" : "Confirm",
   "size"  : "size",
-  "create_your_own" : "Create your own",
+  "create_your_own" : "create your own",
   "note" : "Note:",
   "maximum_ingredient_limit": "Maximum ingredients limit",
   "limit1": " 3  ingredients in  S  size",
@@ -56,7 +56,7 @@
     "size":"Size",
     "amount":"Amount",
     "show":"Show Details",
-    "sure":"Are you sure to delete it?"
+    "sure":"Vill du radera det?"
 
     
     

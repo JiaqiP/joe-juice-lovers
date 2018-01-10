@@ -46,6 +46,54 @@ Vue.component('ingredient', {
     }
 });
 
+Vue.component('readymade', {
+    props: ['item', 'type'],
+    template: ' <div class="readymade">\
+                  <label>\
+                    <h3>{{ item["rm_name"]}}</h3> \
+                    <img src="../images/temp/carrot.png">\
+                    <h4>Ingredients: {{item["rm_ingredients"]}} </h4>\
+                   <button v-on:click="incrementCounter">{{ counter }}</button>\
+                  </label>\
+              </div>',
+    data: function () {
+        return {
+            counter: 0
+        };
+    },
+    methods: {
+        incrementCounter: function () {
+            var i_flag = this.counter;
+            this.counter = i_flag === 1?0:1;
+            this.$emit('increment');
+        },
+        decreaseCounter: function () {
+            console.log(this.type);
+            this.counter -= 1;
+            this.$emit('decrease');
+        },
+        resetCounter: function () {
+            this.counter = 0;
+        }
+    }
+});
+
+function showCreation() {
+    var creation = document.getElementById('creation');
+    var recommendation = document.getElementById('recommendation');
+    creation.style.display = 'inline';
+    document.getElementById("tag_R").style.backgroundColor = "orange";
+    document.getElementById("tag_C").style.backgroundColor = "orangered";
+    recommendation.style.display = 'none';
+}
+function showRecommendation() {
+    var creation = document.getElementById('creation');
+    var recommendation = document.getElementById('recommendation');
+    document.getElementById("tag_C").style.backgroundColor = "orange";
+    document.getElementById("tag_R").style.backgroundColor = "orangered";
+    creation.style.display = 'none';
+    recommendation.style.display = 'inline';
+}
 
 Vue.component('check_ingredients',{
     props:['item','lang'],

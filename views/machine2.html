@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100vh">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Recommandation-Machine </title>
-    <link rel="stylesheet" href="css/juicifer-machine2.css">
+    <title>Create your own - Machine </title>
+    <link rel="stylesheet" href="css/juicifer-machine.css">
     <link rel="stylesheet" href="css/buttons.css">
     <script src="/vue/vue.js" defer></script>
     <script src="/socket.io/socket.io.js" defer></script>
@@ -12,248 +13,181 @@
     <script src="js/machine2.js" defer></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
+
 <body>
 
-    <div id="container">
-        <div class="left">
-            <div class="topnav" id="myTopnav">         
-                <a href="#" id="tag_C"  onclick="showCreation()">Create your own</a>
-                <a href="#" id="tag_R"  class="active" onclick="showRecommendation()">Recommendation</a>
-            </div>
-        <!--Creation screen -->
-            <div class="chooseingscreen" id="creation">
-                <!--choosing type-->
-                <div id="ctype" class="button-group">
-                    <button type="button" class="button button-rounded">Smoothie</button>
-                    <button type="button" class="button button-rounded">Juice</button>
+    <div id="fruit">
+        <div id="container">
+            <div class="left">
+
+                <div class="topnav" id="myTopnav">
+                    <a href="#" id="tag_C" class="active" onclick="showCreation()">{{ uiLabels.create_your_own }}</a>
+                    <a href="#" id="tag_R" onclick="showRecommendation()">{{ uiLabels.recommendation}}</a>
                 </div>
 
-                <!--choosing size-->
-                <div id="size" class="button-group">
-                    <button type="button" class="button button-rounded">
-                        <img src="../pics/small_size.png">
-                        <h3>SEK 35 <br/> 300 ml</h3>
-                        
-                    </button>
-                    <button type="button" class="button button-rounded">
-                        <img src="../pics/medium_size.png">
-                        <h3>SEK 45 <br/> 400 ml</h3>
-                    </button>
-                    <button type="button" class="button button-rounded ">
-                        <img src="../pics/large_size.png">
-                        <h3>SEK 55 <br/> 500 ml</h3>
-                    </button>
-                </div>
+                <!--main-->
 
-                <div class="description">
-                    <h2>Note: <br/>Maximum ingredients limit</h2>
-                    <h3>
-                        3  ingredients in  S  size <br/>
-                        4  ingredients in  M  size <br/>
-                        5  ingredients in  L  size <br/>
-                    </h3>
+                <!--create your own screen -->
+                <div class="chooseingscreen" id="creation">
+                    <!--choosing type-->
+                    <p class="description" id="notation1">Fisrt, choose drink type ...</p>
+                    <div id="ctype" class="button-group" v-if="show_type">
+                        <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('smoothie')"> {{ uiLabels.smoothie }}</p>
+                        <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('juice')">{{ uiLabels.juice }}</p>
+                        <!--<button type="button" class="button button-rounded" v-on:click="addTypeToOrder('smoothie')">{{ uiLabels.smoothie}}</button>-->
+                        <!--<button type="button" class="button button-rounded" v-on:click="addTypeToOrder('juice')">{{ uiLabels.juice}}</button>-->
 
-                </div>
+                        <!--<button id="comfirmbtn">confirm</button>-->
+                    </div>
+                    <p class="description" id="notation2"></p>
+                    <!--choosing size-->
+                    <div id="size" class="button-group" v-if="show_size">
+                        <button type="button" class="button button-rounded" v-on:click="addSizeToOrder('small')">
+                            <img src="../pics/small_size.png">
+                            <h3>SEK 35
+                                <br/> 300 ml</h3>
+                        </button>
 
-                <!--applying new css-->
-                <div id="fruit">
-                    <div class="togglebox">
+                        <button type="button" class="button button-rounded" v-on:click="addSizeToOrder('medium')">
+                            <img src="../pics/medium_size.png">
+                            <h3>SEK 40
+                                <br/> 400 ml</h3>
+                        </button>
+
+                        <button type="button" class="button button-rounded" v-on:click="addSizeToOrder('large')">
+                            <img src="../pics/large_size.png">
+                            <h3>SEK 50
+                                <br/> 500 ml</h3>
+                        </button>
+
+                    </div>
+
+                    <div class="description">
+                        <h2>Note:
+                            <br/>Maximum ingredients limit</h2>
+                        <h3>
+                            3 ingredients in S size
+                            <br/> 4 ingredients in M size
+                            <br/> 5 ingredients in L size
+                            <br/>
+                        </h3>
+                        <!--<button class="comfirmbtn">confirm</button>-->
+                    </div>
+                    <!--choosing ingredients-->
+                    <p class="description" id="notation3"></p>
+                    <div class="togglebox" v-if="show_ingredient">
+
                         <input id="toggle1" type="radio" name="toggle" />
-                        <label for="toggle1">Fruits</label>
+                        <label class="special" for="toggle1">Fruits</label>
                         <section id="content1">
-                                <ingredient
-                                        ref="ingredient"
-                                        type="smoothie"
-                                        v-for="item in ingredients"
-                                        v-if="item.vol_smoothie > 0 && item.ingredient_type=='fruit'"
-                                        v-on:increment="addToOrder(item, 'smoothie')"
-                                        :item="item"
-                                        :lang="lang"
-                                        :key="item.ingredient_id">
-                                </ingredient>
+                            <ingredient ref="ingredient" v-for="item in ingredients" v-if="item.vol_smoothie > 0 && item.ingredient_type=='fruit'" v-on:increment="addToOrder(item)"
+                                :item="item" :lang="lang" :key="item.ingredient_id">
+                            </ingredient>
                         </section>
 
                         <input id="toggle2" type="radio" name="toggle" />
-                        <label for="toggle2">Vegetables</label>
+                        <label class="special" for="toggle2">Vegetables</label>
                         <section id="content2">
-
-                                <ingredient
-                                        ref="ingredient"
-                                        type="smoothie"
-                                        v-for="item in ingredients"
-                                        v-if="item.vol_smoothie > 0 && item.ingredient_type=='vegetable'"
-                                        v-on:increment="addToOrder(item, 'smoothie')"
-                                        :item="item"
-                                        :lang="lang"
-                                        :key="item.ingredient_id">
-                                </ingredient>
+                            <ingredient ref="ingredient" v-for="item in ingredients" v-if="item.vol_smoothie > 0 && item.ingredient_type=='vegetable'"
+                                v-on:increment="addToOrder(item)" :item="item" :lang="lang" :key="item.ingredient_id">
+                            </ingredient>
 
                         </section>
 
                         <input id="toggle3" type="radio" name="toggle" />
-                        <label for="toggle3">Others</label>
+                        <label class="special" for="toggle3">Others</label>
                         <section id="content3">
-                            <ingredient
-                                    ref="ingredient"
-                                    type="smoothie"
-                                    v-for="item in ingredients"
-                                    v-if="item.vol_smoothie > 0 && item.ingredient_type=='other'"
-                                    v-on:increment="addToOrder(item, 'smoothie')"
-                                    :item="item"
-                                    :lang="lang"
-                                    :key="item.ingredient_id">
+                            <ingredient ref="ingredient" type="" v-for="item in ingredients" v-if="item.vol_smoothie > 0 && item.ingredient_type=='other'"
+                                v-on:increment="addToOrder(item)" :item="item" :lang="lang" :key="item.ingredient_id">
                             </ingredient>
                         </section>
 
                     </div>
 
+
                     
+
                 </div>
-            </div>
-        <!--Recommendation screen -->
-            <div class="chooseingscreen" id="recommendation">
-            <!--choosing size-->
-            <!--
-                <div id="size" class="button-group">
-                    <H4 align="left" style="line-height:5%">choose the size: </H4>
-                    <button class="button button-rounded">
-                        <div style="margin-left : 20%">
-                            <div style="float:left">
+
+                <!--Recommendation screen -->
+                <div class="chooseingscreen" id="recommendation">
+
+                    <!--choosing size-->
+                    <div id="size" class="button-group">
+                            <button type="button" class="button button-rounded">
                                 <img src="../pics/small_size.png">
-                            </div>
-                            <div>
-                                    <h4 style="line-height: 10px;">300 ml</h4>
-                                    <h4 style="line-height: 10px;">SEK 30 </h4>
-                                    
-                            </div>        
+                                <h3>SEK 35 <br/> 300 ml</h3>
+                                
+                            </button>
+                            <button type="button" class="button button-rounded">
+                                <img src="../pics/medium_size.png">
+                                <h3>SEK 45 <br/> 400 ml</h3>
+                            </button>
+                            <button type="button" class="button button-rounded ">
+                                <img src="../pics/large_size.png">
+                                <h3>SEK 55 <br/> 500 ml</h3>
+                            </button>
                         </div>
-                    </button>
-                    <button class="button button-rounded">
-                        <div style="margin-left : 20%">
-                            <div style="float:left">
-                               <img src="../pics/medium_size.png">
-                            </div>
-                            <div>
-                                    <h4 style="line-height: 10px;">400 ml</h4>
-                                    <h4 style="line-height: 10px;">SEK 35 </h4>
-                                    
-                            </div>        
-                        </div>
-                    </button>
-                    <button type="button" class="button button-rounded ">
 
-                         <div style="margin-left : 20%">
-                            <div style="float:left">
-                               <img src="../pics/large_size.png">
-                            </div>
-                            <div>
-                                    <h4 style="line-height: 10px;">500 ml</h4>
-                                    <h4 style="line-height: 10px;">SEK 40 </h4>
-                                    
-                            </div>        
-                        </div>
-                    </button>
-                </div>
-            -->
-            <div id="size" class="button-group">
-                <button type="button" class="button button-rounded">
-                    <img src="../pics/small_size.png">
-                    <h3>SEK 35 <br/> 300 ml</h3>
+
+                    <!--CHOOSEING PRODUCTS-->
+                    <p class="description" id="notation3"></p>
+                    <div class="togglebox" v-if="show_ingredient">
+
+                        <input id="toggle4" type="radio" name="toggle" />
+                        <label class="special" for="toggle4">Juice</label>
+                        <section id="content4">
+                            <readymade ref="ingredient" v-for="item in readymade" v-on:increment="addToOrder(item)"
+                                :item="item" :lang="lang" :key="item.rm_id">
+                            </readymade>
+                        </section>
+
+                        <input id="toggle5" type="radio" name="toggle" />
+                        <label class="special" for="toggle5">Vegetables</label>
+                        <section id="content5">
+                            <ingredient ref="ingredient" v-for="item in ingredients" v-if="item.vol_smoothie > 0 && item.ingredient_type=='vegetable'"
+                                v-on:increment="addToOrder(item)" :item="item" :lang="lang" :key="item.ingredient_id">
+                            </ingredient>
+
+                        </section>
+
+                        <input id="toggle6" type="radio" name="toggle" />
+                        <label class="special" for="toggle6">Others</label>
+                        <section id="content6">
+                            <ingredient ref="ingredient" type="" v-for="item in ingredients" v-if="item.vol_smoothie > 0 && item.ingredient_type=='other'"
+                                v-on:increment="addToOrder(item)" :item="item" :lang="lang" :key="item.ingredient_id">
+                            </ingredient>
+                        </section>
+                    </div>
                     
-                </button>
-                <button type="button" class="button button-rounded">
-                    <img src="../pics/medium_size.png">
-                    <h3>SEK 45 <br/> 400 ml</h3>
-                </button>
-                <button type="button" class="button button-rounded ">
-                    <img src="../pics/large_size.png">
-                    <h3>SEK 55 <br/> 500 ml</h3>
-                </button>
-            </div>
-
-            <!--applying new css-->
-            <div id="fruit">
-                <div class="togglebox">
-                    <input id="toggle4" type="radio" name="toggle" />
-                    <label for="toggle4">Juice</label>
-                    <section id="content4">
-                            <ingredient
-                                    ref="ingredient"
-                                    type="smoothie"
-                                    v-for="item in ingredients"
-                                    v-if="item.vol_smoothie > 0 && item.ingredient_type=='fruit'"
-                                    v-on:increment="addToOrder(item, 'smoothie')"
-                                    :item="item"
-                                    :lang="lang"
-                                    :key="item.ingredient_id">
-                            </ingredient>
-                    </section>
-
-                    <input id="toggle5" type="radio" name="toggle" />
-                    <label for="toggle5">Smoothie</label>
-                    <section id="content5">
-
-                            <ingredient
-                                    ref="ingredient"
-                                    type="smoothie"
-                                    v-for="item in ingredients"
-                                    v-if="item.vol_smoothie > 0 && item.ingredient_type=='vegetable'"
-                                    v-on:increment="addToOrder(item, 'smoothie')"
-                                    :item="item"
-                                    :lang="lang"
-                                    :key="item.ingredient_id">
-                            </ingredient>
-
-                    </section>
-
-                    <input id="toggle6" type="radio" name="toggle" />
-                    <label for="toggle6">Others</label>
-                    <section id="content6">
-                        <ingredient
-                                ref="ingredient"
-                                type="smoothie"
-                                v-for="item in ingredients"
-                                v-if="item.vol_smoothie > 0 && item.ingredient_type=='other'"
-                                v-on:increment="addToOrder(item, 'smoothie')"
-                                :item="item"
-                                :lang="lang"
-                                :key="item.ingredient_id">
-                        </ingredient>
-                    </section>
-
                 </div>
 
-                
             </div>
+
+
+            <div class="right">
+                <button id="language" v-on:click="switchLang()">{{ uiLabels.language }}</button>
+                <img src="images/home.png" id="home" style="float: right">
+                <!--orderlist-->
+                <div id="OrderList">
+                    <p id="list-title">Order List</p>
+                    <table id="list">
+                        <tr>
+                            <th class="Odel_check">
+                                <img src="images/trashcan_useful.png" width="20px">
+                            </th>
+                            <th class="Oitem">Item</th>
+                            <th class="Osize">Size</th>
+                            <th class="Oquantity">Quantity</th>
+                            <th class="Oprice">Price</th>
+                        </tr>
+                    </table>
+                    <button class="listbutton" id="buttonDel"> DELETE </button>
+                    <button class="listbutton" id="buttonPay"> PAY</button>
+                </div>
             </div>
-        </div> <!--class="left"-->
-        
-        
-        <div class="right">
-            <img src="images/home.png" id="home">
-            <!--orderlist-->
-            <div id ="OrderList">
-                <p id="list-title">Order List</p>
-                <table id="list">
-                    <tr>
-                        <th class="Odel_check">
-                            <img src="images/trashcan_useful.png" width="20px">
-                        </th>
-                        <th class="Oitem">Item</th>
-                        <th class="Osize">Size</th>
-                        <th class="Oquantity">Quantity</th>
-                        <th class="Oprice">Price</th>
-                    </tr>
-                </table>
-                <button class="listbutton" id="buttonDel"> DELETE </button>
-                <button class="listbutton" id="buttonPay"> PAY</button>
-            </div>
-            
+
         </div>
-    </div>
-
-
-
-
 </body>
+
 </html>

@@ -8,6 +8,38 @@ function getOrderNumber() {
   // A better idea would be to let the server decide.
   return "#" + getRandomInt(1, 1000000);
 }
+Vue.component('readymade', {
+  props: ['item', 'type'],
+  template: ' <div class="readymade">\
+                <label>\
+                  <h3>{{ item["rm_name"]}}</h3> \
+                  <img src="../images/temp/carrot.png">\
+                  <h4>Ingredients: {{item["rm_ingredients"]}} </h4>\
+                 <button v-on:click="incrementCounter">{{ counter }}</button>\
+                </label>\
+            </div>',
+  data: function () {
+      return {
+          counter: 0
+      };
+  },
+  methods: {
+      incrementCounter: function () {
+          var i_flag = this.counter;
+          this.counter = i_flag === 1?0:1;
+          this.$emit('increment');
+      },
+      decreaseCounter: function () {
+          console.log(this.type);
+          this.counter -= 1;
+          this.$emit('decrease');
+      },
+      resetCounter: function () {
+          this.counter = 0;
+      }
+  }
+});
+
 Vue.component('cart-item', {
   props: ['item'],
   template: `

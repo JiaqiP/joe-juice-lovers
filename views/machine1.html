@@ -15,18 +15,18 @@
 <body>
 
 <div id="fruit">
-    <button id="language" v-on:click="switchLang()">{{ uiLabels.language }}</button>
-<div class="left">
+    <!--<button id="language" v-on:click="switchLang()">{{ uiLabels.language }}</button>-->
+    <div class="left">
 
     <div class="topnav" id="myTopnav">
-        <a class="active" href="#home">{{ uiLabels.create }}</a>
-        <a href="#">{{ uiLabels.rec }}</a>
+        <a class="active" href="/create">{{ uiLabels.create_your_own }}</a>
+        <a href="/Rec">{{ uiLabels.recommendation }}</a>
     </div>
 
     <!--main-->
     <div >
         <!--choosing type-->
-        <p class="description" id="notation1">Fisrt, choose drink type ...</p>
+        <p class="description" id="notation1" v-on:click="showType()">{{ uiLabels.first_note }}</p>
         <div id="ctype" class="button-group" v-if="show_type">
             <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('smoothie')"> {{ uiLabels.smoothie }}</p>
             <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('juice')">{{ uiLabels.juice }}</p>
@@ -35,7 +35,7 @@
 
             <!--<button id="comfirmbtn">confirm</button>-->
         </div>
-        <p class="description" id="notation2"></p>
+        <p class="description" id="notation2" v-on:click="showSize()"></p>
         <!--choosing size-->
         <div id="size" class="button-group" v-if="show_size">
             <button type="button" class="button button-rounded" v-on:click="addSizeToOrder('small')">
@@ -55,14 +55,14 @@
 
         </div>
 
-        <div class="description" >
+        <div class="description" v-if="show_size">
             <h2>Note: <br/>Maximum ingredients limit</h2>
             <h3>
                 3  ingredients in  S  size <br/>
                 4  ingredients in  M  size <br/>
                 5  ingredients in  L  size <br/>
             </h3>
-            <!--<button class="comfirmbtn">confirm</button>-->
+            <button class="comfirmbtn" v-on:click="confirmSizeType()">confirm</button>
         </div>
         <!--choosing ingredients-->
         <p class="description" id="notation3"></p>
@@ -113,54 +113,118 @@
 
         </div>
 
-        <h1>{{ uiLabels.order }}</h1>
-        {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }} {{ volume }} ml, {{ price }} kr
-        <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
+        <!--<h1>{{ uiLabels.order }}</h1>-->
+        <!--{{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }} {{ volume }} ml, {{ price }} kr-->
+        <!--<button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>-->
 
-        <h1>{{ uiLabels.ordersInQueue }}</h1>
-        <h2>{{ uiLabels.smoothie }}</h2>
-        <div>
-            <order-item
-                    v-for="(order, key) in orders"
-                    v-if="!order.done && order.type == 'smoothie'"
-                    :order-id="key"
-                    :order="order"
-                    :ui-labels="uiLabels"
-                    :lang="lang"
-                    :key="key">
-            </order-item>
-        </div>
-        <h2>{{ uiLabels.juice }}</h2>
-        <div>
-            <order-item
-                    v-for="(order, key) in orders"
-                    v-if="!order.done && order.type == 'juice'"
-                    :order-id="key"
-                    :order="order"
-                    :ui-labels="uiLabels"
-                    :lang="lang"
-                    :key="key">
-            </order-item>
-        </div>
+        <!--<h1>{{ uiLabels.ordersInQueue }}</h1>-->
+        <!--<h2>{{ uiLabels.smoothie }}</h2>-->
+        <!--<div>-->
+            <!--<order-item-->
+                    <!--v-for="(order, key) in orders"-->
+                    <!--v-if="!order.done && order.type == 'smoothie'"-->
+                    <!--:order-id="key"-->
+                    <!--:order="order"-->
+                    <!--:ui-labels="uiLabels"-->
+                    <!--:lang="lang"-->
+                    <!--:key="key">-->
+            <!--</order-item>-->
+        <!--</div>-->
+        <!--<h2>{{ uiLabels.juice }}</h2>-->
+        <!--<div>-->
+            <!--<order-item-->
+                    <!--v-for="(order, key) in orders"-->
+                    <!--v-if="!order.done && order.type == 'juice'"-->
+                    <!--:order-id="key"-->
+                    <!--:order="order"-->
+                    <!--:ui-labels="uiLabels"-->
+                    <!--:lang="lang"-->
+                    <!--:key="key">-->
+            <!--</order-item>-->
+        <!--</div>-->
 
     </div>
 
 
 </div>
 
-<!--shopping list-->
-<div class="right">
-    <ul class="btn-numbox">
-        <li>
-            <ul class="count">
-                <li><span id="num-dec" class="num-dec">-</span></li>
-                <li><input type="text" class="input-num" id="input-num" value="0"></li>
-                <li><span id="num-inc" class="num-inc" >+</span></li>
-            </ul>
-        </li>
-        <li><span class="kucun">（Stock:）</span></li>
-    </ul>
-</div>
+    <!--shopping list-->
+    <div class="right">
+        <button id="language" v-on:click="switchLang()">{{ uiLabels.language }}</button>
+        <img src="images/home.png" id="home">
+        <!--orderlist-->
+        <div id ="OrderList">
+            <p id="list-title">{{ uiLabels.order }}</p>
+            <table id="list">
+                <tr>
+                    <th class="Odel_check">
+                        <img src="images/trashcan_useful.png" width="20px">
+                    </th>
+                    <th class="Oitem">Item</th>
+                    <th class="Osize">Size</th>
+                    <th class="Oquantity">Quantity</th>
+                    <th class="Oprice">Price</th>
+                </tr>
+            </table>
+
+            <!--<h1>{{ uiLabels.order }}</h1>-->
+            <div v-if="show_ingredient">
+                <h3>{{this.size}} {{this.type}}</h3>
+                <div id = "info">
+
+                    <div  class = "display_ingr">
+                        <div class = "table">
+                            <span class="display_ingr_label">{{ uiLabels.ingredients }}</span>
+                            <span class="display_ingr_label">{{uiLabels.mainflavor}} </span>
+                            <span class="display_ingr_label">{{uiLabels.delete}} </span>
+                        </div>
+                        <check_ingredients
+                                ref="check_ingredients"
+                                v-on:delet_ingre_event="delete_ingredient"
+                                @toggle_flavor_event="toggleFlavor"
+                                v-for="item in chosenIngredients"
+                                :item="item"
+                                :lang="lang"
+                                :key="item.ingredient_id">
+                        </check_ingredients>
+                    </div>
+
+                </div>
+            </div>
+            <button v-on:click="placeOrder()">{{ uiLabels.confirm }}</button>
+
+            <h1>{{ uiLabels.ordersInQueue }}</h1>
+            <h2>{{ uiLabels.smoothie }}</h2>
+            <div>
+                <order-item1
+                        v-for="(order, key) in orders"
+                        v-if="!order.done && order.type == 'smoothie'"
+                        :order-id="key"
+                        :order="order"
+                        :ui-labels="uiLabels"
+                        :lang="lang"
+                        :key="key">
+                </order-item1>
+            </div>
+            <h2>{{ uiLabels.juice }}</h2>
+            <div>
+                <order-item1
+                        v-for="(order, key) in orders"
+                        v-if="!order.done && order.type == 'juice'"
+                        :order-id="key"
+                        :order="order"
+                        :ui-labels="uiLabels"
+                        :lang="lang"
+                        :key="key">
+                </order-item1>
+            </div>
+
+            <!--<button class="listbutton" id="buttonDel"> DELETE </button>-->
+            <button class="listbutton" id="buttonPay"> PAY</button>
+        </div>
+
+    </div>
+
 </div>
 </body>
 </html>

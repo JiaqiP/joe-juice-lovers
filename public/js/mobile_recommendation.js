@@ -42,32 +42,32 @@ new Vue({
           url:'/images/1.png',
           price: 3,
           name: 'carambola',
-          ingredients: 'none'
+          ingredients: 'carambola juice, water,sugar '
         }, {
           url:'/images/2.png',
           price: 3,
           name: 'tangerine',
-          ingredients: 'none'
+          ingredients: 'tangerine juice, water,sugar '
         }, {
           url:'/images/3.png',
           price: 3,
           name: 'pomegranate',
-          ingredients: 'none'
+          ingredients: 'pomegranate juice, water,sugar '
         }, {
           url:'/images/4.png',
           price: 3,
           name: 'watermelon',
-          ingredients: 'none'
+          ingredients: 'watermelon juice, water,sugar '
         }, {
           url:'/images/5.png',
           price: 3,
           name: 'kiwifruit',
-          ingredients: 'none'
+          ingredients: 'kiwifruit juice, water,sugar '
         }, {
           url:'/images/6.png',
           price: 3,
           name: 'pineapple',
-          ingredients: 'none'
+          ingredients: 'pineapple juice, water,sugar '
         }]
       }
     },

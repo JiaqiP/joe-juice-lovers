@@ -6,10 +6,10 @@ Vue.component('ingredient', {
   props: ['item', 'type', 'lang','size'],
   template: ` <div class="ingredient" style="margin: 5px;">
                   <label @click="toggle">
-                    <img v-bind:src="item.image" width="20px" height="20px">
-                    {{item["ingredient_"+ lang]}} ({{ (type=="smoothie") ? item.vol_smoothie:item.vol_juice }} ml), {{item.selling_price}}:-, {{item.stock}} pcs
+                    <img v-bind:src="item.image" width="30px" height="30px">
+                    {{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{item.stock}} pcs
                   </label>
-                  <span style="float: right">{{ item.select ? 'selected': ''  }}</span>
+                  <span style="float: right; v-align:bottom">{{ item.select ? 'selected': ''  }}</span>
               </div>`,
   data: function () {
     return {
@@ -104,19 +104,19 @@ var type = new Vue({
         },
         choose_small:function(){
             this.size="small";
-            this.price = '3'
+            this.price = '45'
             this.current_page=3;
             this.pre_page=2;
         },
         choose_medium:function(){
             this.size="medium";
-            this.price = '5'
+            this.price = '55'
             this.current_page=3;
             this.pre_page=2;
         },
         choose_large:function(){
             this.size="large";
-            this.price = '7'
+            this.price = '65'
             this.current_page=3;
             this.pre_page=2;
         },

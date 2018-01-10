@@ -5,12 +5,12 @@
 
 var socket = io();
 
-/*
-Vue.component('order-item', {
+//For ivy
+Vue.component('order-item1', {
   props: ['uiLabels', 'order', 'orderId', 'lang'],
-  template: '<div>{{orderId}} {{order.size}} {{order.flavor}} {{order.type}} {{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }} </div>'
+  template: '<div>{{orderId}} {{order.size}} {{order.flavor}} {{order.type}} <p>{{uiLabels.ingredients}}: {{ order.ingredients.map(item=>item["ingredient_"+ lang]).join(", ") }}</p> </div>'
 });   //add {{order.size}} {{order.flavor}}
-*/
+
 Vue.component('order-item', {
   props: ['uiLabels', 'order', 'orderId', 'lang'],
   template: `<div>
@@ -25,11 +25,14 @@ var sharedVueStuff = {
     orders: {},
     uiLabels: {},
     ingredients: {},
-    lang: "en",
+    lang: 'en',
     readymade: {},
 
   },
   created: function () {
+    this.lang = localStorage.getItem('lang');
+    socket.emit('switchLang', this.lang);
+    //  console.log(this.lang);
     socket.on('initialize', function (data) {
       this.size = data.size;
       this.flavor = data.flavor;
@@ -64,10 +67,15 @@ var sharedVueStuff = {
     switchLang: function () {
       if (this.lang === "en") {
         this.lang = "sv";
+      //    console.log(this.lang);
+        localStorage.setItem('lang','sv');
       } else {
         this.lang = "en";
+     //     console.log(this.lang);
+        localStorage.setItem('lang','en');
       }
       socket.emit('switchLang', this.lang);
+      
     }
   }
 };

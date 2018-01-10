@@ -1,179 +1,128 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>mobile</title>
-  <link rel="stylesheet" type="text/css" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/buttons.css">
-  <link rel="stylesheet" type="text/css" href="/css/mobile.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mobile</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/buttons.css">
+    <link rel="stylesheet" type="text/css" href="/css/mobile.css">
 
-  <script src="../js/tool.js" defer></script>
-  <script src="../vue/vue.js" defer></script>
-  <script src="../socket.io/socket.io.js" defer></script>
+    <script src="../js/tool.js" defer></script>
+    <script src="../vue/vue.js" defer></script>
+    <script src="../socket.io/socket.io.js" defer></script>
 
-  <script src="../js/juicifer-main.js" defer></script>
-  <script src="../js/mobile_common.js" defer></script>
-  <script src="../js/mobile_recommendation.js" defer></script>
-  <style>
-    .container .item {
-      display: inline-block;
-      width: 40vw;
-      height: 40vw;
-      border: 1px solid #000;
-      margin: 4.5vw;
-    }
+    <script src="../js/juicifer-main.js" defer></script>
+    <script src="../js/mobile_common.js" defer></script>
+    <script src="../js/mobile_recommendation.js" defer></script>
+    <style>
+      .container .item {
+        display: inline-block;
+        width: 40vw;
+        height: 40vw;
+        border: 1px solid #000;
+        margin: 4.5vw;
+      }
+      .container .item img {
+        width: 30vw;
+        height: 30vw;
+        margin: 5vw;
+      }
+      .modal {
+        position: absolute;
+        top: calc(50% - 90px);
+        left: calc(50% - 145px);
+        background-color: #fff;
+        border: 1px solid #000;
+      }
+      .modal .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+      .modal .capacity {
+        margin-top: 30px;
+        display: flex;
+      }
+      .modal .capacity .item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 15px;
+      }
+      .modal .extra {
+        margin: 10px;
+      }
+        .cup{
+            border:#003366 6px dashed;
+            padding:2vw;  
+            background-color:darkgray;
+        }
+        .cup:hover{
+            background-color:white;
+            cursor:pointer;
 
-    .container .item img {
-      width: 30vw;
-      height: 30vw;
-      margin: 5vw;
-    }
+        }
+        .close:hover{
+            background-color:darkgray;
+            cursor:pointer;
 
-    .modal {
-      position: absolute;
-      top: calc(50% - 90px);
-      left: calc(50% - 145px);
-      background-color: #fff;
-      border: 1px solid #000;
-    }
-
-    .modal .close {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-    }
-
-    .modal .capacity {
-      margin-top: 30px;
-      display: flex;
-    }
-
-    .modal .capacity .item {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin: 0 15px;
-    }
-
-    .modal .extra {
-      margin: 10px;
-    }
-
-    .readymade {
-    display:inline-block;
-    position: relative;
-    float: left;
-
-}
-
-
-.readymade img {
-    width:50%;
-    height:50%;
-}
-
-
-.readymade :not(img) {
-    position: relative;
-    width: 100%;
-    z-index: 1;
-    text-align: center;
-}
-
-.readymade h3{
-    margin-top: -10px;
-    margin-bottom: -10px;
-}
-
-.readymade h4{
-    margin-top: -35px;
-    margin-bottom: -30px;
-}
-
-.readymade div{
-    width: 28%;
-}
-.readymade p{
-    margin-top: -30px;
-    font-style: italic;
-}
-.readymade button{
-  margin-bottom: 0%
-}
-.inlist {
-    background-color: #b9e563;
-}
-
-#content label{
-    width: 30vh;
-    height : 30vh;
-    margin:1vh;
-    display:inline-block;
-    position:relative;
-    background-color: #b9e563;
-
-}
-  </style>
+        }
+        .close{
+            border:#003366 2px dashed;
+            padding:0.2vw;  
+            background-color:white;
+        }
+    </style>
 </head>
 
 <body>
   <div id="app">
     <div>
       <div id="step">
-        <button id="back" align="left" class="button button-large button-plain button-borderless">
+        <button id = "back" align = "left" class="button button-large button-plain button-borderless">
           <a href="/mobile">
             <i class="fas fa-angle-left"></i>
           </a>
         </button>
-        <span align="center">{{uiLabels.rec}}</span>
+        <span align = "center">{{uiLabels.rec}}</span>
         <mini-cart :items="storegeData"></mini-cart>
       </div>
-      <div class="container">
-        <!--
+    <div class="container">
       <div class="item" v-for="item in recommendation" @click="showMadal(item)">
         <img :src="item.url" alt="item.name">
       </div>
-    -->
-        
-        <section id="content">
-          <readymade ref="readymade" v-for="item in readymade" v-on:increment="addToOrder(item)" :item="item" :lang="lang" :key="item.rm_id">
-          </readymade>
-        </section>
+    </div>
+    <div class="modal" v-if="isShowModal">
+      <p class="close" @click="closeModal" >X</p>
+      <div class="capacity">
+        <div class="item" @click="processData('small', 300, choose.price)">
+          <h3>{{choose.price}}$</h3>
+          <img src = "\images\small_size.png" id="small_cup" class="cup">
+          <h3>300 ml</h3>
+        </div>
+        <div class="item" @click="processData('medium', 470, choose.price * 1.5)">
+          <h3>{{choose.price * 1.5}}$</h3>
+          <img src = "\images\medium_size.png" id="medium_cup" class="cup">
+          <h3>470 ml</h3>
+        </div>
+        <div class="item" @click="processData('large', 550, choose.price * 2)">
+          <h3>{{choose.price * 2}}$</h3>
+          <img src = "\images\large_size.png" id="large_cup" class="cup">
+          <h3>550 ml</h3>
+        </div>
       </div>
-      <div class="modal" v-if="isShowModal">
-        <p class="close" @click="closeModal">X</p>
-        <div class="capacity">
-          <div class="item" @click="processData('small', 300, choose.price)">
-            <h3>{{choose.price}}$</h3>
-            <img src="\images\small_size.png" id="small_cup">
-            <h3>300 ml</h3>
-          </div>
-          <div class="item" @click="processData('medium', 470, choose.price * 1.5)">
-            <h3>{{choose.price * 1.5}}$</h3>
-            <img src="\images\medium_size.png" id="medium_cup">
-            <h3>470 ml</h3>
-          </div>
-          <div class="item" @click="processData('large', 550, choose.price * 2)">
-            <h3>{{choose.price * 2}}$</h3>
-            <img src="\images\large_size.png" id="large_cup">
-            <h3>550 ml</h3>
-          </div>
-        </div>
-        <div class="extra">
-          <p>
-            {{this.choose.name}}
-          </p>
-          <p>
-            {{uiLabels.mainIngredients}}: {{this.choose.ingredients}}
-          </p>
-
-        </div>
+      <div class="extra">
+        <p>
+          {{this.choose.name}}
+        </p>
+        <p>
+          {{uiLabels.mainIngredients}}: {{this.choose.ingredients}}
+        </p>
       </div>
     </div>
   </div>
+</div>
 </body>
-
 </html>

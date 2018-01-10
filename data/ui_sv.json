@@ -26,18 +26,17 @@
   "vegetable" :"Grönsaker",
   "others" : "Andra",
 
-  "addMore" : "Add More",
-  "payNow" : "Pay Now",
-  "total" : "Total:",
-  "price" : "Price",
-  "amount" : "Amount",
-  "item" : "Item",
-  "overview" : "Overview",
-  "recommendation" : "Recommendation",
+  "addMore" : "Lägg till mer",
+  "payNow" : "betala nu",
+  "total" : "Totalt:",
+  "price" : "Pris",
+  "amount" : "Mängd",
+  "item" : "Punkt",
+  "overview" : "Översikt ",
+  "recommendation" : "Rekommendation",
   "joe" : "Joe's Juice",
-  "first_note":"Välj först dryckstyp ...",
-    
-    "createYourOwn":"Create your own",
+  "first_note":"Välj först dryckstyp ...", 
+    "createYourOwn":"Skapa din egen",
     "Juice":"Juice",
     "s":"300 ml",
     "m":"470 ml",
@@ -58,5 +57,6 @@
     "size":"Storlek",
     "amount":"Belopp",
     "show":"Visa detaljer",
-    "sure":""
+    "sure":"Vill du radera det?",
+    
 }

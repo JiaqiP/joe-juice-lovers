@@ -19,7 +19,7 @@
       .title {
         display: flex;
         justify-content: center;
-        margin-top: 60px;
+        margin-top: 50px;
       }
       .title h1 {
         font-size: 60px;
@@ -31,6 +31,27 @@
         color: #1b9af7;
         text-decoration:none;
       }
+        
+        
+    @media (max-width:300px) {
+      .title {
+        display: flex;
+        justify-content: center;
+        margin: 20px;
+      }
+      .title h1 {
+        font-size: 30px;
+      }
+      .button {
+        font-size: 20px;
+      }
+      a {
+        color: #1b9af7;
+        text-decoration:none;
+      }
+    }    
+        
+        
     </style>
 </head>
 
@@ -49,12 +70,12 @@
 
       <div>
         <a href="/mobile/create">
-          <button class="bigBtn button button-glow button-border button-rounded button-primary">
+          <button class="mediumBtn button button-glow button-border button-rounded button-primary">
             {{uiLabels.create_your_own}}
           </button>
         </a>
         <a href="/mobile/recommendation">
-          <button class = "bigBtn button button-glow button-border button-rounded button-primary" >
+          <button class = "mediumBtn button button-glow button-border button-rounded button-primary" >
             {{uiLabels.recommendation}}
           </button>
         </a>

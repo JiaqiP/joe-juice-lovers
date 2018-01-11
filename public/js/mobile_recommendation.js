@@ -40,22 +40,22 @@ new Vue({
         },
         recommendation: [{
           url:'/images/1.png',
-          price: 3,
+          price: 30,
           name: 'carambola',
           ingredients: 'carambola juice, water,sugar '
         }, {
           url:'/images/2.png',
-          price: 3,
+          price: 30,
           name: 'tangerine',
           ingredients: 'tangerine juice, water,sugar '
         }, {
           url:'/images/3.png',
-          price: 3,
+          price: 30,
           name: 'pomegranate',
           ingredients: 'pomegranate juice, water,sugar '
         }, {
           url:'/images/4.png',
-          price: 3,
+          price: 30,
           name: 'watermelon',
           ingredients: 'watermelon juice, water,sugar '
         }, {
@@ -65,7 +65,7 @@ new Vue({
           ingredients: 'kiwifruit juice, water,sugar '
         }, {
           url:'/images/6.png',
-          price: 3,
+          price: 30,
           name: 'pineapple',
           ingredients: 'pineapple juice, water,sugar '
         }]
@@ -111,7 +111,10 @@ new Vue({
         }
       console.log("rec send to kitchen");
       console.log(order);
-        socket.emit('order', {orderId: this.id, order: order});
+       
+          
+          //Do not need direct send here any more
+          //socket.emit('order', {orderId: this.id, order: order});
           
         const item = {
           id: this.id,

@@ -51,6 +51,16 @@
     margin-top: 50px;
     font-size: 40px;
 }
+.mediumBtn{
+    display: block;
+    text-align: center;
+    align-content: center;
+    height: 100px;
+    width:80%;
+    margin:auto;
+    margin-top: 50px;
+    font-size: 40px;
+}
 
 .button-group{
     display:block;
@@ -256,3 +266,10 @@ h3{
   color: #3366cc !important;
   font-size: 20px;
 }
+
+/********************* small  **********************/
+    @media (max-width:300px) {
+      .button {
+        font-size: 20px;
+      }
+    } 

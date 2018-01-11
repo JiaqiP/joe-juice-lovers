@@ -1,5 +1,5 @@
 Vue.component('mini-cart', {
-  props: ['items'],
+  props: ['items','lang'],
   template: `
     <div class="mini-cart" align = "right">
       <button id = "cart" @click="toggleCart" class="button button-medium button-plain button-borderless">
@@ -11,8 +11,8 @@ Vue.component('mini-cart', {
         </button>
         <div class="header">
           <span>product</span>
-          <span>uiLabels.size</span>
-          <span>uiLabels.amount</span>
+          <span>size</span>
+          <span>amount</span>
         </div>
         <div v-for="item in itemsAdpter" class="order">
           <span>{{item.order.name}}</span>
@@ -21,7 +21,7 @@ Vue.component('mini-cart', {
         </div>
         <div class="action">
           <a href="/mobile/cart">
-            show
+            Show & Pay
           </a>
         </div>
       </div>

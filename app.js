@@ -182,7 +182,6 @@ io.on('connection', function(socket) {
 
 	// When someone orders something
 	socket.on('order', function(order) {
-        console.log(order);
 		orderNumb = orderNumb + 1; //create new orderID
 		order.orderId = "#" + orderNumb;
 

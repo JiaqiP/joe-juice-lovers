@@ -21,7 +21,7 @@ Vue.component('mini-cart', {
         </div>
         <div class="action">
           <a href="/mobile/cart">
-            show
+            Show & Pay
           </a>
         </div>
       </div>

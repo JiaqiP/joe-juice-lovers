@@ -34,7 +34,12 @@ var sharedVueStuff = {
 
   },
   created: function () {
-    this.lang = localStorage.getItem('lang');
+    if(localStorage.lang!=undefined)
+        this.lang = localStorage.getItem('lang');
+    else {
+        this.lang = 'en';
+        localStorage.setItem('lang','en');
+    }
     socket.emit('switchLang', this.lang);
     //  console.log(this.lang);
     socket.on('initialize', function (data) {

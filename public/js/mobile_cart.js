@@ -139,6 +139,10 @@ new Vue({
        
            //socket.emit('order', {orderId: getOrderNumber(), order: orderdStaffObj}); 
            socket.emit('cart', {orderId: getOrderNumber(), order: orderedStaffObj}); 
+            
+            localStorage.clear();
+            window.location.reload();
+            
                                   
        //    socket.emit('cart', order);
         }

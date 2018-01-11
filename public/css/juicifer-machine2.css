@@ -1,279 +1,28 @@
-
-body {
-    font-family: Arial;
-}
-
-#language {
-
-}
-
-.left {
-    float:left;
-    width: 69.5%;
-}
-
-.right {
-    
-    float:right;
-    min-height: 90%;
-    width: 29.5%;
-    margin-top:1px;
-    
-}
-
-/* Add a black background color to the top navigation */
-.topnav {
-    background-color: orange;
-    overflow: hidden;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-    float: left;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
+/* hide recommendation page in the initial time*/ 
+#recommendation {
+    display: none;
 }
 
 
-/* Add a color to the active/current link */
-.topnav a.active {
-    background-color: orangered;
-    color: white;
-}
 
-.col1 {
-    width: 30%;
-    padding: 10px;
-}
-
-
-.button-group{
-    display:inline-block !important;
-    text-align: center;
-    width:100%;
-
-}
-
-.button-group button{
-    padding: 0;
-    text-align: center;
-    font-size: 15px;
-    color: #333333;
-    border-color:#003366;
-}
-
-.button-group p{
-    padding: 0;
-    text-align: center;
-    font-size: 15px;
-    color: #333333;
-    border-color:#003366;
-}
-
-/*#ctype button{*/
-    /*font-size: 15px;*/
-    /*width:48%;*/
-    /*background-color: #febc44;*/
-    /*margin: 5px;*/
-    /*border:dashed;*/
-    /*border-color: #336699;*/
-/*}*/
-/*#ctype button:focus{*/
-    /*background-color: #b9e563;*/
-/*}*/
-
-
-
-/*#ctype a.onclick{*/
-    /*width:49%;*/
-    /*background-color: #b9e563;*/
-/*}*/
-
-/*#ctype a.offclick{*/
-    /*width:49%;*/
-    /*background-color: #5e5e5e;*/
-    /*color: #ededed;*/
-
-/*}*/
-/*#ctype a{*/
-    /*font-size: 15px;*/
-    /*font-family: Arial;*/
-    /*font-style: inherit;*/
-    /*width: 49% !important;*/
-    /*background-color: #febc44;*/
-    /*margin-top:0.5em;*/
-    /*margin-right: 1%;*/
-
-/*}*/
-
-
-
-#ctype p.onclick{
-    background-color: #febc44;
-}
-
-#ctype p.offclick{
-    background-color: #bbbbbb;
-}
-#ctype p{
-    display: inline-block; !important;
-    font-size: 15px;
-    float: left;
-    font-family: Arial;
-    font-style: inherit;
-    text-align: center;
-    line-height: 35px;
-    width: 49%; !important;
-    height: 30px; !important;
-    background-color: #febc44;
-    margin-top:0.5em;
-    margin-right: 1%;
-
-}
-#size{
-    width:100%;
-}
-
-#size button{
-    width: 33%;
-    margin-right:2px;
-    margin-top: 0.5em;
-    border:dashed;
-    border-color:#336699;
-    height: auto;
-    padding-top: 1em;
-    padding-bottom: 0.5em;
-}
-
-#size button:active, visited{
-    background-color: #febc44;
-}
-
-#size img{
-    height: 8em;
-}
-
-.description {
-    vertical-align: bottom;
-    margin-top: 0.5em;
-    border:solid;
-    border-color: #003366;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.description h2{
-    font-size:15px;
-}
-.description h2:before {
-    content: '\f05a';
-    font-family: fontawesome;
-}
-.description h3{
-    font-size:12px;
-
-}
-
-/*for folding*/
-
-.togglebox {
-    margin-top: 0.5em;
-    background: #fff;
-    transform: translateZ(0);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-
-input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-}
-
-label {
-    position: relative;
-    display: block;
-    height: 50px;
-    line-height: 50px;
-    padding: 0 20px;
-    font-size: 14px;
-    font-weight: 700;
-    border-top: 1px solid #ddd;
-    background: #febc44;
-    cursor: pointer;
-}
-
-label[for*='1'] {
-    border: 0;
-}
-
-label.special:after {
-    content: '\f078';
-    position: absolute;
-    top: 0px;
-    right: 20px;
-    font-family: fontawesome;
-    transform: rotate(90deg);
-    transition: .3s transform;
-}
-
-section {
-    height: 0;
-    transition: .3s all;
-    overflow: hidden;
-}
-
-#toggle1:checked ~ label[for*='1']:after,
-#toggle2:checked ~ label[for*='2']:after,
-#toggle3:checked ~ label[for*='3']:after,
-#toggle4:checked ~ label[for*='4']:after,
-#toggle5:checked ~ label[for*='4']:after,
-#toggle6:checked ~ label[for*='4']:after,
-#toggle7:checked ~ label[for*='4']:after {
+/*showing products*/
+#toggle_juice:checked ~ label[for*='1']:after,
+#toggle_smoothie:checked ~ label[for*='2']:after,
+#toggle_others:checked ~ label[for*='3']:after,
+#toggle_tmp:checked ~ label[for*='4']:after {
     transform: rotate(0deg);
 }
 
-#toggle1:checked ~ #content1,
-#toggle2:checked ~ #content2,
-#toggle3:checked ~ #content3,
-#toggle4:checked ~ #content4,
-#toggle5:checked ~ #content5,
-#toggle6:checked ~ #content6,
-#toggle7:checked ~ #content7{
-    height: 40%;
+#toggle_juice:checked ~ #content_juice,
+#toggle_smoothie:checked ~ #content_smoothie,
+#toggle_others:checked ~ #content_others,
+#toggle_tmp:checked ~ #content4_tmp {
+    height: 70%;
     overflow: scroll;
 }
 
-#content1 label{
-    width:20vh;
-    height:20vh;
-    margin:15px;
-    display:inline-block;
-    position:relative;
-    background-color: #b9e563;
 
-}
-#content2 label{
-    width:20vh;
-    height:20vh;
-    margin:15px;
-    display:inline-block;
-    position:relative;
-    background-color: #b9e563;
-
-}
-#content3 label{
-    width:20vh;
-    height:20vh;
-    margin:15px;
-    display:inline-block;
-    position:relative;
-    background-color: #b9e563;
-
-}
-
-#content4 label{
+#content_juice label{
     width: 30vh;
     height : 30vh;
     margin:1vh;
@@ -282,7 +31,7 @@ section {
     background-color: #b9e563;
 
 }
-#content5 label{
+#content_smoothie label{
     width: 30vh;
     height : 30vh;
     margin:15px;
@@ -291,7 +40,7 @@ section {
     background-color: #b9e563;
 
 }
-#content6 label{
+#content_others label{
     width: 30vh;
     height : 30vh;
     margin:15px;
@@ -300,46 +49,6 @@ section {
     background-color: #b9e563;
 
 }
-
-.ingredient {
-    display:inline-block;
-    position: relative;
-    float: left;
-
-}
-
-
-.ingredient img {
-    width:50%;
-    height:50%;
-}
-
-
-.ingredient :not(img) {
-    position: relative;
-    width: 100%;
-    z-index: 1;
-    text-align: center;
-}
-
-.ingredient h3{
-    margin-top: -10px;
-    margin-bottom: -10px;
-}
-
-.ingredient h4{
-    margin-top: -35px;
-    margin-bottom: -30px;
-}
-
-.ingredient div{
-    width:58px;
-}
-.ingredient p{
-    margin-top: -30px;
-    font-style: italic;
-}
-
 
 .readymade {
     display:inline-block;
@@ -380,115 +89,13 @@ section {
     font-style: italic;
 }
 
-.inlist {
-    background-color: #b9e563;
-}
-
-ul,
-li {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    cursor: pointer;
-    text-decoration: none;
-}
-
-a:link {
-    text-decoration: none;
-}
-
-.btn-numbox {
-
-}
-
-.btn-numbox li {
-    float: left;
-}
-
-.btn-numbox li .kucun {
-    display: inline-block;
-    font-size: 12px;
-    color: #808080;
-    vertical-align: sub;
-}
-
-.btn-numbox .count {
-    overflow: hidden;
-    margin: 0 16px 0 -20px;
-}
-
-.btn-numbox .count .num-dec,
-.input-num,
-.num-inc {
-    display: inline-block;
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
-    text-align: center;
-    font-size: 18px;
-    color: #999;
-    cursor: pointer;
-    border: 1px solid #e6e6e6;
-}
-
-.btn-numbox .count .num-inc {
-    margin-left: 1px;
-}
-
-.btn-numbox .count .input-num {
-    width: 58px;
-    height: 26px;
-    color: #333;
-    border-left: 0;
-    border-right: 0;
-}
-
-/*update by Shania*/
-
-/* initial display screen without recommendation info */
-#recommendation {
-    display: none;
-}
-
-/* Order List */
-
-/*  !!!pretty broken!!! */
-
-#OrderList{ 
-    margin-top:15%;
-    border: solid;
-    border-color: grey;
-   
-
-}
-#home{
-    width:15%;
-    float: right;
-    margin-right: 1%;
-
-}
-
-#list-title{
-    font-family: Trattatello, fantasy;
-    text-decoration:underline;
-    text-align: center;
-    color: #CD5C5C;
-    font-size: 300%;
-    margin: 1% 1% 1% 1%;
-}
 
 /* The list from */
 #list{
     word-break: break-all;
     margin: 1% 1% 1% 1%;
     text-align: center;
-    border-bottom: 1.5px solid;
-    border-color:   #696969;
+    /*border-bottom: 1.5px solid;*/
 }
 .Odel_check{
     width: 1%;
@@ -526,6 +133,7 @@ a:link {
 }
 
 #buttonDel{
+    display: none;
     background-color: #C0C0C0;
     border: 1.5px solid #4682B4;
     float: left;
@@ -535,4 +143,57 @@ a:link {
     background-color: #9ACD32;
     border: 1.5px solid #2E8B57;
     float: right;
+}
+
+/*size buttons for message passing*/
+#rm_size{
+    width:100%;
+}
+
+#rm_size button{
+    width: 33%;
+    margin-right:2px;
+    margin-top: 0.5em;
+    border:dashed;
+    border-color:#336699;
+    height: auto;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+#rm_size button:active, visited{
+    background-color: #febc44;
+}
+
+#rm_size img{
+    height: 8em;
+}
+
+
+
+/* Order List */
+
+#OrderList{ 
+    
+    margin-top:15%;
+    border: solid;
+    /*border-color: grey;*/
+}
+
+#language{
+    
+    height: 15%;
+    float: right;
+    margin-right: 2%;
+    
+   
+}
+
+#list-title{
+    font-family: Trattatello, fantasy;
+    text-decoration:underline;
+    text-align: center;
+    color: #CD5C5C;
+    font-size: 300%;
+    margin: 1% 1% 1% 1%;
 }

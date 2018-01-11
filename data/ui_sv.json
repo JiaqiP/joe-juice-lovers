@@ -57,6 +57,10 @@
     "size":"Storlek",
     "amount":"Belopp",
     "show":"Visa detaljer",
-    "sure":"Vill du radera det?"
-    
+    "sure":"Vill du radera det?",
+    "note_size": "Which size of drink do you want?",
+    "note_restart": "Clicka for change size!",
+    "note_product": "Choose your drink!"
 }
+
+

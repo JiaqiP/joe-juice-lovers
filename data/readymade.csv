@@ -1,22 +1,38 @@
-rm_id,rm_name,rm_ingredients
-1,Pick me up (org),"[15,1,36]"
-2,Energizer,"[20,32,36]"
-3,Iron man,"[16,43,36]"
-4,Joe's AMG,"[36,27,32]"
-5,Stress down,"[16,36,32]"
-6,Hangover heaven,"[36,26,27]"
-7,C-shot sweet,"[40,36,2]"
-8,Go away doc,"[31,36,32]"
-9,Fibre active,"[41,2,36]"
-10,Sports juice,"[38,12,36]"
-11,Hell of a nerve,"[16,26,1]"
-12,Sex me up,"[12,36,32]"
-13,Immunity,"[20,12,36]"
-14,Veggie focus,"[18,31,36]"
-15,Young blood,"[18,2,36]"
-16,Sweet Beet,"[23,28,3]"
-17,Joe's Roots,"[23,31,32]"
-18,Prince of Green,"[42,2,38]"
-19, Pick me up,"[16,1,36]"
-20,The Guardian,"[29,30,38,31]"
-21,Immunity (DK) ,"[13,38,36]"
+rm_id,rm_image,rm_ingredients,rm_name,rm_type
+1,//www.joejuice.com/media/2337/pickmeofhindbaer.jpg,"Raspberry, banana, apple",Pick me up (org),juice
+2,//www.joejuice.com/media/2355/energizer.jpg,"Red grapefruit, ginger, apple",Energizer,juice
+3,//www.joejuice.com/media/2334/ironman.jpg,"Strawberry, kiwi, apple",Iron man,juice
+4,//www.joejuice.com/media/2309/amg.jpg,"Apple, mint, ginger",Joe's AMG,juice
+5,//www.joejuice.com/media/2343/stressdown.jpg,"Strawberry, apple, ginger",Stress down,juice
+6,//www.joejuice.com/media/2331/hangoverheaven.jpg,"Apple, elderflower, mint",Hangover heaven,juice
+7,//www.joejuice.com/media/2318/cshot.jpg,"Red bell pepper, apple, lemon",C-shot sweet,juice
+8,//www.joejuice.com/media/2323/go-away-doc.jpg,"Carrot, apple, ginger",Go away doc,juice
+9,//www.joejuice.com/media/2356/fibreactive.jpg,"Avocado, lemon, apple",Fibre active,juice
+10,//www.joejuice.com/media/2349/sportsjuice.jpg,"Pinapple, passion fruit, apple ",Sports juice,juice
+11,//www.joejuice.com/media/2327/hellofanerve.jpg,"Strawberry, elderflower, banana",Hell of a nerve,juice
+12,//www.joejuice.com/media/2348/sexmeup.jpg,"Passion fruit, apple, ginger",Sex me up,juice
+13,//www.joejuice.com/media/2328/immunity.jpg,"Red grapefruit, passion fruit, apple",Immunity,juice
+14,//www.joejuice.com/media/2345/veggiefocus.jpg,"Celery, carrot, apple",Veggie focus,juice
+15,//www.joejuice.com/media/2346/young-blood.jpg,"Celery, lemon, apple",Young blood,juice
+16,//www.joejuice.com/media/2340/sweet-beet.jpg,"Beetroot, fennel, apple",Sweet Beet,juice
+17,//www.joejuice.com/media/2332/joe-roots.jpg,"Beetroot, carrot, ginger",Joe's Roots,juice
+18,//www.joejuice.com/media/2321/greenkiss.jpg,"Cucumber, Lemon, Pineapple",Prince of Green,juice
+19,//www.joejuice.com/media/2366/pickmeupjordbaer.jpg,"Strawberry, banana, apple", Pick me up,juice
+20,//www.joejuice.com/media/2616/theguardian.jpg,"Turmeric, Black Pepper, Pineapple, Carrot",The Guardian,juice
+21,//www.joejuice.com/media/2620/immunity.jpg,"Buckthorn, Pineapple, Apple",Immunity (DK) ,juice
+22,//www.joejuice.com/media/2311/avoshake.jpg,"Avocado, banana, vanilla milk",Avo shake,shake
+23,//www.joejuice.com/media/2319/easy-shake.jpg,"Mint, banana, vanilla milk",Easy Shake,shake
+24,//www.joejuice.com/media/2320/coffee-shake.jpg,"Espresso shot, vanilla milk",Coffee shake,shake
+25,//www.joejuice.com/media/2354/powershake.jpg,"Strawberry, banana, vanilla milk",Power Shake,shake
+26,//www.joejuice.com/media/2315/cheetashake.jpg,"Banana, vanilla milk",Cheeta shake,shake
+27,//www.joejuice.com/media/2336/lemonshake.jpg,"Lemon, banana, vanilla milk",Lemon Shake,shake
+28,//www.joejuice.com/media/2615/chokoshake.jpg,"Raw cacao, Banana, Choco almond milk, Vanilla milk",Choco Shake,shake
+29,//www.joejuice.com/media/2317/energyshake.jpg,"Raspberry, banana, vanilla milk",Energy Shake,shake
+30,//www.joejuice.com/media/2618/supershake.jpg,None,Super Shake (DK),shake
+31,//www.joejuice.com/media/2621/ve-gain.jpg,"Plant protein, Banana, Choco almond milk",Ve-Gain Shake (DK) ,shake
+32,//www.joejuice.com/media/2316/electroshot.jpg,"Fennel, apple",Electro Shot,shot
+33,//www.joejuice.com/media/2312/betashot.jpg,"Broccoli, apple",Beta Shot,shot
+34,//www.joejuice.com/media/2329/ignitionshot.jpg,"Beetroot, apple",Ignition/Beet Shot,shot
+35,//www.joejuice.com/media/2322/gingershot.jpg,"Ginger, apple",Ginger shot,shot
+36,//www.joejuice.com/media/2619/tumericshot.jpg,"Turmeric, Lemon, Apple",Turmeric shot (DK) ,shot
+37,//www.joejuice.com/media/2613/chilishot.jpg,"Chili, Lemon, Apple",Chili Shot (DK),shot

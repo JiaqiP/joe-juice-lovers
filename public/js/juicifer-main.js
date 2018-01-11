@@ -30,6 +30,7 @@ var sharedVueStuff = {
     flavor:{},
     size:{},
     prize:{},
+    amount:{},
 
   },
   created: function () {

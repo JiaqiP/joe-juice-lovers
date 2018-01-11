@@ -1,5 +1,5 @@
 Vue.component('mini-cart', {
-  props: ['items'],
+  props: ['items','lang'],
   template: `
     <div class="mini-cart" align = "right">
       <button id = "cart" @click="toggleCart" class="button button-medium button-plain button-borderless">

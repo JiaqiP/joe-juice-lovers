@@ -41,6 +41,17 @@ Vue.component('cart-item', {
   }
 })
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+function getOrderNumber() {
+  // It's probably not a good idea to generate a random order number, client-side.
+  // A better idea would be to let the server decide.
+  return "#" + getRandomInt(1, 1000000);
+}
+
 new Vue({
     el:"#app",
     mixins: [sharedVueStuff],
@@ -83,6 +94,7 @@ new Vue({
         }
         this.storeData()
       },
+        
       add (id) {
         const index = this.storegeData.findIndex(ele => {
           return ele.id === id
@@ -105,12 +117,32 @@ new Vue({
         localStorage.setItem('order', JSON.stringify(this.storegeData))
       },
     
-       pay () {
-           console.log(this.storegeata);
+       pay (){
+           console.log(this.storegeData.length);
            
+        for(i = 0; i < this.storegeData.length;i++){
+            var order = this.storegeData[i].order
+            console.log(order);
+        
+        //order_ingredients=order_ingredients.map(item=>item["ingredient_"+ this.lang]).join(", ");     
+            
+            var orderedStaffObj = {
+              size:order.size,
+              flavor:order.flavor,
+              ingredients: order.ingredients,
+              type: order.type,
+              price: order.price
+            };
            
-        for(i = 0; i < this.storegeData.length;i++)
-            socket.emit('cart', {'order': this.storegeData[i]});
+            if (orderedStaffObj.flavor!=undefined)
+               orderedStaffObj.flavor = orderedStaffObj.flavor["ingredient_"+this.lang];
+       
+           //socket.emit('order', {orderId: getOrderNumber(), order: orderdStaffObj}); 
+           socket.emit('cart', {orderId: getOrderNumber(), order: orderedStaffObj}); 
+                                  
+       //    socket.emit('cart', order);
+        }
       }
+      
     }
 })

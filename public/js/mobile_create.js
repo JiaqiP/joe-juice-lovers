@@ -130,12 +130,12 @@ var type = new Vue({
               return false
             }
           } else if (this.size === 'medium') {
-            if (len === 5) {
+            if (len === 4) {
               alert('can\'t select more')
               return false
             }
           } else if (this.size === 'large') {
-            if (len === 7) {
+            if (len === 5) {
               alert('can\'t select more')
               return false
             }
@@ -302,17 +302,16 @@ var type = new Vue({
 
               //ingredients: this.chosenIngredients,
               ingredients: order_ingredients,
-              volume: this.volume,
+       //       volume: this.volume,
               type: this.type,
               price: this.price
             };
                     
           // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-        console.log("HIII");
-        socket.emit('order', {orderId: getOrderNumber(), order: order});   
-            if (order.flavor!=undefined)
-                order.flavor = order.flavor["ingredient_"+this.lang];
-            
+        console.log("HIII"); 
+        if (order.flavor!=undefined)
+            order.flavor = order.flavor["ingredient_"+this.lang];
+        socket.emit('order', {orderId: getOrderNumber(), order: order});      
             
             window.location.href = '/mobile/cart' ;
         },

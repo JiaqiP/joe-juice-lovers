@@ -4,13 +4,13 @@
 
 Vue.component('ingredient', {
   props: ['item', 'type', 'lang','size'],
-  template: ` <div class="ingredient" style="margin: 5px;">
-                  <label @click="toggle">
-                    <img v-bind:src="item.image" width="30px" height="30px">
-                    {{item["ingredient_"+ lang]}}, {{item.stock}} pcs
-                  </label>
-                  <span style="float: right; v-align:bottom">{{ item.select ? 'selected': ''  }}</span>
-              </div>`,
+  template: ` <div  @click="toggle" class="ingredient" style="margin:2px; border:#bbbbbb 1px dashed; width: 95%;">
+            <label>
+            <img v-bind:src="item.image" width="30px" height="30px">
+            <span style="float: bottom;">{{ item["ingredient_"+ lang]}}</span>
+            </label>
+            <span style="float: right;">{{ item.select ? 'selected': ''  }}</span>
+        </div>`,
   data: function () {
     return {
     };
@@ -38,6 +38,7 @@ Vue.component('check_ingredients',{
     methods:{
         emit_delet_ingre_event:function(){
           this.$emit('delet_ingre_event',this.item);
+
         },
         emit_toggle_flavor_event () {
           this.$emit('toggle_flavor_event',this.item);
@@ -270,7 +271,7 @@ var type = new Vue({
           if (!this.flavor) {
             this.flavor = item;
             var index = this.ingredients.indexOf(item);
-            this.ingredients[index].flavor = true
+            this.ingredients[index].flavor = true;
           } else {
             if (this.flavor == item) {
               var index = this.ingredients.indexOf(this.flavor);
@@ -279,8 +280,8 @@ var type = new Vue({
             } else {
               var index = this.ingredients.indexOf(this.flavor);
               console.log(index);
-                console.log(this.lang);
-              console.log(this.flavor["ingredient_"+this.lang]);
+              console.log(this.lang);
+            console.log(this.flavor["ingredient_"+this.lang]);
               this.ingredients[index].flavor = false;
               this.flavor = item;
               var index = this.ingredients.indexOf(this.flavor);

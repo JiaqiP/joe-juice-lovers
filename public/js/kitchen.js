@@ -21,25 +21,37 @@ Vue.component('order-item-to-prepare', {
       this.$emit('done');
     },
     cancelOrder: function () {
-
     }
   }
 });
 
+var vm2 = new Vue({
+  el: '#total',
+  data: {
+    counter: 0
+  },
+  methods: {
+    increaseCounter(){
+      this.counter++;
+    },
+    decreaseCounter(){
+      this.counter--;
+    },
+  }
+});
 
 var vm = new Vue({
   el: '#orders',
-  mixins: [sharedVueStuff], // include stuff that is used both in the ordering system and in the kitchen
+  mixins: [sharedVueStuff, vm2], // include stuff that is used both in the ordering system and in the kitchen
   methods: {
     markDone: function (orderid) {
+      vm2.decreaseCounter();
       socket.emit("orderDone", orderid);
     }
   }
 });
 
-
-
-
+/*
 function openTab(evt, cityName) {
   // Declare all variables
   var i, tabcontent, tablinks;
@@ -60,24 +72,4 @@ function openTab(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-
-function openTab1(evt, cityName) {
-  // Declare all variables
-  var i, tabcontent, tablinks;
-
-  // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("tabcontent1");
-  for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-  }
-
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("tablinks1");
-  for (i = 0; i < tablinks1.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+*/

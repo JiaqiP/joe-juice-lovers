@@ -39,7 +39,7 @@ app.get('/kitchen2', function(req, res) {
 app.get('/stock', function(req, res) {
 	res.sendFile(path.join(__dirname, 'views/stock.html'));
 });
-app.get('/Rec', function (req, res) {
+app.get('/readymade', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/machine2.html'));
 });
 

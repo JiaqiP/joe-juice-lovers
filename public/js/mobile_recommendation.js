@@ -111,7 +111,10 @@ new Vue({
         }
       console.log("rec send to kitchen");
       console.log(order);
-        socket.emit('order', {orderId: this.id, order: order});
+       
+          
+          //Do not need direct send here any more
+          //socket.emit('order', {orderId: this.id, order: order});
           
         const item = {
           id: this.id,

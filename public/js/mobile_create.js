@@ -7,7 +7,7 @@ Vue.component('ingredient', {
   template: ` <div class="ingredient" style="margin: 5px;">
                   <label @click="toggle">
                     <img v-bind:src="item.image" width="30px" height="30px">
-                    {{item["ingredient_"+ lang]}}, {{item.selling_price}}:-, {{item.stock}} pcs
+                    {{item["ingredient_"+ lang]}}, {{item.stock}} pcs
                   </label>
                   <span style="float: right; v-align:bottom">{{ item.select ? 'selected': ''  }}</span>
               </div>`,
@@ -290,19 +290,20 @@ var type = new Vue({
         },
         
         toCart () {
-          this.storeData()
+          this.storeData();
+          window.location.href = '/mobile/cart' ;
+        }
+    }
+})
                         
-                                        
+/* Below is the code to send directly to kitchen which is not needed                                        
         var order_ingredients=this.chosenIngredients;   order_ingredients=order_ingredients.map(item=>item["ingredient_"+ this.lang]).join(", ");    
                     
                     
         var order = {
               size:this.size,
               flavor:this.flavor,
-
-              //ingredients: this.chosenIngredients,
               ingredients: order_ingredients,
-       //       volume: this.volume,
               type: this.type,
               price: this.price
             };
@@ -315,6 +316,9 @@ var type = new Vue({
             
             window.location.href = '/mobile/cart' ;
         },
+        
+        
+*/
 
 /*
         placeOrder: function () {
@@ -351,5 +355,4 @@ var type = new Vue({
             
 */
        
-    }
-})
+

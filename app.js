@@ -42,7 +42,9 @@ app.get('/stock', function(req, res) {
 app.get('/readymade', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/machine2.html'));
 });
-
+app.get('/machine', function(req, res) {
+	res.sendFile(path.join(__dirname, 'views/machine.html'));
+});
 // Serve machine-create your own as subpage --ivy
 app.get('/create', function(req, res) {
 	res.sendFile(path.join(__dirname, 'views/machine1.html'));

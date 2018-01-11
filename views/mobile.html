@@ -31,6 +31,9 @@
         color: #1b9af7;
         text-decoration:none;
       }
+        .language{
+            font-size: 20px;
+        }
         
         
     @media (max-width:300px) {
@@ -59,7 +62,7 @@
   <div id="app">
     <div>
       <div id="step">
-          <span align = "center"> <button class="button-rounded" v-on:click="switchLang()">{{ uiLabels.language }}</button></span>
+          <span align = "center"> <button class="button-rounded language" v-on:click="switchLang()">{{ uiLabels.language }}</button></span>
 
           <mini-cart :items="storegeData"></mini-cart>
       </div>

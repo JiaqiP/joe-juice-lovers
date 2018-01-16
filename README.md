@@ -19,9 +19,12 @@ mobile-cart.js contains the vue instance for the mobile-cart.html
 
 mobile-create.js contains the vue instance for mobile-create.html (which includes 3 pages in one page)(read seminar note 1 BONUS: CREATE "PAGES" WITHIN A PAGE for more information)
 
-mobile-recommendations contains the vue instance for mobile-recommendation.html
+mobile-recommendations.js contains the vue instance for mobile-recommendation.html
 
-mobile-common contains a component (shared between vue instances)for the small shopping cart button
+mobile-common.js contains a component (shared between vue instances)for the small shopping cart button
+
+
+mobile.js contains the vue instance for mobile.html(starting page)
 
 the multi-language functionality is implemented in juicifer-main.js
 

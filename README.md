@@ -12,7 +12,7 @@ localhost:3000
 
 ## Mobile view explanations
 
-1. the mobile view is multi-pages which means there are sever vue instances are used. Different pages uses localstorage of browser to store and pass data.
+1. the mobile view is multi-pages which means there are several vue instances are used. Different pages uses localstorage of browser to store and pass data.
 
 2. 
 mobile-cart.js contains the vue instance for the mobile-cart.html

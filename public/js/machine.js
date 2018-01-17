@@ -213,20 +213,25 @@ var vm = new Vue({
         cleanReadymade: function () {
             this.orderedReadymade = [];
         },
+
         orderReadymade: function () {
-            for (readymade in this.orderReadymade) {
-                order = {
-                    ingredients: readymade.rm_ingredients,
-                    size: readymade.size,
-                    type: readymade.type,
-                    price: readymade.price
+            for(i = 0; i < this.orderedReadymade.length;i++){
+
+                var drink = this.orderedReadymade[i];
+                
+                var order = {
+                    name: drink.rm_name,
+                    ingredients: drink.rm_ingredients,
+                    size: drink.size,
+                    type: drink.type,
+                    price: drink.price
                 };
-                // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-                socket.emit('order', {order: order});
+                socket.emit('cart', {orderId: getOrderNumber(), order});
             }
             this.price = 0;
-            this.orderReadymade = [];
-        },
+            this.orderedReadymade = [];
+        }, 
+
         placeOrder: function () {
             var i,
                 //Wrap the order in an object

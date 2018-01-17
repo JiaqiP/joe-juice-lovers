@@ -135,7 +135,9 @@ Data.prototype.addOrder = function (order) {
     //find out the currently highest transaction id
     transId =  transactions[transactions.length - 1].transaction_id,
     i = order.order.ingredients,
-    k;
+	k;
+
+	console.log(i);
     
   for (k = 0; k < i.length; k += 1) {
     transId += 1;
@@ -184,6 +186,7 @@ io.on('connection', function(socket) {
 	socket.on('order', function(order) {
 		orderNumb = orderNumb + 1; //create new orderID
 		order.orderId = "#" + orderNumb;
+		console.log(order);
 
 		data.addOrder(order);
 		// send updated info to all connected clients, note the use of io instead of socket

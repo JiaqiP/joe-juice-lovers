@@ -201,7 +201,23 @@ var vm = new Vue({
                 correctItem.size_tag = "L";
             //console.log(correctItem);
             }
-            this.orderedReadymade.push(correctItem);
+            correctItem.amount = 1;
+            var orderIndex = this.orderedReadymade.findIndex(
+                function (item) {
+                    return item.rm_id === correctItem.rm_id;
+                }
+            );
+            //if (orderIndex === -1)
+                this.orderedReadymade.push(correctItem);
+            /* For the future, update the internal number
+                else {
+                console.log(this.orderedReadymade[orderIndex]);
+                console.log('Increase amount...');
+                this.orderedReadymade[orderIndex].amount += 1;
+                console.log('New amount: ' + this.orderedReadymade[orderIndex].amount);
+                console.log(this.orderedReadymade[orderIndex]);
+            }
+            */
             this.price += item.selling_price;
         },
         deleteReadymade: function (item) {
@@ -214,18 +230,21 @@ var vm = new Vue({
             this.orderedReadymade = [];
         },
         orderReadymade: function () {
-            for (readymade in this.orderReadymade) {
-                order = {
+            for (var readymade in this.orderReadymade) {
+                var myOrder = {
                     ingredients: readymade.rm_ingredients,
                     size: readymade.size,
                     type: readymade.type,
                     price: readymade.price
                 };
                 // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-                socket.emit('order', {order: order});
+                console.log('Ordering: ' + readymade);
+                //socket.emit('order', {order: readymade});
+                socket.emit('order', {orderId: 0, order: myOrder});
             }
             this.price = 0;
             this.orderReadymade = [];
+            alert('Order done!');
         },
         placeOrder: function () {
             var i,

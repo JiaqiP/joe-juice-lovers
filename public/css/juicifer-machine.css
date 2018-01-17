@@ -6,38 +6,52 @@ body {
 
 .left {
     float: left;
-    margin-top: 2%;
+    margin-top: 0.5vw;
     width: 69.5%;
+
 }
 
 .right {
-    margin-top: 0%;
+    margin-top: 0.2vw;
     float:right;
     min-height: 90%;
     width: 29.5%;
 
 }
 
-/* Add a black background color to the top navigation */
+/* top navigation */
 .topnav {
-    background-color: orange;
+    /*background-color: orange;*/
     overflow: hidden;
+
+
 }
 
 /* Style the links inside the navigation bar */
 .topnav a {
+    border-top-left-radius: 2ch;
+    border-top-right-radius: 2ch;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(16, 116, 247);
+    
+
     float: left;
-    color: white;
+    color: rgb(16, 116, 247);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    
 }
 
 
 /* Add a color to the active/current link */
 .topnav a.active {
-    background-color: orangered;
+    
+    background-color: rgb(30, 116, 228);
+    border-style: solid;
+    border-width: 2px;
     color: white;
 }
 
@@ -354,4 +368,6 @@ a:link {
 }
 
 
-
+.mainscreen{
+    border: 3px solid rgb(30, 116, 228);
+}

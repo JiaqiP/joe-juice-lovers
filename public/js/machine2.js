@@ -7,8 +7,10 @@ function showCreation() {
     var delButton = document.getElementById('buttonDel');
     var listCYO = document.getElementById('list_CYO');
     // Focus creation button
-    document.getElementById("tag_R").style.backgroundColor = "orange";
-    document.getElementById("tag_C").style.backgroundColor = "orangered";
+    document.getElementById("tag_R").style.backgroundColor = "white";
+    document.getElementById("tag_R").style.color = "rgb(30, 116, 228)";
+    document.getElementById("tag_C").style.backgroundColor = "rgb(30, 116, 228)";
+    document.getElementById("tag_C").style.color = "white";
     // Set proper visibility
     creation.style.display = 'inline';
     recommendation.style.display = 'none';
@@ -22,8 +24,10 @@ function showRecommendation() {
     var delButton = document.getElementById('buttonDel');
     var listCYO = document.getElementById('list_CYO');
     // Focus creation button
-    document.getElementById("tag_C").style.backgroundColor = "orange";
-    document.getElementById("tag_R").style.backgroundColor = "orangered";
+    document.getElementById("tag_C").style.backgroundColor = "white";
+    document.getElementById("tag_C").style.color = "rgb(30, 116, 228)";
+    document.getElementById("tag_R").style.backgroundColor = "rgb(30, 116, 228)";
+    document.getElementById("tag_R").style.color = "white";
     // Set proper visibility
     creation.style.display = 'none';
     recommendation.style.display = 'inline';
@@ -61,7 +65,7 @@ Vue.component('orderedReadymade', {
         </td>\
         <td class="Oitem">{{ item.rm_name }}</td>\
         <td class="Osize">{{ item.size_tag }}</td>\
-        <td class="Oquantity">1</td>\
+        <td class="Oquantity">{{ item.amount }}</td>\
         <td class="Oprice">{{ item.price }}</td>\
         </tr>',
         methods: {

@@ -255,13 +255,31 @@ var vm = new Vue({
         }, 
 
         createJuice: function () {
+            
+            if (this.size === "small") {
+                this.price = 35;
+                this.size_tag = "S";
+            }
+            
+            else if (this.size === "medium"){
+                this.price = 40;
+                this.size_tag = "M";
+            }
+            
+            else if (this.size === "large"){
+                this.price = 50;
+                this.size_tag = "L";
+            }
             var juice = {
-                    name: "Juice"+ this.jn,
+                    name: "Juice "+ this.jn,
+                    rm_name: "Juice "+ this.jn,
                     ingredients: this.chosenIngredients,
                     volume: this.volume,
                     size: this.size,
+                    size_tag: this.size_tag,
                     type: this.type,
-                    price: this.price
+                    price: this.price,
+                    amount: 1
                 };
             
             this.orderedReadymade.push(juice);
@@ -276,6 +294,7 @@ var vm = new Vue({
             this.type = '';
             this.size = '';
             this.chosenIngredients = [];
+            this.jn++;
         },
 
         delete_ingredient:function(item){

@@ -97,7 +97,8 @@ var vm = new Vue({
         flag: false,
         last_id:[],
         flavor:[],
-        orderedReadymade: []
+        orderedReadymade: [],
+        jn: 0
     },
     methods: {
         addTypeToOrder:function(type) {
@@ -190,7 +191,11 @@ var vm = new Vue({
         addReadymade: function (item) {
             //console.log('addReadymade');
             var correctItem = item;
+
             correctItem.size = this.size;
+            correctItem.name = item.rm_name;
+            correctItem.ingredients = item.rm_ingredients;
+
             if (correctItem.size === "small") {
                 correctItem.price = 35;
                 correctItem.size_tag = "S";
@@ -237,8 +242,8 @@ var vm = new Vue({
                 var drink = this.orderedReadymade[i];
                 
                 var order = {
-                    name: drink.rm_name,
-                    ingredients: drink.rm_ingredients,
+                    name: drink.name,
+                    ingredients: drink.ingredients,
                     size: drink.size,
                     type: drink.type,
                     price: drink.price
@@ -249,27 +254,47 @@ var vm = new Vue({
             this.orderedReadymade = [];
         }, 
 
-        placeOrder: function () {
-            var i,
-                //Wrap the order in an object
-                order = {
+        createJuice: function () {
+            
+            if (this.size === "small") {
+                this.price = 35;
+                this.size_tag = "S";
+            }
+            
+            else if (this.size === "medium"){
+                this.price = 40;
+                this.size_tag = "M";
+            }
+            
+            else if (this.size === "large"){
+                this.price = 50;
+                this.size_tag = "L";
+            }
+            var juice = {
+                    name: "Juice "+ this.jn,
+                    rm_name: "Juice "+ this.jn,
                     ingredients: this.chosenIngredients,
                     volume: this.volume,
                     size: this.size,
+                    size_tag: this.size_tag,
                     type: this.type,
-                    price: this.price
+                    price: this.price,
+                    amount: 1
                 };
-            // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-            socket.emit('order', {orderId: getOrderNumber(), order: order});
+            
+            this.orderedReadymade.push(juice);
+
             //set all counters to 0. Notice the use of $refs
             for (i = 0; i < this.$refs.ingredient.length; i += 1) {
                 this.$refs.ingredient[i].resetCounter();
             }
+
             this.volume = 0;
             this.price = 0;
             this.type = '';
             this.size = '';
             this.chosenIngredients = [];
+            this.jn++;
         },
 
         delete_ingredient:function(item){

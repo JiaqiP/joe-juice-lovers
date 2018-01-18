@@ -420,11 +420,6 @@ a:link {
 
 /*update by Shania*/
 
-/* initial display screen without recommendation info */
-#recommendation {
-    display: none;
-}
-
 
 .mainscreen{
     border: 3px solid rgb(30, 116, 228);

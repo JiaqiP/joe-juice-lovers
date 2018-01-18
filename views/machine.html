@@ -11,8 +11,8 @@
     <script src="/vue/vue.js" defer></script>
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="js/juicifer-main.js" defer></script>
-    <script src="js/machine.js" defer></script>
     <script src="js/machine2.js" defer></script>
+    <script src="js/machine.js" defer></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
@@ -24,12 +24,12 @@
 
             <!--labels-->
             <div class="topnav" id="myTopnav">
-                <a href="#" id="tag_C" class="active" onclick="showCreation()">Create your own</a>
-                <a href="#" id="tag_R" onclick="showRecommendation()">Recommendation</a>
+                <a href="#" id="tag_C" class="active" v-on:click="vueShowCreation()">Create your own</a>
+                <a href="#" id="tag_R" v-on:click="vueShowReccomendation()">Recommendation</a>
             </div>
             <div class="mainscreen">
                 <!--create your own screen-->
-                <div id="creation">
+                <div id="creation" v-if="!show_reccomendation">
                     <!--choosing type-->
                     <p class="description" id="notation1" v-on:click="showType()">{{ uiLabels.first_note }}</p>
                     <div id="ctype" class="button-group" v-if="show_type">
@@ -99,7 +99,7 @@
                 </div>
 
                 <!--recommendtation-->
-                <div id="recommendation">
+                <div id="recommendation" v-if="show_reccomendation">
 
                     <!--choosing size-->
                     <p class="description" id="notation_size" v-if="show_size">{{ uiLabels.note_size }}</p>
@@ -184,7 +184,7 @@
 
 
                 <!--<h1>{{ uiLabels.order }}</h1>-->
-                <div id="list_CYO">
+                <div id="list_CYO" v-if="!show_reccomendation">
                     <div v-if="show_ingredient">
                         <h3>{{this.size}} {{this.type}}</h3>
                         <div id="info">
@@ -220,7 +220,7 @@
                 </div>
 
 
-                <button class="listbutton" id="buttonDel" v-on:click="cleanReadymade()"> RESET </button>
+                <button class="listbutton" id="buttonDel" v-if="show_reccomendation" v-on:click="cleanReadymade()"> RESET </button>
                 <button class="listbutton" id="buttonPay" v-on:click="orderReadymade()"> PAY</button>
             </div>
 

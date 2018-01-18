@@ -12,10 +12,12 @@ function showCreation() {
     document.getElementById("tag_C").style.backgroundColor = "rgb(30, 116, 228)";
     document.getElementById("tag_C").style.color = "white";
     // Set proper visibility
+    /*
     creation.style.display = 'inline';
     recommendation.style.display = 'none';
     listCYO.style.display = 'inline';
     delButton.style.display = 'none';
+    */
 }
 function showRecommendation() {
     // Get stuff
@@ -29,10 +31,12 @@ function showRecommendation() {
     document.getElementById("tag_R").style.backgroundColor = "rgb(30, 116, 228)";
     document.getElementById("tag_R").style.color = "white";
     // Set proper visibility
+    /*
     creation.style.display = 'none';
     recommendation.style.display = 'inline';
     listCYO.style.display = 'none';
     delButton.style.display = 'inline';
+    */
 }
 /* show products */
 Vue.component('readymade', {

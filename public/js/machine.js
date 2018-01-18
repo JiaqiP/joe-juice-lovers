@@ -93,6 +93,7 @@ var vm = new Vue({
         show_ingredient:false,
         show_options: false,
         show_border:false,
+        show_reccomendation: false,
         flag: false,
         last_id:[],
         flavor:[],
@@ -296,7 +297,14 @@ var vm = new Vue({
             //...
 
         },
-        
+        vueShowCreation: function () {
+            showCreation();
+            this.show_reccomendation = false;
+        },
+        vueShowReccomendation: function () {
+            showRecommendation();
+            this.show_reccomendation = true;
+        }
     }
 }
 

@@ -7,9 +7,9 @@
 
 Vue.component('ingredient', {
     props: ['item', 'type', 'lang'],
-    template: ' <div class="ingredient">\
+    template: '<div class="ingredient">\
                   <label>\
-                    <h3>{{ item["ingredient_en"]}}</h3> \
+                    <h3>{{ item.ingredient_en }}</h3> \
                     <img v-bind:src="item.image">\
                     <h4>{{item.selling_price}}SEK</h4>\
                     \
@@ -21,13 +21,13 @@ Vue.component('ingredient', {
     data: function () {
         return {
             counter: 0,
-            string:""
+            string: ""
         };
     },
     methods: {
         incrementCounter: function () {
             var i_flag = this.counter;
-            this.counter = i_flag === 1?0:1;
+            this.counter = i_flag === 1 ? 0 : 1;
             if(i_flag) {
                 this.string="Select";
             } else {
@@ -42,6 +42,7 @@ Vue.component('ingredient', {
         },
         resetCounter: function () {
             this.counter = 0;
+            this.string = "";
         }
     }
 });
@@ -137,6 +138,14 @@ var vm = new Vue({
             // Else people can keep more ingredients for lower prices!!!
             // Pick up them again
             this.chosenIngredients = [];
+            // Really horrible stuff... But someone has to do it.
+            // Access directly the elements and reset their counters...!
+            this.$children.filter(
+                x => x.$el.className == "ingredient" && x.counter != 0
+            ).map(
+                x => x.resetCounter()
+            );
+            //this.$emit('resetCounter');
         },
         addToOrder: function (item) {
             console.log(this.size);
@@ -305,7 +314,13 @@ var vm = new Vue({
             //console.log("gggggggg");
             console.log(item);
             var index=this.chosenIngredients.indexOf(item);
-            this.chosenIngredients.splice(index,1);
+            this.chosenIngredients.splice(index, 1);
+            // Reset the counter of the removed ingredient
+            this.$children.filter(
+                x => x.item.ingredient_id == item.ingredient_id && x.$el.className == "ingredient"
+            ).map(
+                x => x.resetCounter()
+            );
         },
         toggleFlavor: function(item) {
             console.log(this.flavor);

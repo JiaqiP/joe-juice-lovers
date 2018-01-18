@@ -24,8 +24,8 @@
 
             <!--labels-->
             <div class="topnav" id="myTopnav">
-                <a href="#" id="tag_C" class="active" v-on:click="vueShowCreation()">Create your own</a>
-                <a href="#" id="tag_R" v-on:click="vueShowReccomendation()">Recommendation</a>
+                <a href="#" id="tag_C" v-bind:class="{active: !show_reccomendation}" v-on:click="vueShowCreation()">Create your own</a>
+                <a href="#" id="tag_R" v-bind:class="{active: show_reccomendation}" v-on:click="vueShowReccomendation()">Recommendation</a>
             </div>
             <div class="mainscreen">
                 <!--create your own screen-->
@@ -37,22 +37,25 @@
                         <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('juice')">{{ uiLabels.juice }}</p>
                     </div>
                     <p class="description" id="notation2" v-on:click="showSize()"></p>
-                    
+
                     <!--choosing size-->
                     <div id="csize" class="button-group" v-if="show_size">
                         <button type="button" class="button button-rounded" v-on:click="addSizeToOrder('small')">
-                        <img src="../pics/small_size.png" height="70vh">
-                        <h3>SEK 35<br>300 ml</h3>
+                            <img src="../pics/small_size.png" height="70vh">
+                            <h3>SEK 35
+                                <br>300 ml</h3>
                         </button>
-                     
-                        <button  type="button" class="button button-rounded" v-on:click="addSizeToOrder('medium')">
+
+                        <button type="button" class="button button-rounded" v-on:click="addSizeToOrder('medium')">
                             <img src="../pics/medium_size.png" height="90vh">
-                            <h3>SEK 40<br>375 ml</h3>                         
+                            <h3>SEK 40
+                                <br>375 ml</h3>
                         </button>
 
                         <button type="button" class="button button-rounded" v-on:click="addSizeToOrder('large')">
                             <img src="../pics/large_size.png" height="110vh">
-                            <h3>SEK 45<br>500 ml</h3>
+                            <h3>SEK 45
+                                <br>500 ml</h3>
                         </button>
                     </div>
 
@@ -105,26 +108,29 @@
                     <p class="description" id="notation_size" v-if="show_size">{{ uiLabels.note_size }}</p>
                     <p class="description" id="notation_restart" v-if="show_options" v-on:click="showSize()">{{ uiLabels.note_restart }}</p>
                     <div id="rm_size" class="button-group" v-if="show_size">
-                        
-                        <button type="button" class="button button-rounded" v-on:click="chooseReadymadeSize('small')">
-                            <img src="pics/small_size.png" height="70vh" >
-                            <h3>SEK 35 <br> 300 ml</h3>
+
+                        <button type="button" class="button button-rounded" v-on:click="chooseReadymadeSize('small')" v-bind:class="{ active_button: (size == 'small') }">
+                            <img src="pics/small_size.png" height="70vh">
+                            <h3>SEK 35
+                                <br> 300 ml</h3>
                         </button>
 
-                        <button type="button" class="button button-rounded" v-on:click="chooseReadymadeSize('medium')">
+                        <button type="button" class="button button-rounded" v-on:click="chooseReadymadeSize('medium')" v-bind:class="{ active_button: (size == 'medium') }">
                             <img src="pics/medium_size.png" height="90vh">
-                            <h3>SEK 40 <br> 400 ml</h3>
+                            <h3>SEK 40
+                                <br> 400 ml</h3>
                         </button>
 
-                        <button type="button" class="button button-rounded" v-on:click="chooseReadymadeSize('medium')">
-                                <img src="pics/large_size.png" height="90vh">
-                                <h3>SEK 50 <br> 500 ml</h3>
+                        <button type="button" class="button button-rounded" v-on:click="chooseReadymadeSize('large')" v-bind:class="{ active_button: (size == 'large') }">
+                            <img src="pics/large_size.png" height="90vh">
+                            <h3>SEK 50
+                                <br> 500 ml</h3>
                         </button>
-                                            
+
                         <p type="button" id=confrimbtn class="comfirmbtn" v-if="show_size" v-on:click="confirmReadymadeSize()"> Confirm</p>
 
                     </div>
-                    
+
 
                     <!--choosing products-->
                     <div class="togglebox" v-if="show_options">

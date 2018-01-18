@@ -6,9 +6,9 @@
 
 
 /*showing products*/
-#toggle_juice:checked ~ label[for*='1']:after,
-#toggle_smoothie:checked ~ label[for*='2']:after,
-#toggle_others:checked ~ label[for*='3']:after,
+#toggle_juice:checked ~ label[for*='juice']:after,
+#toggle_smoothie:checked ~ label[for*='smoothie']:after,
+#toggle_others:checked ~ label[for*='others']:after,
 #toggle_tmp:checked ~ label[for*='4']:after {
     transform: rotate(0deg);
 }
@@ -28,25 +28,38 @@
     margin:1vh;
     display:inline-block;
     position:relative;
-    background-color: #b9e563;
-
+    background-color:white;
+    border:solid 2px;
+    border-color: rgb(30, 116, 228);
+    color:rgb(30, 116, 228);
+    float:left;
+    font-size:2vh;
 }
 #content_smoothie label{
     width: 30vh;
     height : 30vh;
-    margin:15px;
+    margin:1vh;
     display:inline-block;
     position:relative;
-    background-color: #b9e563;
-
+    background-color:white;
+    border:solid 2px;
+    border-color: rgb(30, 116, 228);
+    color:rgb(30, 116, 228);
+    float:left;
+    font-size:2vh;
 }
 #content_others label{
     width: 30vh;
     height : 30vh;
-    margin:15px;
+    margin:1vh;
     display:inline-block;
     position:relative;
-    background-color: #b9e563;
+    background-color:white;
+    border:solid 2px;
+    border-color: rgb(30, 116, 228);
+    color:rgb(30, 116, 228);
+    float:left;
+    font-size:2vh;
 
 }
 
@@ -77,8 +90,9 @@
 }
 
 .readymade h4{
-    margin-top: -35px;
-    margin-bottom: -30px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    line-height: 15px;
 }
 
 .readymade div{
@@ -150,25 +164,40 @@
     width:100%;
 }
 
+
 #rm_size button{
-    width: 33%;
+    width: 32%;
+    height: 22vh;
     margin-right:2px;
     margin-top: 0.5em;
-    border:dashed;
-    border-color:#336699;
-    height: auto;
+    border:solid;
+    background-color: white;
+    border-color:rgb(30, 116, 228);
+    margin-right:0%;
+    margin-left:1%;
     padding-top: 1em;
     padding-bottom: 0.5em;
+    border-radius: 3vh;
 }
 
 #rm_size button:active, visited{
-    background-color: #febc44;
+    border:solid;
+    border-color: rgb(255, 137, 0);
+    border-radius: 3vh;
 }
 
 #rm_size img{
-    height: 8em;
+    margin: 0% 0% 0% 10%;
+    float: left;
+
 }
 
+
+#rm_size h3{
+    margin: 0% 25% 0% 0%;
+    text-align: right;
+    
+}
 
 
 /* Order List */
@@ -196,4 +225,17 @@
     color: #CD5C5C;
     font-size: 300%;
     margin: 1% 1% 1% 1%;
+}
+
+#confrimbtn{
+    border:solid 1px;
+    border-color: rgb(66, 66, 66);
+    border-radius: 1vh;
+    background-color: #febc44;
+    width:20vh;
+    height: 4vh;
+    float:right;
+    text-align: center;
+    font-size:3vh;
+    margin-right: 2vh;
 }

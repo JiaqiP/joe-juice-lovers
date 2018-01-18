@@ -104,14 +104,14 @@ var vm = new Vue({
         addTypeToOrder:function(type) {
             this.type = type;
             console.log(this.type);
-            this.show_size=true;
+            //this.show_size=true;
         },
         addSizeToOrder:function(size) {
             this.size = size;
             console.log(this.size);
-            this.show_ingredient = true;
-            this.show_type = false;
-            document.getElementById("notation3").innerHTML="Then choose your ingredients...";
+            //this.show_ingredient = true;
+            //this.show_type = false;
+            //document.getElementById("notation3").innerHTML="Then choose your ingredients...";
         },
         chooseReadymadeSize: function(size) {
             this.size = size;
@@ -133,6 +133,10 @@ var vm = new Vue({
         confirmSizeType: function() {
             this.show_type = false;
             this.show_size = false;
+            this.show_ingredient = true;
+            // Else people can keep more ingredients for lower prices!!!
+            // Pick up them again
+            this.chosenIngredients = [];
         },
         addToOrder: function (item) {
             console.log(this.size);
@@ -361,11 +365,11 @@ function isRepeated(temp, arr) {
     return false;
 }
 
+/*
 var btnlist = document.getElementById('ctype').getElementsByTagName('p');
 console.log("show button");
 console.log(btnlist);
 var i=0;
-
 
 for(var i=0; i<btnlist.length; i++) {
     btnlist[i].addEventListener('click',function(){
@@ -378,3 +382,4 @@ for(var i=0; i<btnlist.length; i++) {
         //this.css("width", "200px");
     });
 }
+*/

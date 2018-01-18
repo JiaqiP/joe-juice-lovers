@@ -30,12 +30,14 @@
                 <!--create your own screen-->
                 <div id="creation" v-if="!show_reccomendation">
                     <!--choosing type-->
-                    <p class="description" id="notation1" v-on:click="showType()">{{ uiLabels.first_note }}</p>
+                    <p class="description" id="notation1" v-if="show_type">{{ uiLabels.first_note }}</p>
+                    <p class="description" id="notation1" v-if="!show_type" v-on:click="showType()">Change type!</p>
                     <div id="ctype" class="button-group" v-if="show_type">
                         <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('smoothie')" v-bind:class="{onclick: type == 'smoothie', offclick: type == 'juice'}"> {{ uiLabels.smoothie }}</p>
                         <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('juice')" v-bind:class="{onclick: type == 'juice', offclick: type == 'smoothie'}">{{ uiLabels.juice }}</p>
                     </div>
-                    <p class="description" id="notation2" v-on:click="showSize()"></p>
+                    <p class="description" id="notation2" v-if="show_size">{{ uiLabels.note_size }}</p>
+                    <p class="description" id="notation2" v-if="!show_size" v-on:click="showSize()">Change size!</p>
 
                     <!--choosing size-->
                     <div id="csize" class="button-group" v-if="show_size">
@@ -58,7 +60,7 @@
                         </button>
                     </div>
 
-                    <div class="description" v-if="show_size">
+                    <div class="description" v-if="show_size || show_type">
                         <h2>Note:
                             <br/>Maximum ingredients limit</h2>
                         <h3>
@@ -67,10 +69,10 @@
                             <br/> 5 ingredients in L size
                             <br/>
                         </h3>
-                        <button class="comfirmbtn" v-on:click="confirmSizeType()">confirm</button>
+                        <button class="comfirmbtn" v-on:click="confirmSizeType()">Confirm</button>
                     </div>
                     <!--choosing ingredients-->
-                    <p class="description" id="notation3"></p>
+                    <p class="description" id="notation3" v-if="show_ingredient">Then choose your ingredients...</p>
                     <div class="togglebox" v-if="show_ingredient">
                         <input id="toggle1" type="radio" name="toggle" />
                         <label class="special" for="toggle1">Fruits</label>

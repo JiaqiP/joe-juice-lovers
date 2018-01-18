@@ -102,6 +102,8 @@
     word-break: break-all;
     margin: 1% 1% 1% 1%;
     text-align: center;
+    max-height: 25vh;
+    overflow: scroll;
     /*border-bottom: 1.5px solid;*/
 }
 .Odel_check{
@@ -118,6 +120,17 @@
 }
 .Oprice{
     width: 5%;
+}
+
+#order-queue {
+    word-break: break-all;
+    margin: 1% 1% 1% 1%;
+    max-height: 30vh;
+    overflow: scroll;
+    /*
+    top: 50%;
+    border-bottom: 1.5px solid;
+    */
 }
 
 .listbutton{
@@ -210,7 +223,7 @@
    
 }
 
-#list-title{
+.list-title{
     font-family: Trattatello, fantasy;
     text-decoration:underline;
     text-align: center;

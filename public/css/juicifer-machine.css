@@ -1,6 +1,7 @@
 
 body {
     font-family: Arial;
+    height: 100%;
 }
 
 
@@ -8,14 +9,16 @@ body {
     float: left;
     margin-top: 1vh;
     width: 69.5%;
-
 }
 
 .right {
-    float:right;
+    float: right;
     min-height: 90%;
     width: 29.5%;
-
+    /*
+    max-height: 95%;
+    overflow: scroll;
+    */
 }
 
 /* top navigation */

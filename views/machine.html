@@ -33,7 +33,8 @@
                     <p class="description" id="notation1" v-if="show_type">{{ uiLabels.first_note }}</p>
                     <p class="description" id="notation1" v-if="!show_type" v-on:click="showType()">Change type!</p>
                     <div id="ctype" class="button-group" v-if="show_type">
-                        <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('smoothie')" v-bind:class="{onclick: type == 'smoothie', offclick: type == 'juice'}"> {{ uiLabels.smoothie }}</p>
+                        <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('smoothie')" v-bind:class="{onclick: type == 'smoothie', offclick: type == 'juice'}">
+                            {{ uiLabels.smoothie }}</p>
                         <p type="button" class="button button-rounded" v-on:click="addTypeToOrder('juice')" v-bind:class="{onclick: type == 'juice', offclick: type == 'smoothie'}">{{ uiLabels.juice }}</p>
                     </div>
                     <p class="description" id="notation2" v-if="show_size">{{ uiLabels.note_size }}</p>
@@ -174,24 +175,27 @@
             </div>
             <!--orderlist-->
             <div id="OrderList">
-                <p id="list-title">{{ uiLabels.order }}</p>
-                <table id="list">
-                    <tr>
-                        <th class="Odel_check">
-                            <img src="images/trashcan_useful.png" width="20px">
-                        </th>
-                        <th class="Oitem">Item</th>
-                        <th class="Osize">Size</th>
-                        <th class="Oquantity">Quantity</th>
-                        <th class="Oprice">Price</th>
-                    </tr>
-                    <tr is="orderedReadymade" v-for="item in orderedReadymade" :item="item" :lang="lang" :key="item.rm_id" v-on:delete="deleteReadymade(item)">
-                    </tr>
-                </table>
+                <p class="list-title">{{ uiLabels.order }}</p>
+                <div id="list">
+                    <table>
+                        <tr>
+                            <th class="Odel_check">
+                                <img src="images/trashcan_useful.png" width="20px">
+                            </th>
+                            <th class="Oitem">Item</th>
+                            <th class="Osize">Size</th>
+                            <th class="Oquantity">Quantity</th>
+                            <th class="Oprice">Price</th>
+                        </tr>
+                        <tr is="orderedReadymade" v-for="item in orderedReadymade" :item="item" :lang="lang" :key="item.rm_id" v-on:delete="deleteReadymade(item)">
+                        </tr>
+                    </table>
+                </div>
+
 
 
                 <!--<h1>{{ uiLabels.order }}</h1>-->
-                <div id="list_CYO" v-if="!show_reccomendation">
+                <div id="list_CYO">
                     <div v-if="show_ingredient">
                         <h3>{{this.size}} {{this.type}}</h3>
                         <div id="info">
@@ -208,21 +212,29 @@
                             </div>
 
                         </div>
+                        <button v-on:click="createJuice()">{{ uiLabels.confirm }}</button>
                     </div>
-                    <button v-on:click="createJuice()">{{ uiLabels.confirm }}</button>
 
-                    <h1>{{ uiLabels.ordersInQueue }}</h1>
-                    <h2>{{ uiLabels.smoothie }}</h2>
-                    <div>
-                        <order-item1 v-for="(order, key) in orders" v-if="!order.done && order.type == 'smoothie'" :order-id="key" :order="order"
-                            :ui-labels="uiLabels" :lang="lang" :key="key">
-                        </order-item1>
-                    </div>
-                    <h2>{{ uiLabels.juice }}</h2>
-                    <div>
-                        <order-item1 v-for="(order, key) in orders" v-if="!order.done && order.type == 'juice'" :order-id="key" :order="order" :ui-labels="uiLabels"
-                            :lang="lang" :key="key">
-                        </order-item1>
+                    <p class="list-title">{{ uiLabels.ordersInQueue }}</p>
+                    <div id="order-queue">
+                        <h3>{{ uiLabels.smoothie }}:</h3>
+                        <div>
+                            <order-item1 v-for="(order, key) in orders" v-if="!order.done && order.type == 'smoothie'" :order-id="key" :order="order"
+                                :ui-labels="uiLabels" :lang="lang" :key="key">
+                            </order-item1>
+                        </div>
+                        <h3>{{ uiLabels.juice }}:</h3>
+                        <div>
+                            <order-item1 v-for="(order, key) in orders" v-if="!order.done && order.type == 'juice'" :order-id="key" :order="order" :ui-labels="uiLabels"
+                                :lang="lang" :key="key">
+                            </order-item1>
+                        </div>
+                        <h3>Readymade:</h3>
+                        <div>
+                            <order-item v-for="(order, key) in orders" v-if="!order.done && order.type == 'readymade'" :order-id="key" :order="order"
+                                :ui-labels="uiLabels" :lang="lang" :key="key">
+                            </order-item>
+                        </div>
                     </div>
                 </div>
 

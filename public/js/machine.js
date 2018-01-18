@@ -99,7 +99,7 @@ var vm = new Vue({
         last_id:[],
         flavor:[],
         orderedReadymade: [],
-        jn: 0
+        jn: 1
     },
     methods: {
         addTypeToOrder:function(type) {
@@ -221,6 +221,7 @@ var vm = new Vue({
             //console.log(correctItem);
             }
             correctItem.amount = 1;
+            correctItem.type = 'readymade';
             var orderIndex = this.orderedReadymade.findIndex(
                 function (item) {
                     return item.rm_id === correctItem.rm_id;
@@ -250,7 +251,7 @@ var vm = new Vue({
         },
 
         orderReadymade: function () {
-            for(i = 0; i < this.orderedReadymade.length;i++){
+            for(var i = 0; i < this.orderedReadymade.length;i++){
 
                 var drink = this.orderedReadymade[i];
                 
@@ -265,6 +266,7 @@ var vm = new Vue({
             }
             this.price = 0;
             this.orderedReadymade = [];
+            alert('Order done!');
         }, 
 
         createJuice: function () {
@@ -298,7 +300,7 @@ var vm = new Vue({
             this.orderedReadymade.push(juice);
 
             //set all counters to 0. Notice the use of $refs
-            for (i = 0; i < this.$refs.ingredient.length; i += 1) {
+            for (var i = 0; i < this.$refs.ingredient.length; i += 1) {
                 this.$refs.ingredient[i].resetCounter();
             }
 
@@ -358,7 +360,7 @@ var vm = new Vue({
             this.flag =  false;
             this.last_id = [];
             this.flavor = [];
-            this.orderedReadymade = [];
+            //this.orderedReadymade = [];
             this.size = '';
         }
     }

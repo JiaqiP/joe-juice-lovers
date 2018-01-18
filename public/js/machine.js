@@ -96,7 +96,8 @@ var vm = new Vue({
         flag: false,
         last_id:[],
         flavor:[],
-        orderedReadymade: []
+        orderedReadymade: [],
+        jn: 0
     },
     methods: {
         addTypeToOrder:function(type) {
@@ -189,7 +190,11 @@ var vm = new Vue({
         addReadymade: function (item) {
             //console.log('addReadymade');
             var correctItem = item;
+
             correctItem.size = this.size;
+            correctItem.name = item.rm_name;
+            correctItem.ingredients = item.rm_ingredients;
+
             if (correctItem.size === "small") {
                 correctItem.price = 35;
                 correctItem.size_tag = "S";
@@ -236,8 +241,8 @@ var vm = new Vue({
                 var drink = this.orderedReadymade[i];
                 
                 var order = {
-                    name: drink.rm_name,
-                    ingredients: drink.rm_ingredients,
+                    name: drink.name,
+                    ingredients: drink.ingredients,
                     size: drink.size,
                     type: drink.type,
                     price: drink.price
@@ -248,22 +253,23 @@ var vm = new Vue({
             this.orderedReadymade = [];
         }, 
 
-        placeOrder: function () {
-            var i,
-                //Wrap the order in an object
-                order = {
+        createJuice: function () {
+            var juice = {
+                    name: "Juice"+ this.jn,
                     ingredients: this.chosenIngredients,
                     volume: this.volume,
                     size: this.size,
                     type: this.type,
                     price: this.price
                 };
-            // make use of socket.io's magic to send the stuff to the kitchen via the server (app.js)
-            socket.emit('order', {orderId: getOrderNumber(), order: order});
+            
+            this.orderedReadymade.push(juice);
+
             //set all counters to 0. Notice the use of $refs
             for (i = 0; i < this.$refs.ingredient.length; i += 1) {
                 this.$refs.ingredient[i].resetCounter();
             }
+
             this.volume = 0;
             this.price = 0;
             this.type = '';

@@ -154,7 +154,7 @@ onclick.button {
 }
 
 
-#csize button:active, visited{
+#csize .active_button {
     border:solid;
     border-color: rgb(255, 137, 0);
     border-radius: 3vh;

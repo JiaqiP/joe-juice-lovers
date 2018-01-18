@@ -140,7 +140,6 @@
 }
 
 #buttonDel{
-    display: none;
     background-color: #C0C0C0;
     border: 1.5px solid #4682B4;
     float: left;
@@ -233,22 +232,22 @@
     margin-right: 2vh;
 }
 
-#tag_R {
+#tag_R a {
     background-color: white;
     color: rgb(30, 116, 228);
 }
 
-#tag_R .active {
+#tag_R a.active {
     background-color: rgb(30, 116, 228);
     color: white;   
 }
 
-#tag_C {
+#tag_C a {
     background-color: white;
     color: rgb(30, 116, 228);
 }
 
-#tag_C .active {
+#tag_C a.active {
     background-color: rgb(30, 116, 228);
     color: white;
 }

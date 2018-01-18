@@ -291,13 +291,31 @@ var vm = new Vue({
             //...
 
         },
-        vueShowCreation: function () {
-            showCreation();
+        showCreation: function () {
+            this.resetStatus();
             this.show_reccomendation = false;
         },
-        vueShowReccomendation: function () {
-            showRecommendation();
+        showReccomendation: function () {
+            this.resetStatus();
             this.show_reccomendation = true;
+        },
+        resetStatus: function () {
+            // Reset the data to the initial state
+            this.type =  '';
+            this.chosenIngredients = [];
+            this.volume = 0;
+            this.price = 0;
+            this.show_size = true;
+            this.show_type = true;
+            this.show_ingredient = false;
+            this.show_options =  false;
+            this.show_border = false;
+            this.show_reccomendation =  false;
+            this.flag =  false;
+            this.last_id = [];
+            this.flavor = [];
+            this.orderedReadymade = [];
+            this.size = '';
         }
     }
 }

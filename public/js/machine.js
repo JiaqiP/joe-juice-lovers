@@ -25,10 +25,10 @@ Vue.component('ingredient', {
         incrementCounter: function () {
             var i_flag = this.counter;
             this.counter = i_flag === 1 ? 0 : 1;
-            if(i_flag) {
-                this.string="Select";
+            if (i_flag) {
+                this.string = "Select";
             } else {
-                this.string="Delete";
+                this.string = "Delete";
             }
             this.$emit('increment');
         },
@@ -47,20 +47,20 @@ Vue.component('ingredient', {
 
 
 
-Vue.component('check_ingredients',{
-    props:['item','lang'],
+Vue.component('check_ingredients', {
+    props: ['item', 'lang'],
     template: '<div id="modify_ingredients">\
             <img v-bind:src="item.image" width="20px" height="20px">\
             <span align="center">{{ item["ingredient_"+ lang]}}</span>\
             <button v-on:click="beMainFlavor(item)" class="button button-plain"><i class="fa fa-heart-o"></i></button>\
             <button v-on:click="emit_delet_ingre_event" class="button button-plain"><i class="fa fa-trash" aria-hidden="true"></i></button>\
             </div>',
-    methods:{
-        emit_delet_ingre_event:function(){
-            this.$emit('delet_ingre_event',this.item);
+    methods: {
+        emit_delet_ingre_event: function () {
+            this.$emit('delet_ingre_event', this.item);
         },
         emit_toggle_flavor_event: function () {
-            this.$emit('toggle_flavor_event',this.item);
+            this.$emit('toggle_flavor_event', this.item);
         }
 
         //mainflavor
@@ -87,56 +87,56 @@ var vm = new Vue({
         chosenIngredients: [],
         volume: 0,
         price: 0,
-        show_size:true,
-        show_type:true,
-        show_ingredient:false,
+        show_size: true,
+        show_type: true,
+        show_ingredient: false,
         show_options: false,
-        show_border:false,
+        show_border: false,
         show_reccomendation: false,
         flag: false,
-        last_id:[],
-        flavor:[],
+        last_id: [],
+        flavor: [],
         orderedReadymade: [],
         jn: 1
     },
     methods: {
-        addTypeToOrder:function(type) {
+        addTypeToOrder: function (type) {
             this.type = type;
             console.log(this.type);
             //this.show_size=true;
         },
-        addSizeToOrder:function(size) {
+        addSizeToOrder: function (size) {
             this.size = size;
             console.log(this.size);
             //this.show_ingredient = true;
             //this.show_type = false;
             //document.getElementById("notation3").innerHTML="Then choose your ingredients...";
         },
-        chooseReadymadeSize: function(size) {
+        chooseReadymadeSize: function (size) {
             this.size = size;
             //console.log(this.size);
         },
-        confirmReadymadeSize: function() {
+        confirmReadymadeSize: function () {
             if (this.size == '' //||
                 // For some strange reason, initially size is not initialized. Consider that
                 //this.size === undefined
-                )
+            )
                 alert('Please choose the size!');
             else {
                 this.show_options = true;
                 this.show_size = false;
             }
         },
-        reset: function() {
+        reset: function () {
             // Can and should be adjusted to work also for create your own
             this.size = "";
         },
-        showType:function() {this.show_type = true;},
-        showSize: function() {
+        showType: function () { this.show_type = true; },
+        showSize: function () {
             this.show_size = true;
             this.show_options = false;
         },
-        confirmSizeType: function() {
+        confirmSizeType: function () {
             if (this.type == '' || this.size == '' ||
                 // For some strange reason, initially size is not initialized. Consider that
                 this.size === undefined)
@@ -154,7 +154,7 @@ var vm = new Vue({
                     x => x.$el.className == "ingredient" && x.counter != 0
                 ).map(
                     x => x.resetCounter()
-                );
+                    );
                 //this.$emit('resetCounter');
             }
         },
@@ -162,30 +162,30 @@ var vm = new Vue({
             console.log(this.size);
             var size = this.size;
             var max_num = 0;
-            if(size=="small"){
+            if (size == "small") {
                 max_num = 3;
-            } else if (size=="medium") {
+            } else if (size == "medium") {
                 max_num = 4;
             } else {
-                max_num =5;
+                max_num = 5;
             }
             //this.flag = this.flag === true?false:true;
             var temp_id = item.ingredient_id;
             console.log("check index");
             console.log(this.chosenIngredients.indexOf(item));
-            if(this.chosenIngredients.indexOf(item)==-1) {
+            if (this.chosenIngredients.indexOf(item) == -1) {
                 this.flag = true;
                 this.last_id.push[temp_id];
                 console.log(this.last_id[0]);
             } else {
-                this.flag=false;
+                this.flag = false;
             }
             //to store ingredient ids
 
             //console.log(this.flag);
             //console.log("log item id");
             //console.log(item.ingredient_id);
-            if(this.flag) {
+            if (this.flag) {
                 this.chosenIngredients.push(item);
             }
             else {
@@ -193,14 +193,14 @@ var vm = new Vue({
                 console.log(this.chosenIngredients.ingredient_id);
                 //remove it from last_id[]
                 //this.last_id.splice(isRepeated(temp_id,this.last_id),1);
-                var index=this.chosenIngredients.indexOf(item);
-                this.chosenIngredients.splice(index,1);
+                var index = this.chosenIngredients.indexOf(item);
+                this.chosenIngredients.splice(index, 1);
             }
 
-            if(this.chosenIngredients.length > max_num) {
-                var string_alert="Maximum number of ingredients is " + max_num + " for " + this.size + " size.";
+            if (this.chosenIngredients.length > max_num) {
+                var string_alert = "Maximum number of ingredients is " + max_num + " for " + this.size + " size.";
                 alert(string_alert);
-                this.chosenIngredients.splice(this.chosenIngredients.length-1,1);
+                this.chosenIngredients.splice(this.chosenIngredients.length - 1, 1);
             }
             //this.chosenIngredients.push(item);
             //console.log(this.chosenIngredients[0].ingredient_id);
@@ -223,13 +223,13 @@ var vm = new Vue({
             if (correctItem.size === "small") {
                 correctItem.price = 35;
                 correctItem.size_tag = "S";
-            } else if (correctItem.size === "medium"){
+            } else if (correctItem.size === "medium") {
                 correctItem.price = 40;
                 correctItem.size_tag = "M";
-            } else if (correctItem.size === "large"){
+            } else if (correctItem.size === "large") {
                 correctItem.price = 50;
                 correctItem.size_tag = "L";
-            //console.log(correctItem);
+                //console.log(correctItem);
             }
             correctItem.amount = 1;
             correctItem.type = 'readymade';
@@ -239,7 +239,7 @@ var vm = new Vue({
                 }
             );
             //if (orderIndex === -1)
-                this.orderedReadymade.push(correctItem);
+            this.orderedReadymade.push(correctItem);
             /* For the future, update the internal number
                 else {
                 console.log(this.orderedReadymade[orderIndex]);
@@ -262,65 +262,68 @@ var vm = new Vue({
         },
 
         orderReadymade: function () {
-            for(var i = 0; i < this.orderedReadymade.length;i++){
+            if (this.orderedReadymade.length > 0) {
+                for (var i = 0; i < this.orderedReadymade.length; i++) {
 
-                var drink = this.orderedReadymade[i];
-                
-                var order = {
-                    name: drink.name,
-                    ingredients: drink.ingredients,
-                    size: drink.size,
-                    type: drink.type,
-                    price: drink.price
-                };
-                socket.emit('cart', {orderId: getOrderNumber(), order});
+                    var drink = this.orderedReadymade[i];
+
+                    var order = {
+                        name: drink.name,
+                        ingredients: drink.ingredients,
+                        size: drink.size,
+                        type: drink.type,
+                        price: drink.price
+                    };
+                    socket.emit('cart', { orderId: getOrderNumber(), order });
+                }
+                this.price = 0;
+                this.orderedReadymade = [];
+                alert('Order done!');
             }
-            this.price = 0;
-            this.orderedReadymade = [];
-            alert('Order done!');
-        }, 
+            else {
+                alert('You did not choose anything yet!');
+            }
+        },
 
         createJuice: function () {
-            
+
             if (this.size === "small") {
                 this.price = 35;
                 this.size_tag = "S";
             }
-            
-            else if (this.size === "medium"){
+
+            else if (this.size === "medium") {
                 this.price = 40;
                 this.size_tag = "M";
             }
-            
-            else if (this.size === "large"){
+
+            else if (this.size === "large") {
                 this.price = 50;
                 this.size_tag = "L";
             }
 
             //Converting ingredients objects to string
-            this.chosenIngredients = this.chosenIngredients.map(item=>item["ingredient_"+ this.lang]).join(", ");
+            this.chosenIngredients = this.chosenIngredients.map(item => item["ingredient_" + this.lang]).join(", ");
 
             var juice = {
-                    
-                    name: "Juice "+ this.jn,
-                    rm_name: "Juice "+ this.jn,
-                    ingredients: this.chosenIngredients,
-                    volume: this.volume,
-                    size: this.size,
-                    size_tag: this.size_tag,
-                    type: this.type,
-                    price: this.price,
-                    amount: 1
-                };
-                if(this.chosenIngredients != [])
-                {
-                    this.orderedReadymade.push(juice);
-                }
-                else
-                {
-                    alert("please choose your ingredients!");
-                }
-            
+
+                name: "Juice " + this.jn,
+                rm_name: "Juice " + this.jn,
+                ingredients: this.chosenIngredients,
+                volume: this.volume,
+                size: this.size,
+                size_tag: this.size_tag,
+                type: this.type,
+                price: this.price,
+                amount: 1
+            };
+            if (this.chosenIngredients != []) {
+                this.orderedReadymade.push(juice);
+            }
+            else {
+                alert("please choose your ingredients!");
+            }
+
 
             //set all counters to 0. Notice the use of $refs
             for (var i = 0; i < this.$refs.ingredient.length; i += 1) {
@@ -335,28 +338,28 @@ var vm = new Vue({
             this.jn++;
         },
 
-        delete_ingredient:function(item){
+        delete_ingredient: function (item) {
             //console.log("gggggggg");
             console.log(item);
-            var index=this.chosenIngredients.indexOf(item);
+            var index = this.chosenIngredients.indexOf(item);
             this.chosenIngredients.splice(index, 1);
             // Reset the counter of the removed ingredient
             this.$children.filter(
                 x => x.item.ingredient_id == item.ingredient_id && x.$el.className == "ingredient"
             ).map(
                 x => x.resetCounter()
-            );
+                );
         },
-        toggleFlavor: function(item) {
+        toggleFlavor: function (item) {
             console.log(this.flavor);
             const index = (this.flavor || []).indexOf(item)
             if (index === -1) {
                 this.flavor ? this.flavor.push(item) : this.flavor = [item]
             } else {
-                this.flavor.splice(index,1)
+                this.flavor.splice(index, 1)
             }
         },
-        beMainFlavor: function(item) {
+        beMainFlavor: function (item) {
             //...
 
         },
@@ -371,7 +374,7 @@ var vm = new Vue({
         },
         resetStatus: function () {
             // Reset the data to the initial state
-            this.type =  '';
+            this.type = '';
             this.size = '';
             this.chosenIngredients = [];
             this.volume = 0;
@@ -379,10 +382,10 @@ var vm = new Vue({
             this.show_size = true;
             this.show_type = true;
             this.show_ingredient = false;
-            this.show_options =  false;
+            this.show_options = false;
             this.show_border = false;
-            this.show_reccomendation =  false;
-            this.flag =  false;
+            this.show_reccomendation = false;
+            this.flag = false;
             this.last_id = [];
             this.flavor = [];
             //this.orderedReadymade = [];
@@ -396,8 +399,8 @@ var vm = new Vue({
 function isRepeated(temp, arr) {
     console.log(temp);
     console.log(arr);
-    for(var i=0; i<arr.length; i++) {
-        if(arr[i]==temp){
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == temp) {
             console.log("is repeated");
             return i;
             break;

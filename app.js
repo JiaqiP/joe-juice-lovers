@@ -37,16 +37,11 @@ app.get('/kitchen', function(req, res) {
 app.get('/stock', function(req, res) {
 	res.sendFile(path.join(__dirname, 'views/stock.html'));
 });
-app.get('/readymade', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/machine2.html'));
-});
+// Serve Machine.html as machine
 app.get('/machine', function(req, res) {
 	res.sendFile(path.join(__dirname, 'views/machine.html'));
 });
-// Serve machine-create your own as subpage --ivy
-app.get('/create', function(req, res) {
-	res.sendFile(path.join(__dirname, 'views/machine1.html'));
-});
+
 
 // Serve mobile-create your own as subpage --Jiaqi
 app.get('/mobile/', function(req, res) {

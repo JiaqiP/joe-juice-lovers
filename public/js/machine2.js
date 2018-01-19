@@ -21,17 +21,17 @@ Vue.component('readymade', {
 Vue.component('orderedReadymade', {
     props: ['item', 'type'],
     template:
-        '<tr>\
-        <td class="Odel_check">\
-            <button v-on:click="deleteMe">\
-            <img src="images/trashcan_useful.png" width="20px">\
-            </button>\
-        </td>\
-        <td class="Oitem">{{ item.rm_name }}</td>\
-        <td class="Osize">{{ item.size_tag }}</td>\
-        <td class="Oquantity">{{ item.amount }}</td>\
-        <td class="Oprice">{{ item.price }}</td>\
-        </tr>',
+        `<tr>
+            <td class="Odel_check">
+                <button v-on:click="deleteMe">
+                <img src="images/trashcan_useful.png" width="20px">
+                </button>
+            </td>
+            <td class="Oitem">{{ item.rm_name }}</td>
+            <td class="Osize">{{ item.size_tag }}</td>
+            <td class="Oquantity">{{ item.amount }}</td>
+            <td class="Oprice">{{ item.price }}</td>
+        </tr>`,
         methods: {
             deleteMe: function () {
                 //console.log('Delete me!');

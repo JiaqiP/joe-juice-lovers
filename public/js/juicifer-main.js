@@ -48,7 +48,7 @@ var sharedVueStuff = {
     socket.on('initialize', function (data) {
       this.size = data.size;
       this.flavor = data.flavor;
-      this.rize = data.prize;
+      this.prize = data.prize;
       this.orders = data.orders;
       this.uiLabels = data.uiLabels;
       this.ingredients = data.ingredients.map(item => {

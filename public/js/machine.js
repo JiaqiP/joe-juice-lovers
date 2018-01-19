@@ -1,6 +1,3 @@
-/**
- * Created by wangyue on 2017-12-11.
- */
 /*jslint es5:true, indent: 2 */
 /*global sharedVueStuff, Vue, socket */
 'use strict';
@@ -292,7 +289,7 @@ var vm = new Vue({
             var juice = {
                     
                     name: "Juice "+ this.jn,
-                    rm_name: "Juice "+ this.jn + " - " + this.chosenIngredients,
+                    rm_name: "Juice "+ this.jn,
                     ingredients: this.chosenIngredients,
                     volume: this.volume,
                     size: this.size,
@@ -301,8 +298,15 @@ var vm = new Vue({
                     price: this.price,
                     amount: 1
                 };
+                if(this.chosenIngredients != [])
+                {
+                    this.orderedReadymade.push(juice);
+                }
+                else
+                {
+                    alert("please choose your ingredients!");
+                }
             
-            this.orderedReadymade.push(juice);
 
             //set all counters to 0. Notice the use of $refs
             for (var i = 0; i < this.$refs.ingredient.length; i += 1) {

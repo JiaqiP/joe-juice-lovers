@@ -178,17 +178,25 @@
                 <p class="list-title">{{ uiLabels.order }}</p>
                 <div id="list">
                     <table>
-                        <tr>
-                            <th class="Odel_check">
-                                <img src="images/trashcan_useful.png" width="20px">
-                            </th>
-                            <th class="Oitem">Item</th>
-                            <th class="Osize">Size</th>
-                            <th class="Oquantity">Quantity</th>
-                            <th class="Oprice">Price</th>
-                        </tr>
-                        <tr is="orderedReadymade" v-for="item in orderedReadymade" :item="item" :lang="lang" :key="item.rm_id" v-on:delete="deleteReadymade(item)">
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th class="Odel_check">
+                                    <img src="images/trashcan_useful.png" width="20px">
+                                </th>
+                                <th class="Oitem">Item</th>
+                                <th class="Osize">Size</th>
+                                <th class="Oquantity">Quantity</th>
+                                <th class="Oprice">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template v-for="item in orderedReadymade">
+                                <tr is="orderedReadymade" :item="item" :lang="lang" :key="item.rm_id" v-on:delete="deleteReadymade(item)">
+                                <tr>
+                                    <td colspan="4">Ingredients: {{item.ingredients}}</td>
+                                </tr>
+                            </template>
+                        </tbody>
                     </table>
                 </div>
 
@@ -197,15 +205,22 @@
                 <!--<h1>{{ uiLabels.order }}</h1>-->
                 <div id="list_CYO">
                     <div v-if="show_ingredient">
-                        <h3>{{this.size}} {{this.type}}</h3>
+                        <h3>Your order:</h3>
+                        <h4 style="margin-top: -2vh">{{this.size}} - {{this.type}}</h4>
                         <div id="info">
 
                             <div class="display_ingr">
-                                <div class="table">
+                                <table class="table">
+                                    <tr>{{ uiLabels.ingredients }}:</tr>
+                                    <!-- 
+                                    <tr>{{uiLabels.mainflavor}}</tr>
+                                    <tr>{{uiLabels.delete}}</tr>
+                                    
                                     <span class="display_ingr_label">{{ uiLabels.ingredients }}</span>
                                     <span class="display_ingr_label">{{uiLabels.mainflavor}} </span>
                                     <span class="display_ingr_label">{{uiLabels.delete}} </span>
-                                </div>
+                                    -->
+                                </table>
                                 <check_ingredients ref="check_ingredients" v-on:delet_ingre_event="delete_ingredient" @toggle_flavor_event="toggleFlavor"
                                     v-for="item in chosenIngredients" :item="item" :lang="lang" :key="item.ingredient_id">
                                 </check_ingredients>
@@ -217,19 +232,17 @@
 
                     <p class="list-title">{{ uiLabels.ordersInQueue }}</p>
                     <div id="order-queue">
-                        <h3>{{ uiLabels.smoothie }}:</h3>
-                        <div>
-                            <order-item1 v-for="(order, key) in orders" v-if="!order.done && order.type == 'smoothie'" :order-id="key" :order="order"
-                                :ui-labels="uiLabels" :lang="lang" :key="key">
-                            </order-item1>
-                        </div>
-                        <h3>{{ uiLabels.juice }}:</h3>
+                        <h4 style="margin-bottom: 0.8vh">{{ uiLabels.smoothie }}:</h4>
+                        <order-item1 v-for="(order, key) in orders" v-if="!order.done && order.type == 'smoothie'" :order-id="key" :order="order"
+                            :ui-labels="uiLabels" :lang="lang" :key="key">
+                        </order-item1>
+                        <h4 style="margin-bottom: 0.8vh">{{ uiLabels.juice }}:</h4>
                         <div>
                             <order-item1 v-for="(order, key) in orders" v-if="!order.done && order.type == 'juice'" :order-id="key" :order="order" :ui-labels="uiLabels"
                                 :lang="lang" :key="key">
                             </order-item1>
                         </div>
-                        <h3>Readymade:</h3>
+                        <h4 style="margin-bottom: 0.8vh">Readymade:</h4>
                         <div>
                             <order-item v-for="(order, key) in orders" v-if="!order.done && order.type == 'readymade'" :order-id="key" :order="order"
                                 :ui-labels="uiLabels" :lang="lang" :key="key">

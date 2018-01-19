@@ -20,13 +20,15 @@
         display: inline-block;
         width: 40vw;
         height: 40vw;
-        border: 1px solid #000;
+        border: 0.1px solid #000;
         margin: 4.5vw;
+        padding:0;
       }
       .container .item img {
-        width: 30vw;
-        height: 30vw;
-        margin: 5vw;
+        width: 38vw;
+        height: 38vw;
+        margin: 1vw;
+        padding:0;
       }
       .modal {
         position: absolute;
@@ -89,11 +91,18 @@
         <span align = "center">{{uiLabels.rec}}</span>
         <mini-cart :items="storegeData"></mini-cart>
       </div>
+        
+        
     <div class="container">
-      <div class="item" v-for="item in recommendation" @click="showMadal(item)">
+      
+        <div class="item" v-for="item in recommendation" @click="showMadal(item)">
         <img :src="item.url" alt="item.name">
-      </div>
+            <h4>{{item.name}}</h4>
+        </div>
+        
     </div>
+        
+        
     <div class="modal" v-if="isShowModal">
       <p class="close" @click="closeModal" >X</p>
       <div class="capacity">

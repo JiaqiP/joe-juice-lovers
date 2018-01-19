@@ -10,6 +10,15 @@ localhost:3000
 
 
 
+
+## The three views
+
+1. Machine view connection localhost:3000/machine
+2. Mobile view connection localhost:3000/mobile
+3. Kitchen view connection localhost:3000/kitchen
+
+
+`
 ## Mobile view explanations
 
 1. the mobile view is multi-pages which means there are several vue instances are used. Different pages uses localstorage of browser to store and pass data.

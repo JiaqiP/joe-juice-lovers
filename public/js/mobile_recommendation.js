@@ -25,6 +25,8 @@ Vue.component('cart-item', {
   }
 })
 
+
+
 new Vue({
     el:"#app",
     mixins: [sharedVueStuff],
@@ -39,35 +41,35 @@ new Vue({
           price: 0
         },
         recommendation: [{
-          url:'/images/1.png',
+          url:"https://www.joejuice.com/media/2337/pickmeofhindbaer.jpg",
           price: 30,
-          name: 'carambola',
-          ingredients: 'carambola juice, water,sugar '
+          name: 'Pick me up',
+          ingredients: 'Raspberry, banana, apple'
         }, {
-          url:'/images/2.png',
+          url:'https://www.joejuice.com/media/2355/energizer.jpg',
           price: 30,
-          name: 'tangerine',
-          ingredients: 'tangerine juice, water,sugar '
+          name: 'Energizer',
+          ingredients: 'Red grapefruit, ginger, apple'
         }, {
-          url:'/images/3.png',
+          url:'https://www.joejuice.com/media/2334/ironman.jpg',
           price: 30,
-          name: 'pomegranate',
+          name: 'Iron man',
           ingredients: 'pomegranate juice, water,sugar '
         }, {
-          url:'/images/4.png',
+          url:'https://www.joejuice.com/media/2309/amg.jpg',
           price: 30,
-          name: 'watermelon',
+          name: 'Joe\'s AMG',
           ingredients: 'watermelon juice, water,sugar '
         }, {
-          url:'/images/5.png',
+          url:'https://www.joejuice.com/media/2343/stressdown.jpg',
           price: 3,
-          name: 'kiwifruit',
+          name: 'Stress down',
           ingredients: 'kiwifruit juice, water,sugar '
         }, {
-          url:'/images/6.png',
+          url:'https://www.joejuice.com/media/2331/hangoverheaven.jpg',
           price: 30,
-          name: 'pineapple',
-          ingredients: 'pineapple juice, water,sugar '
+          name: 'Heaven',
+          ingredients: 'Apple, elderflower, mint'
         }]
       }
     },

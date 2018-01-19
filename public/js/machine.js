@@ -285,9 +285,14 @@ var vm = new Vue({
                 this.price = 50;
                 this.size_tag = "L";
             }
+
+            //Converting ingredients objects to string
+            this.chosenIngredients = this.chosenIngredients.map(item=>item["ingredient_"+ this.lang]).join(", ");
+
             var juice = {
+                    
                     name: "Juice "+ this.jn,
-                    rm_name: "Juice "+ this.jn,
+                    rm_name: "Juice "+ this.jn + " - " + this.chosenIngredients,
                     ingredients: this.chosenIngredients,
                     volume: this.volume,
                     size: this.size,

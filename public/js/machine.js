@@ -83,6 +83,7 @@ var vm = new Vue({
     mixins: [sharedVueStuff], // include stuff that is used both in the ordering system and in the kitchen
     data: {
         type: '',
+        size: '',
         chosenIngredients: [],
         volume: 0,
         price: 0,
@@ -116,8 +117,15 @@ var vm = new Vue({
             //console.log(this.size);
         },
         confirmReadymadeSize: function() {
-            this.show_options = true;
-            this.show_size = false;
+            if (this.size == '' //||
+                // For some strange reason, initially size is not initialized. Consider that
+                //this.size === undefined
+                )
+                alert('Please choose the size!');
+            else {
+                this.show_options = true;
+                this.show_size = false;
+            }
         },
         reset: function() {
             // Can and should be adjusted to work also for create your own
@@ -129,20 +137,26 @@ var vm = new Vue({
             this.show_options = false;
         },
         confirmSizeType: function() {
-            this.show_type = false;
-            this.show_size = false;
-            this.show_ingredient = true;
-            // Else people can keep more ingredients for lower prices!!!
-            // Pick up them again
-            this.chosenIngredients = [];
-            // Really horrible stuff... But someone has to do it.
-            // Access directly the elements and reset their counters...!
-            this.$children.filter(
-                x => x.$el.className == "ingredient" && x.counter != 0
-            ).map(
-                x => x.resetCounter()
-            );
-            //this.$emit('resetCounter');
+            if (this.type == '' || this.size == '' ||
+                // For some strange reason, initially size is not initialized. Consider that
+                this.size === undefined)
+                alert('Please choose both type and size!');
+            else {
+                this.show_type = false;
+                this.show_size = false;
+                this.show_ingredient = true;
+                // Else people can keep more ingredients for lower prices!!!
+                // Pick up them again
+                this.chosenIngredients = [];
+                // Really horrible stuff... But someone has to do it.
+                // Access directly the elements and reset their counters...!
+                this.$children.filter(
+                    x => x.$el.className == "ingredient" && x.counter != 0
+                ).map(
+                    x => x.resetCounter()
+                );
+                //this.$emit('resetCounter');
+            }
         },
         addToOrder: function (item) {
             console.log(this.size);
@@ -353,10 +367,12 @@ var vm = new Vue({
         showReccomendation: function () {
             this.resetStatus();
             this.show_reccomendation = true;
+            this.type = "readymade";
         },
         resetStatus: function () {
             // Reset the data to the initial state
             this.type =  '';
+            this.size = '';
             this.chosenIngredients = [];
             this.volume = 0;
             this.price = 0;
@@ -370,7 +386,6 @@ var vm = new Vue({
             this.last_id = [];
             this.flavor = [];
             //this.orderedReadymade = [];
-            this.size = '';
         }
     }
 }

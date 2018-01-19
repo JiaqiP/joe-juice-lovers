@@ -192,9 +192,9 @@
                         <tbody>
                             <template v-for="item in orderedReadymade">
                                 <tr is="orderedReadymade" :item="item" :lang="lang" :key="item.rm_id" v-on:delete="deleteReadymade(item)">
-                                <tr>
-                                    <td colspan="4">Ingredients: {{item.ingredients}}</td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="4">Ingredients: {{item.ingredients}}</td>
+                                    </tr>
                             </template>
                         </tbody>
                     </table>
@@ -204,11 +204,10 @@
 
                 <!--<h1>{{ uiLabels.order }}</h1>-->
                 <div id="list_CYO">
+                    <h3>Your order:</h3>
+                    <h4 style="margin-top: -2vh">{{this.size}} {{this.type}}</h4>
                     <div v-if="show_ingredient">
-                        <h3>Your order:</h3>
-                        <h4 style="margin-top: -2vh">{{this.size}} - {{this.type}}</h4>
                         <div id="info">
-
                             <div class="display_ingr">
                                 <table class="table">
                                     <tr>{{ uiLabels.ingredients }}:</tr>

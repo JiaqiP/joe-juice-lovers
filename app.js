@@ -31,11 +31,9 @@ app.get('/', function (req, res) {
 
 // Serve kitchen.html as subpage
 app.get('/kitchen', function(req, res) {
-	res.sendFile(path.join(__dirname, 'views/kitchen.html'));
-});
-app.get('/kitchen2', function(req, res) {
 	res.sendFile(path.join(__dirname, 'views/kitchen2.html'));
 });
+
 app.get('/stock', function(req, res) {
 	res.sendFile(path.join(__dirname, 'views/stock.html'));
 });

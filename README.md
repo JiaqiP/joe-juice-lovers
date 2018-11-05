@@ -18,13 +18,12 @@ localhost:3000
 3. Kitchen view connection localhost:3000/kitchen
 
 
-`
+
 ## Mobile view explanations
 
 1. the mobile view is multi-pages which means there are several vue instances are used. Different pages uses localstorage of browser to store and pass data.
 
-2. 
-mobile-cart.js contains the vue instance for the mobile-cart.html
+2. mobile-cart.js contains the vue instance for the mobile-cart.html
 
 mobile-create.js contains the vue instance for mobile-create.html (which includes 3 pages in one page)(read seminar note 1 BONUS: CREATE "PAGES" WITHIN A PAGE for more information)
 
